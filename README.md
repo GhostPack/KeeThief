@@ -13,7 +13,7 @@ This project includes a number of components:
 
 ## DecryptionShellcode
 
-A modified version of Matt Graeber ([@mattifestation](https://twitter.com/mattifestation))'s [PIC\_Bindshell](https://github.com/mattifestation/PIC_Bindshell) position-independent shellcode project, lincensed under the 3-clause BSD license.
+A modified version of Matt Graeber ([@mattifestation](https://twitter.com/mattifestation))'s [PIC\_Bindshell](https://github.com/mattifestation/PIC_Bindshell) position-independent shellcode project, licensed under the 3-clause BSD license.
 
 Modifications were made to build shellcode to inject into a KeePass.exe process that decrypts DPAPI blobs using RtlDecryptMemory.
 
@@ -27,7 +27,7 @@ The main KeeThief code, "where the magic happens".
 
 KeeThief's GetKeePassMasterKeys() will attach to the target KeePass process using CLR MD and enumerate all CLR heap objects, searching for a KeePassLib.PwDatabase object. If one is found, the path is extracted from the m_strUrl field, and all referenced objects are enumerated, searching for a KeePassLib.Keys.CompositeKey.
 
-If a composite master key is found, information for each key type (KcpPassword, KcpKeyFile, KcpUserAccount) is extracted, including the DPAPI encrypted data blobs of key data. For any encrypted blobs found, shellcode is injected into the KeePass process that calls MyRtlDecryptMemory() to decrypt the DPAPI memory blobs, returning the plaintext/unprotected key data.
+If a composite master key is found, information for each key type (KcpPassword, KcpKeyFile, KcpUserAccount) is extracted, including the RtlEncryptMemory() encrypted data blobs of key data. For any encrypted blobs found, shellcode is injected into the KeePass process that calls MyRtlDecryptMemory() to decrypt the memory blobs, returning the plaintext/unprotected key data.
 
 This is a different approach than denandz' excellent [KeeFarce project](https://github.com/denandz/KeeFarce), which injects code to load a bootstrap DLL into the KeePass process, which then loads an C# assembly along with CLR MD, and executes the 'Export' method on a KeePass.DataExchange.Formats.KeePassCsv1x object in order to export all existing passwords to disk. KeeTheft walks the heap for composite key information and injects shellcode to decrypt each encryption material component as appropriate.
 
@@ -42,6 +42,6 @@ The **KeeThief.ps1** PowerShell file contains **Get-KeePassDatabaseKey**, which 
 
 The **KeePassConfig.ps1** file contains method to enumerate KeePass config files on a system (**Find-KeePassconfig**), retrieve the set triggers for a KeePass.config.xml file (**Get-KeePassConfigTrigger**), add malicious KeePass triggers (**Add-KeePassConfigTrigger**), and remove KeePass triggers (**Remove-KeePassConfigTrigger**).
 
-## KeeTheft License
+## KeeThief License
 
-The KeeTheft project and all individual scripts are under the [BSD 3-Clause license](https://raw.github.com/mattifestation/PowerSploit/master/LICENSE) unless explicitly noted otherwise.
+The KeeThief project and all individual scripts are under the [BSD 3-Clause license](https://raw.github.com/mattifestation/PowerSploit/master/LICENSE) unless explicitly noted otherwise.
