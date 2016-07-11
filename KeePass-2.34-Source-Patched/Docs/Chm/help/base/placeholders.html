@@ -1,0 +1,575 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta name="author" content="Dominik Reichl" />
+
+	<meta name="description" content="KeePass is an open source password manager. Passwords can be stored in highly-encrypted databases, which can be unlocked with one master password or key file." />
+	<meta name="keywords" content="KeePass, Password, Safe, Security, Database, Encryption, Secure, Manager, Open, Source, Free, Code, Key, Master, Disk, Dominik, Reichl" />
+
+	<meta name="robots" content="index" />
+
+	<meta name="DC.Title" content="KeePass - The Open Source Password Manager" />
+	<meta name="DC.Creator" content="Dominik Reichl" />
+	<meta name="DC.Subject" content="Open-Source Password Safe" />
+	<meta name="DC.Description" content="KeePass is an open source password manager. Passwords can be stored in highly-encrypted databases, which can be unlocked with one master password or key file." />
+	<meta name="DC.Publisher" content="Dominik Reichl" />
+	<meta name="DC.Contributor" content="Dominik Reichl" />
+	<meta name="DC.Type" content="text" />
+	<meta name="DC.Format" content="text/html" />
+	<meta name="DC.Identifier" content="http://keepass.info/" />
+	<meta name="DC.Language" content="en" />
+	<meta name="DC.Rights" content="Copyright (c) 2003-2016 Dominik Reichl" />
+
+	<title>Placeholders - KeePass</title>
+	<base target="_self" />
+	<link rel="stylesheet" type="text/css" href="../../default.css" />
+	
+</head>
+<body>
+
+
+
+
+
+<table class="sectionsummary"><tr><td width="68px">
+<img src="../images/b64x64_chardevice.png" width="64px" height="64px"
+class="singleimg" align="left" alt="Placeholder Icon" />
+</td><td valign="middle"><h1>Placeholders</h1><br />
+KeePass supports various placeholders.
+</td></tr></table>
+
+<p>In many places in KeePass (auto-type, URL field, triggers, ...),
+placeholders can be used.</p>
+
+<ul>
+<li><a href="#entryfields">Entry Field Placeholders</a></li>
+<li><a href="#fieldrefs">Entry Field References</a></li>
+<li><a href="#envctx">Paths and Date/Time Placeholders</a></li>
+<li><a href="#envvars">Environment Variables</a></li>
+<li><a href="#texttrf">Text Transformations</a></li>
+<li><a href="#plh">Other Placeholders</a></li>
+</ul>
+
+
+
+
+
+
+
+
+Placeholders are case-insensitive.
+
+
+
+<br />
+
+<p>KeePass uses the abbreviation &quot;Spr&quot; for &quot;String placeholder replacement&quot;.
+An <em>Spr-compiled</em> field is a field where placeholders are replaced
+when performing an action with this field (like copying it to the
+clipboard, sending it using auto-type, etc.).</p>
+
+<br />
+
+<a name="entryfields"></a>
+<h2 class="sectiontitle"><img src="../images/b16x16_chardevice.png"
+class="singleimg" alt="Placeholder" />&nbsp;&nbsp;Entry Field Placeholders</h2>
+
+<br />
+
+<table class="tablebox75">
+<tr><th width="50%">Placeholder</th><th width="50%">Field</th></tr>
+<tr><td width="50%"><code>{TITLE}</code></td><td width="50%">Title</td></tr>
+<tr><td width="50%"><code>{USERNAME}</code></td><td width="50%">User name</td></tr>
+<tr><td width="50%"><code>{URL}</code></td><td width="50%">URL</td></tr>
+<tr><td width="50%"><code>{PASSWORD}</code></td><td width="50%">Password</td></tr>
+<tr><td width="50%"><code>{NOTES}</code></td><td width="50%">Notes</td></tr>
+</table>
+
+<br />
+
+
+Custom strings can be referenced using <code>{S:<i>Name</i>}</code>.
+For example, if you have a custom string named &quot;eMail&quot;,
+you can use the placeholder <code>{S:eMail}</code>.
+
+
+<br />
+
+<br />
+
+
+<table class="tablebox75">
+<tr><th width="50%">Placeholder</th><th width="50%">Is Replaced By</th></tr>
+<tr><td width="50%"><code>{URL:RMVSCM}</code></td><td width="50%">Entry URL without scheme name.</td></tr>
+<tr><td width="50%"><code>{URL:SCM}</code></td><td width="50%">Scheme name of the entry URL.</td></tr>
+<tr><td width="50%"><code>{URL:HOST}</code></td><td width="50%">Host component of the entry URL.</td></tr>
+<tr><td width="50%"><code>{URL:PORT}</code></td><td width="50%">Port number of the entry URL.</td></tr>
+<tr><td width="50%"><code>{URL:PATH}</code></td><td width="50%">Path component of the entry URL.</td></tr>
+<tr><td width="50%"><code>{URL:QUERY}</code></td><td width="50%">Query information of the entry URL.</td></tr>
+<tr><td width="50%"><code>{URL:USERINFO}</code></td><td width="50%">User information of the entry URL.</td></tr>
+<tr><td width="50%"><code>{URL:USERNAME}</code></td><td width="50%">User name of the entry URL.</td></tr>
+<tr><td width="50%"><code>{URL:PASSWORD}</code></td><td width="50%">Password of the entry URL.</td></tr>
+</table>
+<br />
+An example can be found <a href="#url">below</a>.
+
+
+<br /><br />
+
+<a name="fieldrefs"></a>
+<h2 class="sectiontitle"><img src="../images/b16x16_chardevice.png"
+class="singleimg" alt="Placeholder" />&nbsp;&nbsp;Entry Field References</h2>
+
+<p>Fields of <i>other</i> entries can be inserted using
+<a href="fieldrefs.html">Field References</a>.</p>
+
+<br />
+
+<a name="envctx"></a>
+<h2 class="sectiontitle"><img src="../images/b16x16_chardevice.png"
+class="singleimg" alt="Placeholder" />&nbsp;&nbsp;Paths and Date/Time Placeholders</h2>
+
+<br />
+
+<table class="tablebox75">
+<tr><th width="50%">Placeholder</th><th width="50%">Is Replaced By</th></tr>
+<tr><td width="50%"><code>{INTERNETEXPLORER}</code></td><td width="50%">Path of Internet Explorer, if installed.</td></tr>
+<tr><td width="50%"><code>{FIREFOX}</code></td><td width="50%">Path of Mozilla Firefox, if installed.</td></tr>
+<tr><td width="50%"><code>{OPERA}</code></td><td width="50%">Path of Opera, if installed.</td></tr>
+<tr><td width="50%"><code>{GOOGLECHROME}</code></td><td width="50%">Path of Google Chrome (or Chromium
+on Unix-like systems), if installed.</td></tr>
+<tr><td width="50%"><code>{SAFARI}</code></td><td width="50%">Path of Safari, if installed.</td></tr>
+</table>
+
+<p><b>Microsoft Edge.</b>
+There exists no placeholder for Edge, because Edge is an app
+that cannot be started like a regular Windows application.
+In order to open an URL using Edge, prefix the URL with '<code>microsoft-edge:</code>'.
+For example, in order to open the URL
+<a href="http://keepass.info/" target="_blank">http://keepass.info/</a>
+using Edge, use the URL
+<a href="microsoft-edge:http://keepass.info/" target="_blank"
+rel="nofollow">microsoft-edge:http://keepass.info/</a>.</p>
+
+<br />
+
+<table class="tablebox75">
+<tr><th width="50%">Placeholder</th><th width="50%">Is Replaced By</th></tr>
+<tr><td width="50%"><code>{APPDIR}</code></td><td width="50%">KeePass application directory path.</td></tr>
+</table>
+
+<br />
+
+
+<table class="tablebox75">
+<tr><th width="50%">Placeholder</th><th width="50%">Is Replaced By</th></tr>
+<tr><td width="50%"><code>{GROUP}</code></td><td width="50%">Name of the entry's parent group.</td></tr>
+<tr><td width="50%"><code>{GROUP_PATH}</code></td><td width="50%">Full group path of the entry.</td></tr>
+<tr><td width="50%"><code>{GROUP_NOTES}</code></td><td width="50%">Notes of the entry's parent group.</td></tr>
+<tr><td width="50%"><code>{GROUP_SEL}</code></td><td width="50%">Name of the group that is currently selected in the main window.</td></tr>
+<tr><td width="50%"><code>{GROUP_SEL_PATH}</code></td><td width="50%">Full path of the group that is currently selected in the main window.</td></tr>
+<tr><td width="50%"><code>{GROUP_SEL_NOTES}</code></td><td width="50%">Notes of the group that is currently selected in the main window.</td></tr>
+<tr><td width="50%"><code>{DB_PATH}</code></td><td width="50%">Full path of the current database.</td></tr>
+<tr><td width="50%"><code>{DB_DIR}</code></td><td width="50%">Directory of the current database.</td></tr>
+<tr><td width="50%"><code>{DB_NAME}</code></td><td width="50%">File name (including extension) of the current database.</td></tr>
+<tr><td width="50%"><code>{DB_BASENAME}</code></td><td width="50%">File name (excluding extension) of the current database.</td></tr>
+<tr><td width="50%"><code>{DB_EXT}</code></td><td width="50%">File name extension of the current database.</td></tr>
+<tr><td width="50%"><code>{ENV_DIRSEP}</code></td><td width="50%">Directory separator ('\' on Windows, '/' on Unix).</td></tr>
+<tr><td width="50%"><code>{ENV_PROGRAMFILES_X86}</code></td><td width="50%">This is
+<code>%ProgramFiles(x86)%</code>, if it exists, otherwise <code>%ProgramFiles%</code>.</td></tr>
+</table>
+
+
+<br />
+
+<table class="tablebox75">
+<tr><th width="50%">Placeholder</th><th width="50%">Is Replaced By</th></tr>
+<tr><td width="50%"><code>{DT_SIMPLE}</code></td><td width="50%">Current local date/time as a simple,
+sortable string. For example, for 2012-07-25 17:05:34 the value is 20120725170534.</td></tr>
+<tr><td width="50%"><code>{DT_YEAR}</code></td><td width="50%">Year component of the current local date/time.</td></tr>
+<tr><td width="50%"><code>{DT_MONTH}</code></td><td width="50%">Month component of the current local date/time.</td></tr>
+<tr><td width="50%"><code>{DT_DAY}</code></td><td width="50%">Day component of the current local date/time.</td></tr>
+<tr><td width="50%"><code>{DT_HOUR}</code></td><td width="50%">Hour component of the current local date/time.</td></tr>
+<tr><td width="50%"><code>{DT_MINUTE}</code></td><td width="50%">Minute component of the current local date/time.</td></tr>
+<tr><td width="50%"><code>{DT_SECOND}</code></td><td width="50%">Seconds component of the current local date/time.</td></tr>
+<tr><td width="50%"><code>{DT_UTC_SIMPLE}</code></td><td width="50%">Current UTC date/time as a simple, sortable string.</td></tr>
+<tr><td width="50%"><code>{DT_UTC_YEAR}</code></td><td width="50%">Year component of the current UTC date/time.</td></tr>
+<tr><td width="50%"><code>{DT_UTC_MONTH}</code></td><td width="50%">Month component of the current UTC date/time.</td></tr>
+<tr><td width="50%"><code>{DT_UTC_DAY}</code></td><td width="50%">Day component of the current UTC date/time.</td></tr>
+<tr><td width="50%"><code>{DT_UTC_HOUR}</code></td><td width="50%">Hour component of the current UTC date/time.</td></tr>
+<tr><td width="50%"><code>{DT_UTC_MINUTE}</code></td><td width="50%">Minute component of the current UTC date/time.</td></tr>
+<tr><td width="50%"><code>{DT_UTC_SECOND}</code></td><td width="50%">Seconds component of the current UTC date/time.</td></tr>
+</table>
+
+<br /><br />
+
+<a name="envvars"></a>
+<h2 class="sectiontitle"><img src="../images/b16x16_konsole.png"
+class="singleimg" alt="Placeholder" />&nbsp;&nbsp;Environment Variables</h2>
+
+<p>System environment variables are supported.
+The name of the variable must be enclosed in '<code>%</code>' characters.
+For example <code>%TEMP%</code> is replaced by the user's temporary path.</p>
+
+<br />
+
+<a name="texttrf"></a>
+<h2 class="sectiontitle"><img src="../images/ascii.png"
+class="singleimg" alt="Text" />&nbsp;&nbsp;Text Transformations</h2>
+
+<br />
+
+
+<table class="tablebox75">
+<tr><th width="50%">Placeholder</th><th width="50%">Action</th></tr>
+<tr><td width="50%"><code>{T-REPLACE-RX:/<i>Text</i>/<i>Search</i>/<i>Replace</i>/}</code></td>
+<td width="50%">Searches the regular expression <em>Search</em> in <em>Text</em>
+and replaces all matches by <em>Replace</em>.
+See <a href="#replacerx">below</a>.</td></tr>
+<tr><td width="50%"><code>{T-CONV:/<i>Text</i>/<i>Type</i>/}</code></td>
+<td width="50%">Convert <em>Text</em> to <em>Type</em>.
+See <a href="#conv">below</a>.</td></tr>
+</table>
+
+
+<br /><br />
+
+<a name="replacerx"></a>
+
+<b><code>{T-REPLACE-RX:/<i>Text</i>/<i>Search</i>/<i>Replace</i>/}</code> &#8211; Replace
+Using Regular Expression:</b><br />
+This placeholder
+searches the <a href="http://msdn.microsoft.com/en-us/library/az24scfc.aspx"
+target="_blank" rel="nofollow">regular expression</a> <em>Search</em> in <em>Text</em>
+and replaces all matches by <em>Replace</em>.<br />
+<br />
+All parameters are Spr-compiled, i.e. placeholders can be used within them.<br />
+<br />
+The first character after the first '<code>:</code>' specifies the
+separator character. Any character except '<code>}</code>' can be used as separator
+character.
+It must not appear within the parameters.
+For example,
+<code>{T-REPLACE-RX:/A/B/C/}</code> and
+<code>{T-REPLACE-RX:!A!B!C!}</code> are equivalent.
+The last separator character (before the '<code>}</code>') is required.<br />
+<br />
+<em>Usage example.</em>
+Let the user name field contain the e-mail address '<code>myname@myprovider.net</code>' and
+the URL field '<code>{T-REPLACE-RX:!{USERNAME}!.*@(.*)!http://$1!}</code>'.
+When running the URL field, KeePass opens
+'<code>http://myprovider.net</code>'.
+
+
+<br /><br />
+
+<a name="conv"></a>
+
+<b><code>{T-CONV:/<i>Text</i>/<i>Type</i>/}</code> &#8211; Convert:</b><br />
+This placeholder converts <em>Text</em> to <em>Type</em>.<br />
+<br />
+All parameters are Spr-compiled, i.e. placeholders can be used within them.<br />
+<br />
+Supported types are:
+<ul>
+<li><b>Upper</b> or <b>U</b>:<br />
+Upper-case.</li>
+<li><b>Lower</b> or <b>L</b>:<br />
+Lower-case.</li>
+<li><b>Base64</b>:<br />
+The Base64 encoding of the UTF-8 representation of the text.</li>
+<li><b>Hex</b>:<br />
+The Hex encoding of the UTF-8 representation of the text.</li>
+<li><b>Uri</b>:<br />
+The URI-escaped representation of the text.</li>
+<li><b>Uri-Dec</b>:<br />
+The URI-unescaped representation of the text.</li>
+</ul>
+<em>Usage example.</em>
+Let the user name field contain '<code>Bob</code>' and
+the URL field '<code>http://myprovider.net/?user={T-CONV:/{USERNAME}/L/}</code>'.
+When running the URL field, KeePass opens
+'<code>http://myprovider.net/?user=bob</code>'.
+
+
+<br /><br />
+
+<a name="plh"></a>
+<h2 class="sectiontitle"><img src="../images/b16x16_chardevice.png"
+class="singleimg" alt="Placeholder" />&nbsp;&nbsp;Other Placeholders</h2>
+
+<br />
+
+
+<table class="tablebox75">
+<tr><th width="50%">Placeholder</th><th width="50%">Action</th></tr>
+<tr><td width="50%"><code>{PICKCHARS}</code><br />
+<code>{PICKCHARS:<i>Fld</i>:<i>Opt</i>}</code></td><td width="50%">Shows a dialog to pick certain characters from an entry string.
+See <a href="#pickchars">below</a>.</td></tr>
+<tr><td width="50%"><code>{NEWPASSWORD}</code><br />
+<code>{NEWPASSWORD:/<em>Profile</em>/}</code></td><td width="50%">Generates a new password.
+See <a href="#newpassword">below</a>.</td></tr>
+<tr><td width="50%"><code>{PASSWORD_ENC}</code></td><td width="50%">Password in encrypted form.
+See <a href="#passwordenc">below</a>.</td></tr>
+<tr><td width="50%"><code>{HMACOTP}</code></td><td width="50%">Generates a one-time password.
+See <a href="#hmacotp">below</a>.</td></tr>
+<tr><td width="50%"><code>{C:<i>Comment</i>}</code></td><td width="50%">Comment; is removed.</td></tr>
+<tr><td width="50%"><code>{BASE}</code><br />
+<code>{BASE:RMVSCM}</code><br />
+<code>{BASE:SCM}</code><br />
+<code>{BASE:HOST}</code><br />
+<code>{BASE:PORT}</code><br />
+<code>{BASE:PATH}</code><br />
+<code>{BASE:QUERY}</code><br />
+<code>{BASE:USERINFO}</code><br />
+<code>{BASE:USERNAME}</code><br />
+<code>{BASE:PASSWORD}</code></td><td width="50%">Within an URL override,
+each of these placeholders is replaced by the specified part of the string that is
+being overridden.
+See <a href="#url">below</a>.</td></tr>
+</table>
+
+
+<!-- <a name="pickpasswordchars"></a>
+<b>Picking Password Characters:</b><br />
+The password character picking dialog can be invoked multiple times in one
+auto-typing sequence. Use <code>{PICKPASSWORDCHARS}</code> first, then append
+numbers starting with 2, i.e. <code>{PICKPASSWORDCHARS2}</code>,
+<code>{PICKPASSWORDCHARS3}</code>, etc.<br />
+<br />
+You can additionally specify the number of characters
+to pick. To do this, append <code>:k</code> in the placeholder, where
+<code>k</code> is the number of characters. For example,
+<code>{PICKPASSWORDCHARS2:5}</code> is a placeholder with ID 2 and will
+allow to pick 5 characters. Advantage of predefining the number of characters:
+when enough characters have been picked, the dialog closes automatically,
+i.e. you don't need to click [OK] anymore. -->
+
+<br /><br />
+
+<a name="pickchars"></a>
+
+<b><code>{PICKCHARS}</code> &#8211; Picking Characters:</b><br />
+<a href="http://keepass.info/screenshots/windows_vista/pickchars_big.png"
+target="_blank"><img src="../../screenshots/windows_vista/pickchars.png"
+align="right" alt="Character Picking Dialog" /></a>
+The <code>{PICKCHARS}</code> placeholder shows a dialog, in which you can
+pick characters of an entry string (like the password) at certain positions.<br />
+<br />
+<code>{PICKCHARS}</code> without any parameters lets you pick an arbitrary
+amount of characters from the password of the entry.
+A different entry string can be specified by appending a '<code>:</code>'
+and the name of the field; e.g. <code>{PICKCHARS:UserName}</code>.
+The names of the standard fields are <i>Title</i>, <i>UserName</i> (without a space),
+<i>Password</i>, <i>URL</i> and <i>Notes</i>. A custom entry string can
+be referenced by its name (without an <code>S:</code> prefix).<br />
+<br />
+Additionally, the placeholder supports various (optional!) options. Options are appended
+after the field name, separated by a '<code>:</code>'. If you want to specify
+multiple options, separate them by a comma '<code>,</code>'. Options are
+key-value pairs, separated by a '<code>=</code>'. The following options
+are supported:
+<ul>
+<li><b>ID</b>: Specifies an alphanumeric ID for the placeholder (see below).</li>
+<li><b>C</b> or <b>Count</b>: Specifies the number of characters to pick from
+the string. When enough characters have been picked,
+the dialog closes automatically (i.e. you don't need to manually click [OK]
+anymore).</li>
+<li><b>Hide</b>: If set to <i>False</i>, the picked characters in the dialog
+are shown as plain text by default, i.e. not hidden by asterisks.
+By default, KeePass uses the hiding setting of passwords in the main window.</li>
+<li><b>Conv</b>: Specifies how to convert the picked characters.
+When this parameter is omitted, no conversion is performed, i.e. the selected
+characters are auto-typed directly. The option supports the following values:
+<ul>
+<li><b>D</b>: Convert the picked characters to down arrow keypresses; e.g.
+'2', 'c' and 'C' are converted to 2 down arrow keypresses.<br />
+<br />
+A fixed number of
+down arrow keypresses can be added by specifying them using the <b>Conv-Offset</b>
+option. For example, if you specify <code>Conv=D, Conv-Offset=1</code>,
+then '2', 'c' and 'C' are converted to 3 down arrow keypresses.<br />
+<br />
+By using the <b>Conv-Fmt</b> option, you can specify the layout of comboboxes.
+By default, KeePass assumes a combobox containing values from 0 to 9 <i>or</i> from A to Z.
+If the combobox contains values 0-9A-Z (i.e. first all ten digits, immediately followed
+by all characters from A to Z), specify <code>Conv=D, Conv-Fmt=0A</code>.
+Similarly, if it contains values A-Z0-9, specify <code>Conv=D, Conv-Fmt=A0</code>.
+If digits start with 1 instead of 0 (i.e. the 0 appears after the 9), use
+<code>1A</code> and <code>A1</code> instead of <code>0A</code> and <code>A0</code>.
+If the combobox contains values 0-9A-Za-z (i.e. case-sensitive characters),
+specify <code>0Aa</code>. All combinations of '<code>0</code>', '<code>A</code>',
+'<code>a</code>' and '<code>?</code>' are supported.
+If '<code>A</code>' and '<code>a</code>' are not specified both,
+characters are treated as case-insensitive.
+'<code>?</code>' skips a combobox item.</li>
+</ul></li>
+</ul>
+If you want to show the character picking dialog multiple times within one sequence,
+assign different IDs to the placeholders.
+If an ID is specified multiple times (or no ID is specified
+and the placeholders are the same),
+KeePass shows the character picking dialog once and reuses the picked characters
+in all following placeholders with the same ID.<br />
+<br />
+Usage examples:<br />
+<br />
+<code>{USERNAME}{TAB}{PICKCHARS:Password:C=5}{ENTER}</code><br />
+First a dialog is shown in which the user can pick exactly 5 characters
+from the entry password.
+Afterwards KeePass types the user name into the target window, presses Tab,
+types the 5 picked characters and presses Enter.<br />
+<br />
+<a href="http://keepass.info/screenshots/windows_vista/comboboxform_big.png"
+target="_blank"><img src="../../screenshots/windows_vista/comboboxform.png"
+align="right" alt="ComboBox Form" /></a>
+<code>{S:Memorable}{TAB}{PICKCHARS:Password:ID=1, C=1, Conv=D,
+Conv-Offset=1}{TAB}{PICKCHARS:Password:ID=2, C=1, Conv=D,
+Conv-Offset=1}{TAB}{PICKCHARS:Password:ID=3, C=1, Conv=D,
+Conv-Offset=1}{ENTER}</code><br />
+First the character picking dialog is shown three times and each time the user
+can pick exactly one character from the entry password.
+Afterwards the auto-type process starts:
+KeePass types the contents of a custom entry string named &quot;Memorable&quot;
+into the target window.
+The focus is switched to the next control by pressing Tab,
+and the first previously picked character is converted to
+down arrow keypresses (with one additional keypress; e.g. a '1' is converted
+to two down arrow keypresses).
+This is repeated two more times with the other picked characters,
+and finally Enter is pressed.<br />
+<br />
+Note this is not equivalent to picking three characters at once.
+If you'd use <code>{S:Memorable}{TAB}{PICKCHARS:Password:C=3, Conv=D, Conv-Offset=1}</code>,
+all the down arrow keypresses are sent to the same, currently active control.<br />
+<br />
+In some browsers (e.g. Opera), setting the focus to a combobox can
+be slow. If you experience auto-type failures, consider slowing down
+the focus changes, e.g. by adding <code>{DELAY 250}</code> after each <code>{TAB}</code>,
+or slowing down the whole sequence, e.g. by prepending <code>{DELAY=150}</code>.
+
+
+<br /><br />
+
+<a name="newpassword"></a>
+
+<b><code>{NEWPASSWORD}</code> and <code>{NEWPASSWORD:/<em>Profile</em>/}</code>
+&#8211; Generating New Passwords:</b><br />
+The <code>{NEWPASSWORD}</code> placeholder
+generates a new password for the current entry, based on the 'Automatically
+generated passwords for new entries' generator profile.<br />
+<br />
+This placeholder is evaluated only once in an auto-type process, i.e.
+for a typical 'Old Password' - 'New Password' - 'Repeat New Password'
+dialog you can use
+<code>{PASSWORD}{TAB}{NEWPASSWORD}{TAB}{NEWPASSWORD}{ENTER}</code>
+as auto-type sequence.<br />
+<br />
+In order to use a different password generator profile, use
+<code>{NEWPASSWORD:/<em>Profile</em>/}</code>, where <em>Profile</em>
+is the name of the profile.
+If the specified profile cannot be found, the
+'Automatically generated passwords for new entries' profile is used.<br />
+<br />
+When specifying '<code>~</code>' as name of the profile
+(i.e. when using the placeholder <code>{NEWPASSWORD:/~/}</code>), KeePass derives
+a profile from the current entry password.
+Not recommended, as the quality can decay.
+
+
+<br /><br />
+
+<a name="passwordenc"></a>
+
+<b><code>{PASSWORD_ENC}</code> &#8211; Encrypting Passwords:</b><br />
+The <code>{PASSWORD_ENC}</code> placeholder is replaced by the password
+of the current entry in encrypted form. The password is encrypted using
+credentials of the current Windows user. The encrypted password should
+not be stored and only works for the current user.<br />
+<br />
+It is intended to be used in conjunction with the
+<code>-pw-enc</code> <a href="cmdline.html">command line</a> parameter
+(see the <a href="autourl.html">URL Field Capabilities</a> page for
+an example how to define an URL to open an additional KeePass database).
+The placeholder cannot be used to transfer passwords to other applications
+(except KeePass), because the target applications don't know how to decrypt
+encrypted passwords generated by <code>{PASSWORD_ENC}</code>.
+
+
+<br /><br />
+
+<a name="hmacotp"></a>
+
+<b><code>{HMACOTP}</code> &#8211; Generating One-Time Passwords:</b><br />
+The <code>{HMACOTP}</code> placeholder
+generates a HMAC-based one-time password as specified in RFC 4226.
+The shared secret can be specified using one of the following
+entry string fields:
+<code>HmacOtp-Secret</code> (the UTF-8 representation of the value is the secret),
+<code>HmacOtp-Secret-Hex</code> (secret as hex string),
+<code>HmacOtp-Secret-Base32</code> (secret as Base32 string) or
+<code>HmacOtp-Secret-Base64</code> (secret as Base64 string).
+The counter is stored in decimal form in the <code>HmacOtp-Counter</code> field.<br />
+<br />
+<i>Usage example.</i>
+Create a new entry, set its password to the <code>{HMACOTP}</code>
+placeholder, switch to the 'Advanced' tab, add a string named
+<code>HmacOtp-Secret</code> with value 12345678901234567890,
+and add a string named <code>HmacOtp-Counter</code> with value 0.
+When you now double-click onto the password cell of the entry in the
+entry list of the main window, an OTP is copied to the
+clipboard. When auto-typing, an OTP is sent as password.
+Each time you perform such an action, KeePass updates the counter value.
+With the secret key and counter values above, the following OTPs
+are generated: 755224, 287082, 359152, 969429, 338314, ...
+(more generated OTPs can be found in the example in RFC 4226).
+
+
+<br /><br />
+
+<a name="url"></a>
+
+<b><code>{URL:...}</code> and <code>{BASE:...}</code>:</b><br />
+The <code>{URL:...}</code> placeholder is replaced by the specified part
+of the current entry's URL; this typically is useful in an
+entry-specific URL override (defined on the 'Properties' tab of the entry dialog).
+The <code>{BASE:...}</code> placeholder is replaced by the specified part
+of the URL being overridden; this typically is useful in a
+global URL override (defined in 'Tools' -&gt; 'Options' -&gt; tab 'Integration' -&gt;
+button 'URL Overrides'), because there no entry context may be available.<br />
+<br />
+<i>Example.</i> For the entry URL
+<code>http://user:pw@keepass.info:80/path/example.php?q=e&amp;s=t</code>,
+the placeholders return the following values:<br />
+<br />
+<table class="tablebox75">
+<tr><th width="25%">Placeholder</th><th width="75%">Value</th></tr>
+<tr><td width="25%"><code>{URL}</code></td>
+<td width="75%"><code>http://user:pw@keepass.info:80/path/example.php?q=e&amp;s=t</code></td></tr>
+<tr><td width="25%"><code>{URL:RMVSCM}</code></td>
+<td width="75%"><code>user:pw@keepass.info:80/path/example.php?q=e&amp;s=t</code></td></tr>
+<tr><td width="25%"><code>{URL:SCM}</code></td>
+<td width="75%"><code>http</code></td></tr>
+<tr><td width="25%"><code>{URL:HOST}</code></td>
+<td width="75%"><code>keepass.info</code></td></tr>
+<tr><td width="25%"><code>{URL:PORT}</code></td>
+<td width="75%"><code>80</code></td></tr>
+<tr><td width="25%"><code>{URL:PATH}</code></td>
+<td width="75%"><code>/path/example.php</code></td></tr>
+<tr><td width="25%"><code>{URL:QUERY}</code></td>
+<td width="75%"><code>?q=e&amp;s=t</code></td></tr>
+<tr><td width="25%"><code>{URL:USERINFO}</code></td>
+<td width="75%"><code>user:pw</code></td></tr>
+<tr><td width="25%"><code>{URL:USERNAME}</code></td>
+<td width="75%"><code>user</code></td></tr>
+<tr><td width="25%"><code>{URL:PASSWORD}</code></td>
+<td width="75%"><code>pw</code></td></tr>
+</table>
+<br />
+<code>{BASE}</code> supports exactly the same parts as <code>{URL}</code>.
+
+
+</body></html>
+

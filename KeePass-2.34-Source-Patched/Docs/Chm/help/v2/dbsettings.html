@@ -1,0 +1,160 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta name="author" content="Dominik Reichl" />
+
+	<meta name="description" content="KeePass is an open source password manager. Passwords can be stored in highly-encrypted databases, which can be unlocked with one master password or key file." />
+	<meta name="keywords" content="KeePass, Password, Safe, Security, Database, Encryption, Secure, Manager, Open, Source, Free, Code, Key, Master, Disk, Dominik, Reichl" />
+
+	<meta name="robots" content="index" />
+
+	<meta name="DC.Title" content="KeePass - The Open Source Password Manager" />
+	<meta name="DC.Creator" content="Dominik Reichl" />
+	<meta name="DC.Subject" content="Open-Source Password Safe" />
+	<meta name="DC.Description" content="KeePass is an open source password manager. Passwords can be stored in highly-encrypted databases, which can be unlocked with one master password or key file." />
+	<meta name="DC.Publisher" content="Dominik Reichl" />
+	<meta name="DC.Contributor" content="Dominik Reichl" />
+	<meta name="DC.Type" content="text" />
+	<meta name="DC.Format" content="text/html" />
+	<meta name="DC.Identifier" content="http://keepass.info/" />
+	<meta name="DC.Language" content="en" />
+	<meta name="DC.Rights" content="Copyright (c) 2003-2016 Dominik Reichl" />
+
+	<title>Database Settings - KeePass</title>
+	<base target="_self" />
+	<link rel="stylesheet" type="text/css" href="../../default.css" />
+	
+</head>
+<body>
+
+
+
+
+<table class="sectionsummary"><tr><td width="68px">
+<img src="../images/b64x64_kcmsystem.png" width="64px" height="64px"
+class="singleimg" align="left" alt="Settings" />
+</td><td valign="middle"><h1>Database Settings</h1><br />
+Describes the various database options.
+</td></tr></table>
+
+<p>On the database settings dialog, you can configure various database-related
+settings.</p>
+
+<ul>
+<li><a href="#general">General</a></li>
+<li><a href="#security">Security Options</a></li>
+<!-- <li><a href="#protection">Protection Options</a></li> -->
+<li><a href="#compression">Compression Options</a></li>
+<li><a href="#templates">Templates</a></li>
+</ul>
+
+<br />
+
+<a name="general"></a>
+<h2 class="sectiontitle">
+<img src="../images/b16x16_help.png" class="singleimg" alt="Info" />&nbsp;&nbsp;General</h2>
+
+<p>On this tab page you can specify general things like the name of the database and
+a description. Additionally, you can set various defaults like a default user
+name for new entries (created in this database).</p>
+
+<br />
+
+<a name="security"></a>
+<h2 class="sectiontitle">
+<img src="../images/b16x16_file_locked.png" class="singleimg" alt="Info" />&nbsp;&nbsp;Security
+Options</h2>
+
+<p>On this page you can specify various encryption-related settings. Only change this
+settings when you really know what you are doing.</p>
+
+<p><b>Encryption Algorithm:</b><br />
+You can set the encryption algorithm, which is used to encrypt the database.
+All encryption algorithms offered by KeePass are well-known standard algorithms,
+regarded as very secure by the cryptography community. These standards are
+used by banks for example. All of the algorithms are unbroken; there is no &quot;best&quot;
+algorithm. If you don't know which algorithm to choose, use the
+<i>Advanced Encryption Standard (AES, Rijndael)</i> algorithm.</p>
+
+<p><b>Key Transformation:</b><br />
+See <a href="../base/security.html#secdictprotect">Protection against
+Dictionary Attacks</a>.</p>
+
+<p>KeePass has a link button on this page to compute the number of key transformations
+your computer can do in 1 second. If you for example only want to wait 0.5 seconds,
+half the number resulted from the benchmark.</p>
+
+<br />
+
+<!-- <a name="protection"></a>
+<h2 class="sectiontitle">
+<img src="../images/b16x16_file_locked.png" class="singleimg" alt="Info" />&nbsp;&nbsp;Protection
+Options</h2>
+
+<p>On this page you can configure run-time memory protection settings for this
+database. Fields can be stored encrypted in process memory. This ensures that no
+other application can read your data by dumping the memory of KeePass.</p>
+
+<p>It is recommended to turn on memory protection for password fields and leave it
+disabled for all others. Process memory protection slows down all operations
+a bit, you should therefore carefully decide which fields are really worth
+to be protected this way.</p>
+
+<p>Memory protection is useless if you display the fields in the main window
+(because if they are displayed in this window, they are automatically stored
+as plain-text in memory as Windows needs to be able to read it), therefore
+KeePass offers you to turn on visual hiding in the main window for the selected
+protected fields. It is highly recommended to check this option before closing
+the dialog.</p>
+
+<br /> -->
+
+<a name="compression"></a>
+<h2 class="sectiontitle">
+<img src="../images/b16x16_tar.png" class="singleimg" alt="Info" />&nbsp;&nbsp;Compression
+Options</h2>
+
+<p>KeePass databases can be compressed before being encrypted. Compression
+reduces the size of the database, but also slows down the database
+saving/loading process a bit.</p>
+
+<p>It is recommended to use the <i>GZip</i> compression option. This algorithm
+is very fast (you won't notice any difference to saving the database without
+compression) and its compression rate is acceptable.</p>
+
+<p>It is <i>not</i> recommended to save databases without compression.</p>
+
+<p>On modern PCs, saving files with compression can actually be faster than
+saving without compression, because the compression process is performed by
+the CPU (which is very fast) and fewer data has to be transferred from/to
+the storage device. Especially when the device is slow (like saving to USB
+stick), compression can reduce the saving/loading time significantly.</p>
+
+<br />
+
+<a name="templates"></a>
+<h2 class="sectiontitle">
+<img src="../images/b16x16_help.png" class="singleimg" alt="Info" />&nbsp;&nbsp;Templates</h2>
+
+<p>Templates are a great way to predefine often used user names or
+additional fields, or combinations of each.</p>
+
+<ul>
+<li>A template is a normal KeePass entry with all required data already
+entered.</li>
+<li>Templates must be kept in a single group.</li>
+<li>Do not put real data entries in the template group.</li>
+</ul>
+
+<p>First create a normal group in the main window and then set it as the
+templates group in <i>'File'</i> -&gt;
+<i>'Database Settings'</i> -&gt; tab <i>'Templates'</i>.</p>
+
+<p>In order to create a new entry based on a template in the templates group,
+click the drop-down arrow of the <i>'Add Entry'</i> toolbar button
+and choose the template to be used.</p>
+
+</body></html>
+

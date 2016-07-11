@@ -1,0 +1,262 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta name="author" content="Dominik Reichl" />
+
+	<meta name="description" content="KeePass is an open source password manager. Passwords can be stored in highly-encrypted databases, which can be unlocked with one master password or key file." />
+	<meta name="keywords" content="KeePass, Password, Safe, Security, Database, Encryption, Secure, Manager, Open, Source, Free, Code, Key, Master, Disk, Dominik, Reichl" />
+
+	<meta name="robots" content="index" />
+
+	<meta name="DC.Title" content="KeePass - The Open Source Password Manager" />
+	<meta name="DC.Creator" content="Dominik Reichl" />
+	<meta name="DC.Subject" content="Open-Source Password Safe" />
+	<meta name="DC.Description" content="KeePass is an open source password manager. Passwords can be stored in highly-encrypted databases, which can be unlocked with one master password or key file." />
+	<meta name="DC.Publisher" content="Dominik Reichl" />
+	<meta name="DC.Contributor" content="Dominik Reichl" />
+	<meta name="DC.Type" content="text" />
+	<meta name="DC.Format" content="text/html" />
+	<meta name="DC.Identifier" content="http://keepass.info/" />
+	<meta name="DC.Language" content="en" />
+	<meta name="DC.Rights" content="Copyright (c) 2003-2016 Dominik Reichl" />
+
+	<title>URL Field Capabilities - KeePass</title>
+	<base target="_self" />
+	<link rel="stylesheet" type="text/css" href="../../default.css" />
+	
+</head>
+<body>
+
+
+
+
+
+<table class="sectionsummary"><tr><td width="68px">
+<img src="../images/b64x64_enhanced_browsing.png" width="64px" height="64px"
+class="singleimg" align="left" alt="URL Field" />
+</td><td valign="middle"><h1>URL Field Capabilities</h1><br />
+The URL field supports various special protocols and placeholders.
+</td></tr></table>
+
+<br />
+URL Field Capabibilities:
+<ul>
+<li><a href="#stdcp">Standard Capabilities</a></li>
+<li><a href="#cmdln">Executing Command Lines</a></li>
+<li><a href="#subst">Placeholders</a></li>
+<li><a href="#override">Changing the URL Handler (URL Override)</a></li>
+</ul>
+
+Usage Tips &amp; Tricks:
+<ul>
+<li><a href="#rdpts">Starting RDP/TS Sessions (Remote Desktop / Terminal Server Connection)</a></li>
+<li><a href="#builtin">Executing Built-In Shell Commands</a></li>
+</ul>
+
+<br />
+
+<a name="stdcp"></a>
+<h2 class="sectiontitle">
+<img src="../images/ascii.png" class="singleimg" alt="Text" />&nbsp;&nbsp;Standard
+Capabilities</h2>
+
+<p>The URL field can execute any valid URL, for which you have defined a protocol handler. On most
+systems at least the <code>http://</code>, <code>ftp://</code> and <code>mailto:</code>
+protocols are defined. KeePass supports
+all registered protocols that Internet Explorer supports.</p>
+
+<p>For example, if you globally (i.e. using the Windows Explorer) register PuTTY for <code>ssh://</code> URLs,
+KeePass will automatically use PuTTY for <code>ssh://</code> URLs, too.</p>
+
+<br />
+
+<a name="cmdln"></a>
+<h2 class="sectiontitle">
+<img src="../images/b16x16_openterm.png" class="singleimg" alt="Terminal" />&nbsp;&nbsp;Executing
+Command Lines</h2>
+
+<p>Instead of an URL, you can also execute command lines using the URL field.
+To tell KeePass that the line you entered
+is a command line, prefix it using <code>cmd://</code>. For example if you would like to execute
+Notepad, your URL could look like this:</p>
+
+<pre>cmd://C:\Windows\Notepad.exe C:\Test\MyTestFile.txt</pre>
+
+<p>The virtual <code>cmd://</code> protocol also supports parameters for executable
+files, in contrast to
+the <code>file://</code> protocol. This was the main reason why <code>cmd://</code>
+was introduced; with <code>file://</code> you
+aren't able to pass any parameters to started applications. Use the <code>cmd://</code>
+protocol instead.</p>
+
+<p>The paths for the <code>cmd://</code> protocol don't need to be encoded. For example,
+you do not have to replace space characters by <code>%20</code>, as it is normally
+required for other URLs. KeePass just cuts away the <code>cmd://</code> virtual
+protocol prefix and passes the remaining command line to the system.</p>
+
+<p>If the file path contains spaces, you must enclose it in quotes (&quot;).</p>
+
+<p><b>Environment Variables:</b><br />
+System environment variables are supported.
+The name of the variable must be enclosed in '<code>%</code>' characters.
+For example <code>%TEMP%</code> is replaced by the user's temporary path.</p>
+
+<p><b>UNC Paths:</b><br />
+Windows-style UNC paths (starting with <code>\\</code>) are directly
+supported, i.e. do not need to be prefixed with <code>cmd://</code>.</p>
+
+<br />
+
+<a name="subst"></a>
+<h2 class="sectiontitle">
+<img src="../images/ascii.png" class="singleimg" alt="Text" />&nbsp;&nbsp;Placeholders</h2>
+
+<p>In the URL field, you can use several placeholders that will get automatically replaced
+when the URL is executed. For example:</p>
+
+<pre>http://www.yoursite.com/default.php?user={USERNAME}&amp;pass={PASSWORD}</pre>
+
+<p>For this entry, KeePass will replace {USERNAME} by the data of the username field and {PASSWORD}
+by the data in the password field when you execute the link.</p>
+
+<p>For a complete list of supported placeholders, see the page
+<a href="placeholders.html">Placeholders</a>.</p>
+
+<p>Also note that the special placeholders are supported, too. For example,
+the <code>{APPDIR}</code> placeholder is replaced by the application
+directory path of the currently running KeePass instance. It's the absolute path of the
+directory containing the KeePass executable, without a trailing backslash.
+If you would like to start a new KeePass instance, you could set the URL to:</p>
+
+<pre>cmd://&quot;{APPDIR}\KeePass.exe&quot;</pre>
+
+<p>To use different browsers for entries, you can use URLs like the following:<br />
+<code>cmd://{INTERNETEXPLORER} &quot;http://www.yoursite.com&quot;</code><br />
+<code>cmd://{FIREFOX} &quot;http://www.yoursite.com&quot;</code><br />
+<code>cmd://{OPERA} &quot;http://www.yoursite.com&quot;</code><br />
+<code>cmd://{GOOGLECHROME} &quot;http://www.yoursite.com&quot;</code><br />
+<code>cmd://{SAFARI} &quot;http://www.yoursite.com&quot;</code><br />
+The browser placeholder will be replaced by the browser's executable path (if the
+browser is installed).</p>
+
+<br />
+
+<a name="override"></a>
+<h2 class="sectiontitle">
+<img src="../images/ascii.png" class="singleimg" alt="Text" />&nbsp;&nbsp;Changing
+the URL Handler (URL Override)</h2>
+
+<br />
+
+
+
+
+
+
+<p>The URL field behavior can be overridden individually for each entry
+using the field 'Override URL' (tab 'Properties' in the entry dialog).
+This allows you to execute a specific URL, while still using the URL
+field to (only) store data.
+When double-clicking the URL field of the entry in the main window, the
+specified command line (in the URL override field) will be run.</p>
+
+<p><b>Using a different browser:</b><br />
+If your default browser is Firefox and you want to open a specific site with
+Internet Explorer, specify the following in the URL override field:</p>
+
+<p><code>cmd://{INTERNETEXPLORER} &quot;{URL}&quot;</code></p>
+
+<p>KeePass will open Internet Explorer and pass the data from the URL field
+as the parameter. This uses a <a href="#subst">placeholder</a> to find Internet
+Explorer.</p>
+
+<p><b>Globally changing the URL behavior:</b><br />
+If you want to change the <i>default</i> URL action for an URL scheme
+(e.g. <code>http://</code>, <code>https://</code> or <code>ftp://</code>),
+you can define an URL scheme override
+in 'Tools' -&gt; 'Options' -&gt; tab 'Integration' -&gt; 'URL Overrides'.
+This for example allows to specify a browser as default for websites
+(in the dialog you can find several overrides for browsers like Internet Explorer,
+Mozilla Firefox, Opera and Google Chrome).</p>
+
+<p>URL scheme overrides can also be used to define new protocols. For example,
+if you want to define a protocol <code>kdbx://</code> that opens another KeePass database,
+specify the following as override for the kdbx scheme (on Windows):<br />
+<code>cmd://&quot;{APPDIR}\KeePass.exe&quot; &quot;{BASE:RMVSCM}&quot; -pw-enc:&quot;{PASSWORD_ENC}&quot;</code><br />
+or on Unix-like systems (Mono):<br />
+<code>cmd://mono &quot;{APPDIR}/KeePass.exe&quot; &quot;{BASE:RMVSCM}&quot; -pw-enc:&quot;{PASSWORD_ENC}&quot;</code><br />
+If an entry now has an URL looking like <code>kdbx://<i>PathToYourDatabase.kdbx</i></code>
+and the master password for this database in the password field,
+double-clicking the URL of the entry in the main window opens the other database.
+The <code>-pw-enc</code> <a href="cmdline.html">command line</a> parameter and
+the <a href="placeholders.html#passwordenc"><code>{PASSWORD_ENC}</code></a> placeholder
+allow passing the master password of the other database in encrypted form,
+i.e. process monitors and similar utilities aren't be able to read the master password.</p>
+
+
+<br /><br />
+
+<a name="rdpts"></a>
+<h2 class="sectiontitle">
+<img src="../images/b16x16_openterm.png" class="singleimg" alt="Terminal" />&nbsp;&nbsp;Starting
+RDP/TS Sessions</h2>
+
+<p>You can use the URL field of entries and the virtual <code>cmd://</code>
+protocol to start remote desktop connections.</p>
+
+<p>For this, enter the following in the URL field of an entry:</p>
+
+<pre>cmd://mstsc.exe</pre>
+
+<p>When you now double-click the URL field of the entry in the main window, a
+Windows remote desktop connection is initiated.</p>
+
+<p>MSTSC is the Windows terminal server connection program (remote desktop connection).
+You can pass a path to an existing RDP file to the program to open it. For example,
+the following URL opens the specified RDP file:</p>
+
+<pre>cmd://mstsc.exe &quot;C:\My Files\Connection.rdp&quot;</pre>
+
+<p>MSTSC also supports several command line options:</p>
+
+<ul>
+<li><b>/v:&lt;Server[:Port]&gt;</b><br />Defines the terminal server to connect to.</li>
+<li><b>/console</b><br />Connects to the terminal session of the server.</li>
+<li><b>/f</b><br />Starts the client in full screen mode.</li>
+<li><b>/w:&lt;Width&gt;</b><br />Defines the width of the remote desktop screen.</li>
+<li><b>/h:&lt;Height&gt;</b><br />Defines the height of the remote desktop screen.</li>
+<li><b>/edit</b><br />Opens the specified RDP file for editing.</li>
+<li><b>/migrate</b><br />Migrates old connection files to new RDP files.</li>
+</ul>
+
+<br />
+
+<a name="builtin"></a>
+<h2 class="sectiontitle">
+<img src="../images/b16x16_openterm.png" class="singleimg" alt="Terminal" />&nbsp;&nbsp;Executing
+Built-In Shell Commands</h2>
+
+<p>The URL field can be used to start applications/documents and URLs.
+If you want to execute a built-in shell command, like <code>COPY</code> for
+example, this however doesn't work directly, because there is no <code>COPY.EXE</code>
+(in Windows 9x times there actually was one, but on all modern Windows operating
+systems these commands are built-in to the command line window).</p>
+
+<p>In order to execute built-in shell commands, you need to pass them to the
+command line interpreter <code>cmd.exe</code>.</p>
+
+<p>For the <code>COPY</code> command you would specify <code>cmd.exe</code>
+as executable file and <code>/C COPY from to</code> as arguments (where
+'<code>from</code>' and '<code>to</code>' are paths). The <code>/C</code>
+parameter tells <code>cmd.exe</code> to execute the command line that
+follows.</p>
+
+<p>In the URL field, your URL would look like the following:<br />
+<code>cmd://cmd.exe /C COPY from to</code><br />
+In other locations, like command lines in the trigger system,
+you can leave out the <code>cmd://</code> URL prefix.</p>
+
+</body></html>
+

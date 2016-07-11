@@ -1,0 +1,88 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta name="author" content="Dominik Reichl" />
+
+	<meta name="description" content="KeePass is an open source password manager. Passwords can be stored in highly-encrypted databases, which can be unlocked with one master password or key file." />
+	<meta name="keywords" content="KeePass, Password, Safe, Security, Database, Encryption, Secure, Manager, Open, Source, Free, Code, Key, Master, Disk, Dominik, Reichl" />
+
+	<meta name="robots" content="index" />
+
+	<meta name="DC.Title" content="KeePass - The Open Source Password Manager" />
+	<meta name="DC.Creator" content="Dominik Reichl" />
+	<meta name="DC.Subject" content="Open-Source Password Safe" />
+	<meta name="DC.Description" content="KeePass is an open source password manager. Passwords can be stored in highly-encrypted databases, which can be unlocked with one master password or key file." />
+	<meta name="DC.Publisher" content="Dominik Reichl" />
+	<meta name="DC.Contributor" content="Dominik Reichl" />
+	<meta name="DC.Type" content="text" />
+	<meta name="DC.Format" content="text/html" />
+	<meta name="DC.Identifier" content="http://keepass.info/" />
+	<meta name="DC.Language" content="en" />
+	<meta name="DC.Rights" content="Copyright (c) 2003-2016 Dominik Reichl" />
+
+	<title>Repairing Databases - KeePass</title>
+	<base target="_self" />
+	<link rel="stylesheet" type="text/css" href="../../default.css" />
+	
+</head>
+<body>
+
+
+
+
+<table class="sectionsummary"><tr><td width="68px">
+<img src="../images/b64x64_kcmdrkonqi.png" class="singleimg" align="left" alt="Help" />
+</td><td valign="middle"><h1>Repairing Databases</h1><br />
+KeePass can repair corrupted databases in some cases.
+</td></tr></table>
+
+<br />
+
+<p>KeePass has quite some features to avoid database file corruption
+(transacted database writing, device buffer flushing, ...). However,
+data corruption can still be caused by other programs, the system or
+broken storage devices (note that KeePass by default is verifying the integrity
+of database files immediately after writing them, i.e. at this point of time,
+KeePass guarantees file integrity; however, KeePass of course can't do anything
+when the data becomes corrupted/unreadable at a later point of time).</p>
+
+<p>In these cases, the database repair functionality might help you.
+Here, KeePass tries to read as much data as possible from the corrupted file.</p>
+
+<p><img src="../images/b16x16_warning.png" alt="Warning"
+style="vertical-align: middle; height: 1em;" />
+In repair mode, the integrity of the data is not checked
+(in order to rescue as much data as possible).
+When no integrity checks are performed, corrupted/malicious data might
+be incorporated into the database.
+Thus the repair functionality should only be used when there really is no other solution.
+If you use it, afterwards you should thoroughly check your whole
+database for corrupted/malicious data.</p>
+
+
+
+
+
+
+In order to use the repair functionality in KeePass 2.x, first
+create a new database file. Then, go <i>'File'</i> -&gt; <i>'Import'</i> and import
+the corrupted database file, using <i>'KeePass KDBX (2.x) (Repair Mode)'</i>
+as format.
+
+
+<p>Anyway, if you've lost the master key for the database, the repair functionality
+cannot help you. Also, if the header of the database (first few bytes) is
+corrupted, you're out of luck too: the repair functionality won't be able
+to restore any entries (because the header contains information required
+to decrypt the database).</p>
+
+<p>The repair functionality should be seen as last hope. Regularly making
+backups of your databases is much better and has to be preferred.
+Backups have <i>no</i> cryptographic security implications.
+There are plugins that automate the backup process, see the
+KeePass plugins page.</p>
+
+</body></html>
+

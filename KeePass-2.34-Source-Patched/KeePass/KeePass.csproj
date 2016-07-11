@@ -1,0 +1,1364 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="14.0">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{10938016-DEE2-4A25-9A5A-8FD3444379CA}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>KeePass</RootNamespace>
+    <AssemblyName>KeePass</AssemblyName>
+    <ApplicationIcon>KeePass.ico</ApplicationIcon>
+    <SignAssembly>false</SignAssembly>
+    <AssemblyOriginatorKeyFile>KeePass.pfx</AssemblyOriginatorKeyFile>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\Build\KeePass\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>
+    </DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\Build\KeePass\Release\</OutputPath>
+    <DefineConstants>
+    </DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>
+    </DocumentationFile>
+    <GenerateSerializationAssemblies>Auto</GenerateSerializationAssemblies>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\KeePassLib\Collections\AutoTypeConfig.cs">
+      <Link>KeePassLib\Collections\AutoTypeConfig.cs</Link>
+    </Compile>
+    <Compile Include="..\KeePassLib\Collections\ProtectedBinaryDictionary.cs">
+      <Link>KeePassLib\Collections\ProtectedBinaryDictionary.cs</Link>
+    </Compile>
+    <Compile Include="..\KeePassLib\Collections\ProtectedStringDictionary.cs">
+      <Link>KeePassLib\Collections\ProtectedStringDictionary.cs</Link>
+    </Compile>
+    <Compile Include="..\KeePassLib\Collections\PwObjectList.cs">
+      <Link>KeePassLib\Collections\PwObjectList.cs</Link>
+    </Compile>
+    <Compile Include="..\KeePassLib\Collections\PwObjectPool.cs">
+      <Link>KeePassLib\Collections\PwObjectPool.cs</Link>
+    </Compile>
+    <Compile Include="..\KeePassLib\Collections\StringDictionaryEx.cs">
+      <Link>KeePassLib\Collections\StringDictionaryEx.cs</Link>
+    </Compile>
+    <Compile Include="..\KeePassLib\Cryptography\Cipher\CipherPool.cs">
+      <Link>KeePassLib\Cryptography\Cipher\CipherPool.cs</Link>
+    </Compile>
+    <Compile Include="..\KeePassLib\Cryptography\Cipher\ICipherEngine.cs">
+      <Link>KeePassLib\Cryptography\Cipher\ICipherEngine.cs</Link>
+    </Compile>
+    <Compile Include="..\KeePassLib\Cryptography\Cipher\Salsa20Cipher.cs">
+      <Link>KeePassLib\Cryptography\Cipher\Salsa20Cipher.cs</Link>
+    </Compile>
+    <Compile Include="..\KeePassLib\Cryptography\Cipher\StandardAesEngine.cs">
+      <Link>KeePassLib\Cryptography\Cipher\StandardAesEngine.cs</Link>
+    </Compile>
+    <Compile Include="..\KeePassLib\Cryptography\CryptoRandom.cs">
+      <Link>KeePassLib\Cryptography\CryptoRandom.cs</Link>
+    </Compile>
+    <Compile Include="..\KeePassLib\Cryptography\CryptoRandomStream.cs">
+      <Link>KeePassLib\Cryptography\CryptoRandomStream.cs</Link>
+    </Compile>
+    <Compile Include="..\KeePassLib\Cryptography\HashingStreamEx.cs">
+      <Link>KeePassLib\Cryptography\HashingStreamEx.cs</Link>
+    </Compile>
+    <Compile Include="..\KeePassLib\Cryptography\HmacOtp.cs">
+      <Link>KeePassLib\Cryptography\HmacOtp.cs</Link>
+    </Compile>
+    <Compile Include="..\KeePassLib\Cryptography\PasswordGenerator\CharSetBasedGenerator.cs">
+      <Link>KeePassLib\Cryptography\PasswordGenerator\CharSetBasedGenerator.cs</Link>
+    </Compile>
+    <Compile Include="..\KeePassLib\Cryptography\PasswordGenerator\CustomPwGenerator.cs">
+      <Link>KeePassLib\Cryptography\PasswordGenerator\CustomPwGenerator.cs</Link>
+    </Compile>
+    <Compile Include="..\KeePassLib\Cryptography\PasswordGenerator\CustomPwGeneratorPool.cs">
+      <Link>KeePassLib\Cryptography\PasswordGenerator\CustomPwGeneratorPool.cs</Link>
+    </Compile>
+    <Compile Include="..\KeePassLib\Cryptography\PasswordGenerator\PatternBasedGenerator.cs">
+      <Link>KeePassLib\Cryptography\PasswordGenerator\PatternBasedGenerator.cs</Link>
+    </Compile>
+    <Compile Include="..\KeePassLib\Cryptography\PasswordGenerator\PwCharSet.cs">
+      <Link>KeePassLib\Cryptography\PasswordGenerator\PwCharSet.cs</Link>
+    </Compile>
+    <Compile Include="..\KeePassLib\Cryptography\PasswordGenerator\PwGenerator.cs">
+      <Link>KeePassLib\Cryptography\PasswordGenerator\PwGenerator.cs</Link>
+    </Compile>
+    <Compile Include="..\KeePassLib\Cryptography\PasswordGenerator\PwProfile.cs">
+      <Link>KeePassLib\Cryptography\PasswordGenerator\PwProfile.cs</Link>
+    </Compile>
+    <Compile Include="..\KeePassLib\Cryptography\PopularPasswords.cs">
+      <Link>KeePassLib\Cryptography\PopularPasswords.cs</Link>
+    </Compile>
+    <Compile Include="..\KeePassLib\Cryptography\QualityEstimation.cs">
+      <Link>KeePassLib\Cryptography\QualityEstimation.cs</Link>
+    </Compile>
+    <Compile Include="..\KeePassLib\Cryptography\SelfTest.cs">
+      <Link>KeePassLib\Cryptography\SelfTest.cs</Link>
+    </Compile>
+    <Compile Include="..\KeePassLib\Delegates\Handlers.cs">
+      <Link>KeePassLib\Delegates\Handlers.cs</Link>
+    </Compile>
+    <Compile Include="..\KeePassLib\Interfaces\IDeepCloneable.cs">
+      <Link>KeePassLib\Interfaces\IDeepCloneable.cs</Link>
+    </Compile>
+    <Compile Include="..\KeePassLib\Interfaces\IStatusLogger.cs">
+      <Link>KeePassLib\Interfaces\IStatusLogger.cs</Link>
+    </Compile>
+    <Compile Include="..\KeePassLib\Interfaces\IStructureItem.cs">
+      <Link>KeePassLib\Interfaces\IStructureItem.cs</Link>
+    </Compile>
+    <Compile Include="..\KeePassLib\Interfaces\ITimeLogger.cs">
+      <Link>KeePassLib\Interfaces\ITimeLogger.cs</Link>
+    </Compile>
+    <Compile Include="..\KeePassLib\Interfaces\IUIOperations.cs">
+      <Link>KeePassLib\Interfaces\IUIOperations.cs</Link>
+    </Compile>
+    <Compile Include="..\KeePassLib\Interfaces\IXmlSerializerEx.cs">
+      <Link>KeePassLib\Interfaces\IXmlSerializerEx.cs</Link>
+    </Compile>
+    <Compile Include="..\KeePassLib\Keys\CompositeKey.cs">
+      <Link>KeePassLib\Keys\CompositeKey.cs</Link>
+    </Compile>
+    <Compile Include="..\KeePassLib\Keys\IUserKey.cs">
+      <Link>KeePassLib\Keys\IUserKey.cs</Link>
+    </Compile>
+    <Compile Include="..\KeePassLib\Keys\KcpCustomKey.cs">
+      <Link>KeePassLib\Keys\KcpCustomKey.cs</Link>
+    </Compile>
+    <Compile Include="..\KeePassLib\Keys\KcpKeyFile.cs">
+      <Link>KeePassLib\Keys\KcpKeyFile.cs</Link>
+    </Compile>
+    <Compile Include="..\KeePassLib\Keys\KcpPassword.cs">
+      <Link>KeePassLib\Keys\KcpPassword.cs</Link>
+    </Compile>
+    <Compile Include="..\KeePassLib\Keys\KcpUserAccount.cs">
+      <Link>KeePassLib\Keys\KcpUserAccount.cs</Link>
+    </Compile>
+    <Compile Include="..\KeePassLib\Keys\KeyProvider.cs">
+      <Link>KeePassLib\Keys\KeyProvider.cs</Link>
+    </Compile>
+    <Compile Include="..\KeePassLib\Keys\KeyProviderPool.cs">
+      <Link>KeePassLib\Keys\KeyProviderPool.cs</Link>
+    </Compile>
+    <Compile Include="..\KeePassLib\Keys\KeyValidator.cs">
+      <Link>KeePassLib\Keys\KeyValidator.cs</Link>
+    </Compile>
+    <Compile Include="..\KeePassLib\Keys\KeyValidatorPool.cs">
+      <Link>KeePassLib\Keys\KeyValidatorPool.cs</Link>
+    </Compile>
+    <Compile Include="..\KeePassLib\Keys\UserKeyType.cs">
+      <Link>KeePassLib\Keys\UserKeyType.cs</Link>
+    </Compile>
+    <Compile Include="..\KeePassLib\Native\NativeLib.cs">
+      <Link>KeePassLib\Native\NativeLib.cs</Link>
+    </Compile>
+    <Compile Include="..\KeePassLib\Native\NativeMethods.cs">
+      <Link>KeePassLib\Native\NativeMethods.cs</Link>
+    </Compile>
+    <Compile Include="..\KeePassLib\Native\NativeMethods.Unix.cs">
+      <Link>KeePassLib\Native\NativeMethods.Unix.cs</Link>
+    </Compile>
+    <Compile Include="..\KeePassLib\PwCustomIcon.cs">
+      <Link>KeePassLib\PwCustomIcon.cs</Link>
+    </Compile>
+    <Compile Include="..\KeePassLib\PwDatabase.cs">
+      <Link>KeePassLib\PwDatabase.cs</Link>
+    </Compile>
+    <Compile Include="..\KeePassLib\PwDefs.cs">
+      <Link>KeePassLib\PwDefs.cs</Link>
+    </Compile>
+    <Compile Include="..\KeePassLib\PwDeletedObject.cs">
+      <Link>KeePassLib\PwDeletedObject.cs</Link>
+    </Compile>
+    <Compile Include="..\KeePassLib\PwEntry.cs">
+      <Link>KeePassLib\PwEntry.cs</Link>
+    </Compile>
+    <Compile Include="..\KeePassLib\PwEnums.cs">
+      <Link>KeePassLib\PwEnums.cs</Link>
+    </Compile>
+    <Compile Include="..\KeePassLib\PwGroup.cs">
+      <Link>KeePassLib\PwGroup.cs</Link>
+    </Compile>
+    <Compile Include="..\KeePassLib\PwUuid.cs">
+      <Link>KeePassLib\PwUuid.cs</Link>
+    </Compile>
+    <Compile Include="..\KeePassLib\Resources\KLRes.Generated.cs">
+      <Link>KeePassLib\Resources\KLRes.Generated.cs</Link>
+    </Compile>
+    <Compile Include="..\KeePassLib\Resources\KSRes.Generated.cs">
+      <Link>KeePassLib\Resources\KSRes.Generated.cs</Link>
+    </Compile>
+    <Compile Include="..\KeePassLib\Security\ProtectedBinary.cs">
+      <Link>KeePassLib\Security\ProtectedBinary.cs</Link>
+    </Compile>
+    <Compile Include="..\KeePassLib\Security\ProtectedString.cs">
+      <Link>KeePassLib\Security\ProtectedString.cs</Link>
+    </Compile>
+    <Compile Include="..\KeePassLib\Security\XorredBuffer.cs">
+      <Link>KeePassLib\Security\XorredBuffer.cs</Link>
+    </Compile>
+    <Compile Include="..\KeePassLib\Serialization\BinaryReaderEx.cs">
+      <Link>KeePassLib\Serialization\BinaryReaderEx.cs</Link>
+    </Compile>
+    <Compile Include="..\KeePassLib\Serialization\FileLock.cs">
+      <Link>KeePassLib\Serialization\FileLock.cs</Link>
+    </Compile>
+    <Compile Include="..\KeePassLib\Serialization\FileTransactionEx.cs">
+      <Link>KeePassLib\Serialization\FileTransactionEx.cs</Link>
+    </Compile>
+    <Compile Include="..\KeePassLib\Serialization\HashedBlockStream.cs">
+      <Link>KeePassLib\Serialization\HashedBlockStream.cs</Link>
+    </Compile>
+    <Compile Include="..\KeePassLib\Serialization\IOConnection.cs">
+      <Link>KeePassLib\Serialization\IOConnection.cs</Link>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="..\KeePassLib\Serialization\IOConnectionInfo.cs">
+      <Link>KeePassLib\Serialization\IOConnectionInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\KeePassLib\Serialization\IocProperties.cs">
+      <Link>KeePassLib\Serialization\IocProperties.cs</Link>
+    </Compile>
+    <Compile Include="..\KeePassLib\Serialization\IocPropertyInfo.cs">
+      <Link>KeePassLib\Serialization\IocPropertyInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\KeePassLib\Serialization\IocPropertyInfoPool.cs">
+      <Link>KeePassLib\Serialization\IocPropertyInfoPool.cs</Link>
+    </Compile>
+    <Compile Include="..\KeePassLib\Serialization\KdbxFile.cs">
+      <Link>KeePassLib\Serialization\KdbxFile.cs</Link>
+    </Compile>
+    <Compile Include="..\KeePassLib\Serialization\KdbxFile.Read.cs">
+      <Link>KeePassLib\Serialization\KdbxFile.Read.cs</Link>
+    </Compile>
+    <Compile Include="..\KeePassLib\Serialization\KdbxFile.Read.Streamed.cs">
+      <Link>KeePassLib\Serialization\KdbxFile.Read.Streamed.cs</Link>
+    </Compile>
+    <Compile Include="..\KeePassLib\Serialization\KdbxFile.Write.cs">
+      <Link>KeePassLib\Serialization\KdbxFile.Write.cs</Link>
+    </Compile>
+    <Compile Include="..\KeePassLib\Serialization\OldFormatException.cs">
+      <Link>KeePassLib\Serialization\OldFormatException.cs</Link>
+    </Compile>
+    <Compile Include="..\KeePassLib\Translation\KPControlCustomization.cs">
+      <Link>KeePassLib\Translation\KPControlCustomization.cs</Link>
+    </Compile>
+    <Compile Include="..\KeePassLib\Translation\KPFormCustomization.cs">
+      <Link>KeePassLib\Translation\KPFormCustomization.cs</Link>
+    </Compile>
+    <Compile Include="..\KeePassLib\Translation\KPStringTable.cs">
+      <Link>KeePassLib\Translation\KPStringTable.cs</Link>
+    </Compile>
+    <Compile Include="..\KeePassLib\Translation\KPStringTableItem.cs">
+      <Link>KeePassLib\Translation\KPStringTableItem.cs</Link>
+    </Compile>
+    <Compile Include="..\KeePassLib\Translation\KPTranslation.cs">
+      <Link>KeePassLib\Translation\KPTranslation.cs</Link>
+    </Compile>
+    <Compile Include="..\KeePassLib\Translation\KPTranslationProperties.cs">
+      <Link>KeePassLib\Translation\KPTranslationProperties.cs</Link>
+    </Compile>
+    <Compile Include="..\KeePassLib\Utility\AppLogEx.cs">
+      <Link>KeePassLib\Utility\AppLogEx.cs</Link>
+    </Compile>
+    <Compile Include="..\KeePassLib\Utility\GfxUtil.cs">
+      <Link>KeePassLib\Utility\GfxUtil.cs</Link>
+    </Compile>
+    <Compile Include="..\KeePassLib\Utility\MemUtil.cs">
+      <Link>KeePassLib\Utility\MemUtil.cs</Link>
+    </Compile>
+    <Compile Include="..\KeePassLib\Utility\MessageService.cs">
+      <Link>KeePassLib\Utility\MessageService.cs</Link>
+    </Compile>
+    <Compile Include="..\KeePassLib\Utility\MonoWorkarounds.cs">
+      <Link>KeePassLib\Utility\MonoWorkarounds.cs</Link>
+    </Compile>
+    <Compile Include="..\KeePassLib\Utility\StrUtil.cs">
+      <Link>KeePassLib\Utility\StrUtil.cs</Link>
+    </Compile>
+    <Compile Include="..\KeePassLib\Utility\TimeUtil.cs">
+      <Link>KeePassLib\Utility\TimeUtil.cs</Link>
+    </Compile>
+    <Compile Include="..\KeePassLib\Utility\UrlUtil.cs">
+      <Link>KeePassLib\Utility\UrlUtil.cs</Link>
+    </Compile>
+    <Compile Include="App\AppDefs.cs" />
+    <Compile Include="App\AppHelp.cs" />
+    <Compile Include="App\AppPolicy.cs" />
+    <Compile Include="App\Configuration\AceApplication.cs" />
+    <Compile Include="App\Configuration\AceCustomConfig.cs" />
+    <Compile Include="App\Configuration\AceDefaults.cs" />
+    <Compile Include="App\Configuration\AceIntegration.cs" />
+    <Compile Include="App\Configuration\AceLogging.cs" />
+    <Compile Include="App\Configuration\AceMainWindow.cs" />
+    <Compile Include="App\Configuration\AceNative.cs" />
+    <Compile Include="App\Configuration\AcePasswordGenerator.cs" />
+    <Compile Include="App\Configuration\AceSecurity.cs" />
+    <Compile Include="App\Configuration\AceToolBar.cs" />
+    <Compile Include="App\Configuration\AceTrayIcon.cs" />
+    <Compile Include="App\Configuration\AceUI.cs" />
+    <Compile Include="App\Configuration\AppConfigEx.cs" />
+    <Compile Include="App\Configuration\AppConfigSerializer.cs" />
+    <Compile Include="DataExchange\CsvStreamReader.cs" />
+    <Compile Include="DataExchange\CsvStreamReaderEx.cs" />
+    <Compile Include="DataExchange\ExportUtil.cs" />
+    <Compile Include="DataExchange\FileFormatProvider.cs" />
+    <Compile Include="DataExchange\Formats\AmpXml250.cs" />
+    <Compile Include="DataExchange\Formats\AnyPwCsv144.cs" />
+    <Compile Include="DataExchange\Formats\CodeWalletTxt605.cs" />
+    <Compile Include="DataExchange\Formats\DashlaneCsv2.cs" />
+    <Compile Include="DataExchange\Formats\DataVaultCsv47.cs" />
+    <Compile Include="DataExchange\Formats\DesktopKnox32.cs" />
+    <Compile Include="DataExchange\Formats\FlexWalletXml17.cs" />
+    <Compile Include="DataExchange\Formats\GenericCsv.cs" />
+    <Compile Include="DataExchange\Formats\HandySafeProXml12.cs" />
+    <Compile Include="DataExchange\Formats\HandySafeTxt512.cs" />
+    <Compile Include="DataExchange\Formats\KasperskyPwMgrXml50.cs" />
+    <Compile Include="DataExchange\Formats\KeePassCsv1x.cs" />
+    <Compile Include="DataExchange\Formats\KeePassHtml2x.cs" />
+    <Compile Include="DataExchange\Formats\KeePassKdb1x.cs" />
+    <Compile Include="DataExchange\Formats\KeePassKdb2x.cs" />
+    <Compile Include="DataExchange\Formats\KeePassKdb2xRepair.cs" />
+    <Compile Include="DataExchange\Formats\KeePassXml1x.cs" />
+    <Compile Include="DataExchange\Formats\KeePassXml2x.cs" />
+    <Compile Include="DataExchange\Formats\KeePassXXml041.cs" />
+    <Compile Include="DataExchange\Formats\LastPassCsv2.cs" />
+    <Compile Include="DataExchange\Formats\MozillaBookmarksHtml100.cs" />
+    <Compile Include="DataExchange\Formats\MozillaBookmarksJson100.cs" />
+    <Compile Include="DataExchange\Formats\NetworkPwMgrCsv4.cs" />
+    <Compile Include="DataExchange\Formats\NortonIdSafeCsv2013.cs" />
+    <Compile Include="DataExchange\Formats\NPasswordNpw102.cs" />
+    <Compile Include="DataExchange\Formats\OnePwProCsv599.cs" />
+    <Compile Include="DataExchange\Formats\PassKeeper12.cs" />
+    <Compile Include="DataExchange\Formats\PinsTxt450.cs" />
+    <Compile Include="DataExchange\Formats\PpKeeperHtml270.cs" />
+    <Compile Include="DataExchange\Formats\PVaultTxt14.cs" />
+    <Compile Include="DataExchange\Formats\PwAgentXml234.cs" />
+    <Compile Include="DataExchange\Formats\PwDepotXml26.cs" />
+    <Compile Include="DataExchange\Formats\PwExporterXml105.cs" />
+    <Compile Include="DataExchange\Formats\PwKeeperCsv70.cs" />
+    <Compile Include="DataExchange\Formats\PwMemory2008Xml104.cs" />
+    <Compile Include="DataExchange\Formats\PwPrompterDat12.cs" />
+    <Compile Include="DataExchange\Formats\PwSafeXml302.cs" />
+    <Compile Include="DataExchange\Formats\PwsPlusCsv1007.cs" />
+    <Compile Include="DataExchange\Formats\PwTresorXml100.cs" />
+    <Compile Include="DataExchange\Formats\RevelationXml04.cs" />
+    <Compile Include="DataExchange\Formats\RoboFormHtml69.cs" />
+    <Compile Include="DataExchange\Formats\SafeWalletXml3.cs" />
+    <Compile Include="DataExchange\Formats\SecurityTxt12.cs" />
+    <Compile Include="DataExchange\Formats\Spamex20070328.cs" />
+    <Compile Include="DataExchange\Formats\SplashIdCsv402.cs" />
+    <Compile Include="DataExchange\Formats\SteganosPwManager2007.cs" />
+    <Compile Include="DataExchange\Formats\StickyPwXml50.cs" />
+    <Compile Include="DataExchange\Formats\TurboPwsCsv5.cs" />
+    <Compile Include="DataExchange\Formats\VisKeeperTxt3.cs" />
+    <Compile Include="DataExchange\Formats\Whisper32Csv116.cs" />
+    <Compile Include="DataExchange\FileFormatPool.cs" />
+    <Compile Include="DataExchange\Formats\WinFavorites10.cs" />
+    <Compile Include="DataExchange\Formats\XslTransform2x.cs" />
+    <Compile Include="DataExchange\Formats\ZdnPwProTxt314.cs" />
+    <Compile Include="DataExchange\GxiImporter.cs" />
+    <Compile Include="DataExchange\GxiProfile.cs" />
+    <Compile Include="DataExchange\ImportUtil.cs" />
+    <Compile Include="DataExchange\Json.cs" />
+    <Compile Include="DataExchange\KdbFile.cs" />
+    <Compile Include="DataExchange\KdbManager.cs" />
+    <Compile Include="DataExchange\PwExportInfo.cs" />
+    <Compile Include="Ecas\EcasContext.cs" />
+    <Compile Include="Ecas\EcasEnum.cs" />
+    <Compile Include="Ecas\EcasParameter.cs" />
+    <Compile Include="Ecas\EcasPropertyDictionary.cs" />
+    <Compile Include="Ecas\EcasSystemEvents.cs" />
+    <Compile Include="Ecas\EcasValueType.cs" />
+    <Compile Include="Ecas\IEcasObject.cs" />
+    <Compile Include="Forms\AboutForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\AboutForm.Designer.cs">
+      <DependentUpon>AboutForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\AutoTypeCtxForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\AutoTypeCtxForm.Designer.cs">
+      <DependentUpon>AutoTypeCtxForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\CharPickerForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\CharPickerForm.Designer.cs">
+      <DependentUpon>CharPickerForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ColumnsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ColumnsForm.Designer.cs">
+      <DependentUpon>ColumnsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\CsvImportForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\CsvImportForm.Designer.cs">
+      <DependentUpon>CsvImportForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DatabaseOperationsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\DatabaseOperationsForm.Designer.cs">
+      <DependentUpon>DatabaseOperationsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DatabaseSettingsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\DatabaseSettingsForm.Designer.cs">
+      <DependentUpon>DatabaseSettingsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DataEditorForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\DataEditorForm.Designer.cs">
+      <DependentUpon>DataEditorForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DataViewerForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\DataViewerForm.Designer.cs">
+      <DependentUpon>DataViewerForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DuplicationForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\DuplicationForm.Designer.cs">
+      <DependentUpon>DuplicationForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\EcasActionForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\EcasActionForm.Designer.cs">
+      <DependentUpon>EcasActionForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\EcasConditionForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\EcasConditionForm.Designer.cs">
+      <DependentUpon>EcasConditionForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\EcasEventForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\EcasEventForm.Designer.cs">
+      <DependentUpon>EcasEventForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\EcasTriggerForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\EcasTriggerForm.Designer.cs">
+      <DependentUpon>EcasTriggerForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\EcasTriggersForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\EcasTriggersForm.Designer.cs">
+      <DependentUpon>EcasTriggersForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\EditAutoTypeItemForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\EditAutoTypeItemForm.Designer.cs">
+      <DependentUpon>EditAutoTypeItemForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\EditStringForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\EditStringForm.Designer.cs">
+      <DependentUpon>EditStringForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\EntropyForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\EntropyForm.Designer.cs">
+      <DependentUpon>EntropyForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\EntryListForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\EntryListForm.Designer.cs">
+      <DependentUpon>EntryListForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\EntryReportForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\EntryReportForm.Designer.cs">
+      <DependentUpon>EntryReportForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FieldRefForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FieldRefForm.Designer.cs">
+      <DependentUpon>FieldRefForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FileBrowserForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FileBrowserForm.Designer.cs">
+      <DependentUpon>FileBrowserForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\GroupForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\GroupForm.Designer.cs">
+      <DependentUpon>GroupForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\HelpSourceForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\HelpSourceForm.Designer.cs">
+      <DependentUpon>HelpSourceForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\IconPickerForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\IconPickerForm.Designer.cs">
+      <DependentUpon>IconPickerForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ExchangeDataForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ExchangeDataForm.Designer.cs">
+      <DependentUpon>ExchangeDataForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ImportMethodForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ImportMethodForm.Designer.cs">
+      <DependentUpon>ImportMethodForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\InternalBrowserForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\InternalBrowserForm.Designer.cs">
+      <DependentUpon>InternalBrowserForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\KeyCreationForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\KeyCreationForm.Designer.cs">
+      <DependentUpon>KeyCreationForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\KeyPromptForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\KeyPromptForm.Designer.cs">
+      <DependentUpon>KeyPromptForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\LanguageForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\LanguageForm.Designer.cs">
+      <DependentUpon>LanguageForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\MainForm_Events.cs" />
+    <Compile Include="Forms\MainForm_Functions.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\OptionsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\OptionsForm.Designer.cs">
+      <DependentUpon>OptionsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\PluginsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\PluginsForm.Designer.cs">
+      <DependentUpon>PluginsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\PrintForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\PrintForm.Designer.cs">
+      <DependentUpon>PrintForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ProxyForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ProxyForm.Designer.cs">
+      <DependentUpon>ProxyForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\PwEntryForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\PwEntryForm.Designer.cs">
+      <DependentUpon>PwEntryForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\PwGeneratorForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\PwGeneratorForm.Designer.cs">
+      <DependentUpon>PwGeneratorForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\SearchForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\SearchForm.Designer.cs">
+      <DependentUpon>SearchForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\SingleLineEditForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\SingleLineEditForm.Designer.cs">
+      <DependentUpon>SingleLineEditForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\StatusLoggerForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\StatusLoggerForm.Designer.cs">
+      <DependentUpon>StatusLoggerForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\StatusProgressForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\StatusProgressForm.Designer.cs">
+      <DependentUpon>StatusProgressForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\TanWizardForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\TanWizardForm.Designer.cs">
+      <DependentUpon>TanWizardForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\IOConnectionForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\IOConnectionForm.Designer.cs">
+      <DependentUpon>IOConnectionForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\TextEncodingForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\TextEncodingForm.Designer.cs">
+      <DependentUpon>TextEncodingForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\UpdateCheckForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\UpdateCheckForm.Designer.cs">
+      <DependentUpon>UpdateCheckForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\UrlOverrideForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\UrlOverrideForm.Designer.cs">
+      <DependentUpon>UrlOverrideForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\UrlOverridesForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\UrlOverridesForm.Designer.cs">
+      <DependentUpon>UrlOverridesForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\XmlReplaceForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\XmlReplaceForm.Designer.cs">
+      <DependentUpon>XmlReplaceForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Native\NativeMethods.cs" />
+    <Compile Include="Native\NativeMethods.Defs.cs" />
+    <Compile Include="Native\NativeMethods.New.cs" />
+    <Compile Include="Native\NativeMethods.Structs.cs" />
+    <Compile Include="Native\NativeMethods.Unix.cs" />
+    <Compile Include="Native\NativeProgressDialog.cs" />
+    <Compile Include="Native\ShellLinkEx.cs" />
+    <Compile Include="Plugins\PlgxCache.cs" />
+    <Compile Include="Plugins\PlgxCsprojLoader.cs" />
+    <Compile Include="Plugins\PlgxPluginInfo.cs" />
+    <Compile Include="Plugins\PlgxPlugin.cs" />
+    <Compile Include="Resources\KPRes.Generated.cs" />
+    <Compile Include="UI\AsyncPwListUpdate.cs" />
+    <Compile Include="UI\BackgroundForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\ColorMenuItem.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UI\ColumnProvider.cs" />
+    <Compile Include="UI\ColumnProviderPool.cs" />
+    <Compile Include="UI\CustomContextMenuStripEx.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UI\CustomListViewEx.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UI\CustomMenuStripEx.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UI\CustomRichTextBoxEx.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UI\CustomToolStripEx.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UI\CustomTreeViewEx.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UI\DocumentManagerEx.cs" />
+    <Compile Include="UI\DpiUtil.cs" />
+    <Compile Include="UI\DwmUtil.cs" />
+    <Compile Include="UI\EnableThemingInScope.cs" />
+    <Compile Include="UI\ExpiryControlGroup.cs" />
+    <Compile Include="UI\FileDialogsEx.cs" />
+    <Compile Include="UI\FontUtil.cs" />
+    <Compile Include="UI\GlobalWindowManager.cs" />
+    <Compile Include="UI\IGwmWindow.cs" />
+    <Compile Include="UI\ImageComboBoxEx.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UI\KeyboardControl.cs">
+    </Compile>
+    <Compile Include="UI\ListViewGroupingMenu.cs" />
+    <Compile Include="UI\ListViewSortMenu.cs" />
+    <Compile Include="UI\ListViewStateEx.cs" />
+    <Compile Include="UI\NotifyIconEx.cs" />
+    <Compile Include="UI\OnDemandStatusDialog.cs" />
+    <Compile Include="UI\OpenWithMenu.cs" />
+    <Compile Include="UI\PromptedTextBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UI\ProtectedDialog.cs" />
+    <Compile Include="UI\PwInputControlGroup.cs" />
+    <Compile Include="UI\RichTextBuilder.cs" />
+    <Compile Include="UI\SplitButtonEx.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UI\StatusUtil.cs" />
+    <Compile Include="UI\TabControlEx.cs">
+    </Compile>
+    <Compile Include="UI\TaskbarList.cs" />
+    <Compile Include="UI\ToolStripRendering\ProExtTsr.cs" />
+    <Compile Include="UI\ToolStripRendering\SystemTsr.cs" />
+    <Compile Include="UI\ToolStripRendering\TsrFactory.cs" />
+    <Compile Include="UI\ToolStripRendering\KeePassTsr.cs" />
+    <Compile Include="UI\ToolStripRendering\TsrPool.cs" />
+    <Compile Include="UI\ToolStripRendering\VisualStyleTsr.cs" />
+    <Compile Include="UI\ToolStripRendering\Win10Tsr.cs" />
+    <Compile Include="UI\ToolStripRendering\Win81Tsr.cs" />
+    <Compile Include="UI\UISystemFonts.cs" />
+    <Compile Include="UI\UserActivityNotifyFilter.cs" />
+    <Compile Include="UI\VistaTaskDialog.cs">
+    </Compile>
+    <Compile Include="Util\Archive\ImageArchive.cs" />
+    <Compile Include="Util\Archive\XspArchive.cs" />
+    <Compile Include="Util\AutoTypeCtx.cs" />
+    <Compile Include="Util\BinaryDataClassifier.cs" />
+    <Compile Include="Util\BinaryDataUtil.cs" />
+    <Compile Include="Util\CancellableOperationEventArgs.cs" />
+    <Compile Include="Plugins\PluginInfo.cs" />
+    <Compile Include="UI\CheckedLVItemDXList.cs" />
+    <Compile Include="UI\CustomSplitContainerEx.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UI\DynamicMenu.cs" />
+    <Compile Include="UI\HotKeyControlEx.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UI\ListSorter.cs" />
+    <Compile Include="UI\QualityProgressBar.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UI\RichTextBoxContextMenu.cs" />
+    <Compile Include="UI\SecureEdit.cs">
+    </Compile>
+    <Compile Include="Plugins\Plugin.cs" />
+    <Compile Include="Plugins\IPluginHost.cs" />
+    <Compile Include="Plugins\DefaultPluginHost.cs" />
+    <Compile Include="Plugins\PluginManager.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Forms\AboutForm.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>AboutForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\AutoTypeCtxForm.resx">
+      <DependentUpon>AutoTypeCtxForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\CharPickerForm.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>CharPickerForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ColumnsForm.resx">
+      <DependentUpon>ColumnsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\CsvImportForm.resx">
+      <DependentUpon>CsvImportForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\DatabaseOperationsForm.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>DatabaseOperationsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\DatabaseSettingsForm.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>DatabaseSettingsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\DataEditorForm.resx">
+      <DependentUpon>DataEditorForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\DataViewerForm.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>DataViewerForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\DuplicationForm.resx">
+      <DependentUpon>DuplicationForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\EcasActionForm.resx">
+      <DependentUpon>EcasActionForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\EcasConditionForm.resx">
+      <DependentUpon>EcasConditionForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\EcasEventForm.resx">
+      <DependentUpon>EcasEventForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\EcasTriggerForm.resx">
+      <DependentUpon>EcasTriggerForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\EcasTriggersForm.resx">
+      <DependentUpon>EcasTriggersForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\EditAutoTypeItemForm.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>EditAutoTypeItemForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\EditStringForm.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>EditStringForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\EntropyForm.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>EntropyForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\EntryListForm.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>EntryListForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\EntryReportForm.resx">
+      <DependentUpon>EntryReportForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FieldRefForm.resx">
+      <DependentUpon>FieldRefForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FileBrowserForm.resx">
+      <DependentUpon>FileBrowserForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\GroupForm.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>GroupForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\HelpSourceForm.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>HelpSourceForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\IconPickerForm.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>IconPickerForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ExchangeDataForm.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>ExchangeDataForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ImportMethodForm.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>ImportMethodForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\InternalBrowserForm.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>InternalBrowserForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\KeyCreationForm.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>KeyCreationForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\KeyPromptForm.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>KeyPromptForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\LanguageForm.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>LanguageForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\MainForm.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\OptionsForm.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>OptionsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\PluginsForm.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>PluginsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\PrintForm.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>PrintForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ProxyForm.resx">
+      <DependentUpon>ProxyForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\PwEntryForm.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>PwEntryForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\PwGeneratorForm.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>PwGeneratorForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\SearchForm.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>SearchForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\SingleLineEditForm.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>SingleLineEditForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\StatusLoggerForm.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>StatusLoggerForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\StatusProgressForm.resx">
+      <DependentUpon>StatusProgressForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\TanWizardForm.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>TanWizardForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\IOConnectionForm.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>IOConnectionForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\TextEncodingForm.resx">
+      <DependentUpon>TextEncodingForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\UpdateCheckForm.resx">
+      <DependentUpon>UpdateCheckForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\UrlOverrideForm.resx">
+      <DependentUpon>UrlOverrideForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\UrlOverridesForm.resx">
+      <DependentUpon>UrlOverridesForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\XmlReplaceForm.resx">
+      <DependentUpon>XmlReplaceForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="UI\BannerFactory.cs">
+    </Compile>
+    <Compile Include="UI\MruList.cs" />
+    <Compile Include="UI\ShowWarningsLogger.cs" />
+    <Compile Include="UI\StatusBarLogger.cs" />
+    <Compile Include="UI\UIUtil.cs" />
+    <Compile Include="Util\AppLocator.cs" />
+    <Compile Include="Util\AutoType.cs" />
+    <Compile Include="Util\ChildProcessesSnapshot.cs" />
+    <Compile Include="Util\ClipboardContents.cs" />
+    <Compile Include="Util\ClipboardEventChainBlocker.cs" />
+    <Compile Include="Util\ClipboardUtil.cs" />
+    <Compile Include="Util\ClipboardUtil.Unix.cs" />
+    <Compile Include="Util\ClipboardUtil.Windows.cs" />
+    <Compile Include="Util\CommandLineArgs.cs" />
+    <Compile Include="Ecas\EcasActionType.cs" />
+    <Compile Include="Ecas\EcasConditionType.cs" />
+    <Compile Include="Ecas\EcasDefaultActionProvider.cs" />
+    <Compile Include="Ecas\EcasAction.cs" />
+    <Compile Include="Ecas\EcasActionProvider.cs" />
+    <Compile Include="Ecas\EcasCondition.cs" />
+    <Compile Include="Ecas\EcasConditionProvider.cs" />
+    <Compile Include="Ecas\EcasDefaultConditionProvider.cs" />
+    <Compile Include="Ecas\EcasDefaultEventProvider.cs" />
+    <Compile Include="Ecas\EcasEvent.cs" />
+    <Compile Include="Ecas\EcasEventProvider.cs" />
+    <Compile Include="Ecas\EcasEventType.cs" />
+    <Compile Include="Ecas\EcasPool.cs" />
+    <Compile Include="Ecas\EcasTrigger.cs" />
+    <Compile Include="Ecas\EcasTriggerSystem.cs" />
+    <Compile Include="Ecas\EcasUtil.cs" />
+    <Compile Include="Ecas\IEcasParameterized.cs" />
+    <Compile Include="Util\CriticalSectionEx.cs" />
+    <Compile Include="Util\CustomResourceManager.cs" />
+    <Compile Include="Util\EntryMenu.cs" />
+    <Compile Include="Util\EntryTemplates.cs" />
+    <Compile Include="Util\EntryUtil.cs" />
+    <Compile Include="Util\GlobalMutexPool.cs" />
+    <Compile Include="Util\IniFile.cs" />
+    <Compile Include="Util\IpcBroadcast.cs" />
+    <Compile Include="Util\IpcBroadcast.Fsw.cs" />
+    <Compile Include="Util\IpcUtilEx.cs" />
+    <Compile Include="Util\KeyUtil.cs" />
+    <Compile Include="Util\NetUtil.cs" />
+    <Compile Include="Util\PwGeneratorUtil.cs" />
+    <Compile Include="Util\SearchUtil.cs" />
+    <Compile Include="Util\SendInputEx.cs" />
+    <Compile Include="Util\SendInputExt\ISiEngine.cs" />
+    <Compile Include="Util\SendInputExt\SiCodes.cs" />
+    <Compile Include="Util\SendInputExt\SiEngineStd.cs" />
+    <Compile Include="Util\SendInputExt\SiEngineUnix.cs" />
+    <Compile Include="Util\SendInputExt\SiEngineWin.cs" />
+    <Compile Include="Util\SendInputExt\SiObf.cs" />
+    <Compile Include="Util\SendInputExt\SiWindowInfo.cs" />
+    <Compile Include="Util\SessionLockNotifier.cs" />
+    <Compile Include="Util\HotKeyManager.cs" />
+    <Compile Include="Util\ShellUtil.cs" />
+    <Compile Include="Util\ShutdownBlocker.cs" />
+    <Compile Include="Util\Spr\SprContext.cs" />
+    <Compile Include="Util\Spr\SprEncoding.cs" />
+    <Compile Include="Util\Spr\SprEngine.cs" />
+    <Compile Include="Util\Spr\SprEngine.PickChars.cs" />
+    <Compile Include="Util\Spr\SprSyntax.cs" />
+    <Compile Include="Util\TempFilesPool.cs" />
+    <Compile Include="Util\TextSimilarity.cs" />
+    <Compile Include="Util\UpdateCheckEx.cs" />
+    <Compile Include="Util\WinUtil.cs" />
+    <Compile Include="Util\XmlSerialization\XmlSerializerEx.Gen.cs" />
+    <Compile Include="Util\XmlUtil.cs" />
+    <Compile Include="Util\XmlSerialization\XmlSerializerEx.cs" />
+    <Compile Include="Util\XmlUtil.XmlReplace.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Nuvola\B16x16_1DownArrow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Nuvola\B16x16_1UpArrow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Nuvola\B16x16_2DownArrow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Nuvola\B16x16_2UpArrow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Nuvola\B16x16_Apply.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Nuvola\B16x16_Attach.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Nuvola\B16x16_Browser.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Nuvola\B16x16_Cut.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Nuvola\B16x16_Error.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Nuvola\B16x16_Exit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Nuvola\B16x16_FileNew.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Nuvola\B16x16_FilePrint.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Nuvola\B16x16_FileQuickPrint.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Nuvola\B16x16_FileSave.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Nuvola\B16x16_FileSaveAs.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Nuvola\B16x16_Help.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Nuvola\B16x16_History.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Nuvola\B16x16_KGPG_Import.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Nuvola\B16x16_KGPG_Key1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Nuvola\B16x16_KGPG_Key2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Nuvola\B16x16_KGPG_Key3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Nuvola\B16x16_KGPG_Sign.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Nuvola\B16x16_Reload_Page.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Nuvola\B16x16_XMag.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Nuvola\B16x16_Folder_Home.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Nuvola\B16x16_Folder_Locked.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Nuvola\B16x16_Folder_Yellow_Open.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Nuvola\B16x16_FTP.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Nuvola\B16x16_KRec_Record.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Nuvola\B16x16_Package_Development.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Nuvola\B16x16_Package_Settings.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Nuvola\B48x48_KGPG_Sign.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Nuvola\B16x16_Folder_Blue_Open.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Nuvola\B16x16_No.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Nuvola\B48x48_KGPG_Key2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Nuvola\B48x48_Ark.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Nuvola\B16x16_Keyboard_Layout.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Nuvola\B48x48_Keyboard_Layout.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Nuvola_Derived\B15x14_FileNew.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="KeePass.ico" />
+    <None Include="Resources\Nuvola\B16x16_Folder.png" />
+    <None Include="Resources\Images\B16x16_Imp_NPassword.png" />
+    <None Include="Resources\Nuvola_Derived\B16x16_Folder_New_Ex.png" />
+    <None Include="Resources\Nuvola_Derived\B16x16_TextAlignRight.png" />
+    <None Include="Resources\Nuvola_Derived\B16x16_TextAlignLeft.png" />
+    <None Include="Resources\Nuvola_Derived\B16x16_TextAlignCenter.png" />
+    <None Include="Resources\Data\ImageArchive.bin" />
+    <None Include="Resources\Data\Images.bin" />
+    <None Include="Resources\Data\Images_App_HighRes.bin" />
+    <None Include="Resources\Data\Images_Client_16.bin" />
+    <None Include="Resources\Data\Images_Client_HighRes.bin" />
+    <None Include="Resources\Nuvola\B16x16_MessageBox_Warning.png" />
+    <None Include="Resources\Nuvola\B16x16_MessageBox_Info.png" />
+    <None Include="Resources\Nuvola\B16x16_MessageBox_Critical.png" />
+    <None Include="Resources\Images\B16x16_Transparent.png" />
+    <None Include="Resources\Images\B19x07_3BlackDots.png" />
+    <None Include="Resources\Images\B16x16_MenuCheck.png" />
+    <None Include="Resources\Images\B16x16_Imp_VisKeeper.png" />
+    <None Include="Resources\Images\B16x16_Imp_Dashlane.png" />
+    <None Include="Resources\Images\B16x16_Imp_NortonIdSafe.png" />
+    <None Include="Resources\Data\MostPopularPasswords.txt.gz" />
+    <None Include="Resources\Nuvola_Derived\B16x16_EditCopyUrl.png" />
+    <None Include="Resources\Nuvola\B16x16_KTouch.png" />
+    <None Include="Resources\Nuvola_Derived\B16x16_Folder_2.png" />
+    <None Include="Resources\Images\B16x16_Imp_NetworkPwMgr.png" />
+    <None Include="Resources\Images\B16x16_Imp_TurboPws.png" />
+    <None Include="Resources\Images\B16x16_Imp_SafeWallet.png" />
+    <None Include="Resources\Images\B16x16_Imp_LastPass.png" />
+    <None Include="Resources\Images\B16x16_Imp_DesktopKnox.png" />
+    <None Include="Resources\Nuvola_Derived\B16x16_Key_New.png" />
+    <None Include="Resources\Nuvola_Derived\B16x16_EditCopyLink.png" />
+    <None Include="Resources\Images\B16x16_Imp_KasperskyPwMgr.png" />
+    <None Include="Resources\Images\B16x16_Imp_StickyPw.png" />
+    <None Include="Resources\Images\B16x16_Imp_PwsPlus.png" />
+    <None Include="Resources\Nuvola\B16x16_KaboodleLoop.png" />
+    <None Include="Resources\Images\B16x16_MenuRadio.png" />
+    <None Include="Resources\Images\B16x16_Imp_DataVault.png" />
+    <None Include="Resources\Images\B16x16_Imp_Revelation.png" />
+    <None Include="Resources\Images\B16x16_Imp_PwPrompter.png" />
+    <None Include="Resources\Images\B16x16_WinFavs.png" />
+    <None Include="Resources\Nuvola\B16x16_KNotes.png" />
+    <None Include="Resources\Nuvola\B48x48_View_Detailed.png" />
+    <None Include="Resources\Images\B16x16_Imp_HandySafePro.png" />
+    <None Include="Resources\Images\B16x16_Imp_ZdnPwPro.png" />
+    <None Include="Resources\Images\B16x16_Imp_HandySafe.png" />
+    <None Include="Resources\Images\B16x16_Imp_KeePassX.png" />
+    <None Include="Resources\Icons\LockOverlay.ico" />
+    <None Include="Resources\Nuvola\B16x16_Redo.png" />
+    <None Include="Resources\Images\B16x16_TextAlignRight.png" />
+    <None Include="Resources\Images\B16x16_TextAlignLeft.png" />
+    <None Include="Resources\Images\B16x16_TextAlignCenter.png" />
+    <None Include="Resources\Nuvola\B16x16_Color_Fill.png" />
+    <None Include="Resources\Nuvola\B16x16_Colorize.png" />
+    <None Include="Resources\Images\B16x16_FontStrikeout.png" />
+    <None Include="Resources\Images\B16x16_FontUnderline.png" />
+    <None Include="Resources\Images\B16x16_FontItalic.png" />
+    <None Include="Resources\Images\B16x16_FontBold.png" />
+    <None Include="Resources\Images\B16x16_Imp_FlexWallet.png" />
+    <None Include="Resources\Images\B16x16_Imp_OnePwPro.png" />
+    <None Include="Resources\Nuvola\B48x48_Make_KDevelop.png" />
+    <None Include="Resources\Nuvola\B16x16_Make_KDevelop.png" />
+    <None Include="Resources\Images\B16x16_Imp_PassKeeper.png" />
+    <None Include="Resources\Images\B16x16_Imp_PwMem2008.png" />
+    <None Include="Resources\Nuvola\B16x16_Folder_Outbox.png" />
+    <None Include="Resources\Images\B16x16_Imp_RoboForm.png" />
+    <None Include="Resources\Images\B16x16_Imp_SplashID.png" />
+    <None Include="Resources\Images\B16x16_Imp_PwTresor.png" />
+    <None Include="Resources\Nuvola_Derived\B16x16_File_Close.png" />
+    <None Include="Resources\Nuvola_Derived\B16x16_File_SaveAll.png" />
+    <None Include="Resources\Nuvola_Derived\B16x16_File_SaveAll_Disabled.png" />
+    <None Include="Resources\Images\B16x16_Imp_Steganos.png" />
+    <None Include="Resources\Images\B16x16_Imp_Whisper32.png" />
+    <None Include="KeePass.pfx" />
+    <None Include="Resources\Nuvola\B16x16_Folder_Inbox.png" />
+    <None Include="Resources\Images\B16x16_Imp_Security.png" />
+    <None Include="Resources\Images\B16x16_Imp_PwSafe.png" />
+    <None Include="Resources\Images\B16x16_Imp_PwDepot.png" />
+    <None Include="Resources\Images\B16x16_Imp_PwAgent.png" />
+    <None Include="Resources\Images\B16x16_Imp_PVault.png" />
+    <None Include="Resources\Images\B16x16_Imp_PINs.png" />
+    <None Include="Resources\Images\B16x16_Imp_CWallet.png" />
+    <None Include="Resources\Images\B16x16_Imp_AnyPw.png" />
+    <None Include="Resources\Images\B16x16_Imp_AmP.png" />
+    <None Include="Resources\Nuvola\B48x48_Run.png" />
+    <None Include="Resources\Nuvola\B16x16_WWW.png" />
+    <None Include="Resources\Nuvola\B48x48_WWW.png" />
+    <None Include="Resources\Icons\QuadLocked.ico" />
+    <None Include="Resources\Icons\QuadNormal.ico" />
+    <None Include="Resources\Nuvola_Derived\B16x16_Window_2Horz1Vert.png" />
+    <None Include="Resources\Nuvola_Derived\B16x16_Window_3Horz.png" />
+    <None Include="Resources\Nuvola\B16x16_KGPG_Gen.png" />
+    <None Include="Resources\Nuvola\B16x16_Edit.png" />
+    <None Include="Resources\Nuvola\B16x16_EditShred.png" />
+    <None Include="Resources\Nuvola\B16x16_EditPaste.png" />
+    <None Include="Resources\Nuvola\B16x16_Undo.png" />
+    <None Include="Resources\Nuvola\B16x16_KOrganizer.png" />
+    <None Include="Resources\Nuvola\B16x16_KGPG_Info.png" />
+    <None Include="Resources\Nuvola\B16x16_Personal.png" />
+    <None Include="Resources\Nuvola\B48x48_Package_Settings.png" />
+    <None Include="Resources\Nuvola\B48x48_KOrganizer.png" />
+    <None Include="Resources\Nuvola\B32x32_Trashcan_Full.png" />
+    <None Include="Resources\Nuvola\B16x16_View_Detailed.png" />
+    <None Include="Resources\Images\B16x16_KeePass.png" />
+    <None Include="Resources\Nuvola\B16x16_BlockDevice.png" />
+    <None Include="Resources\Nuvola\B16x16_File_Locked.png" />
+    <None Include="Resources\Nuvola\B16x16_Identity.png" />
+    <None Include="Resources\Nuvola\B16x16_HwInfo.png" />
+    <None Include="Resources\Nuvola\B16x16_Toggle_Log.png" />
+    <None Include="Resources\Nuvola\B48x48_Wizard.png" />
+    <None Include="Resources\Nuvola\B16x16_Wizard.png" />
+    <None Include="Resources\Nuvola\B48x48_Binary.png" />
+    <None Include="Resources\Nuvola\B16x16_History_Clear.png" />
+    <None Include="Resources\Nuvola\B48x48_KGPG_Gen.png" />
+    <None Include="Resources\Nuvola\B16x16_CompFile.png" />
+    <None Include="Resources\Nuvola_Derived\B16x16_FileSave_Disabled.png" />
+    <None Include="Resources\Images\KeePass.ico" />
+    <None Include="Resources\Nuvola\B16x16_EditDelete.png" />
+    <None Include="Resources\Nuvola\B48x48_Folder_Txt.png" />
+    <None Include="Resources\Nuvola\B16x16_Laptop_Charge.png" />
+    <None Include="Resources\Nuvola\B16x16_Trashcan_Full.png" />
+    <None Include="Resources\Nuvola\B48x48_KMag.png" />
+    <None Include="Resources\Nuvola\B48x48_BlockDevice.png" />
+    <None Include="Resources\Nuvola\B16x16_Misc.png" />
+    <None Include="Resources\Nuvola\B16x16_Binary.png" />
+    <None Include="Resources\Nuvola\B16x16_ASCII.png" />
+    <None Include="Resources\Nuvola\B16x16_Spreadsheet.png" />
+    <None Include="Resources\Nuvola\B16x16_HTML.png" />
+    <None Include="Resources\Nuvola\B48x48_FilePrint.png" />
+    <None Include="Resources\Nuvola\B48x48_MessageBox_Info.png" />
+    <None Include="Resources\Nuvola\B16x16_Folder_Sent_Mail.png" />
+    <None Include="Resources\Nuvola\B16x16_Folder_Txt.png" />
+    <None Include="Resources\Nuvola\B48x48_Folder_Download.png" />
+    <None Include="Resources\Nuvola\B16x16_EditCopy.png" />
+    <None Include="Resources\Nuvola\B48x48_KCMSystem.png" />
+    <None Include="Resources\Nuvola\B16x16_Configure.png" />
+    <None Include="Resources\Nuvola_Derived\B16x16_DeleteEntry.png" />
+    <None Include="Resources\Images\B16x16_LockWorkspace.png" />
+    <None Include="Resources\Nuvola\B48x48_XMag.png" />
+    <None Include="Resources\Nuvola\B48x48_Font.png" />
+    <None Include="Resources\Nuvola\B48x48_Source_Moc.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <PropertyGroup>
+    <PostBuildEvent>"$(FrameworkSDKDir)bin\sgen.exe" /assembly:"$(TargetPath)" /force /nologo /compiler:/keycontainer:VS_KEY_27A70973F3FC3787 /compiler:/delaysign-</PostBuildEvent>
+  </PropertyGroup>
+</Project>

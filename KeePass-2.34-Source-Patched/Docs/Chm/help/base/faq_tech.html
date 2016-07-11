@@ -1,0 +1,678 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta name="author" content="Dominik Reichl" />
+
+	<meta name="description" content="KeePass is an open source password manager. Passwords can be stored in highly-encrypted databases, which can be unlocked with one master password or key file." />
+	<meta name="keywords" content="KeePass, Password, Safe, Security, Database, Encryption, Secure, Manager, Open, Source, Free, Code, Key, Master, Disk, Dominik, Reichl" />
+
+	<meta name="robots" content="index" />
+
+	<meta name="DC.Title" content="KeePass - The Open Source Password Manager" />
+	<meta name="DC.Creator" content="Dominik Reichl" />
+	<meta name="DC.Subject" content="Open-Source Password Safe" />
+	<meta name="DC.Description" content="KeePass is an open source password manager. Passwords can be stored in highly-encrypted databases, which can be unlocked with one master password or key file." />
+	<meta name="DC.Publisher" content="Dominik Reichl" />
+	<meta name="DC.Contributor" content="Dominik Reichl" />
+	<meta name="DC.Type" content="text" />
+	<meta name="DC.Format" content="text/html" />
+	<meta name="DC.Identifier" content="http://keepass.info/" />
+	<meta name="DC.Language" content="en" />
+	<meta name="DC.Rights" content="Copyright (c) 2003-2016 Dominik Reichl" />
+
+	<title>Technical FAQ - KeePass</title>
+	<base target="_self" />
+	<link rel="stylesheet" type="text/css" href="../../default.css" />
+	
+</head>
+<body>
+
+
+
+
+
+<table class="sectionsummary"><tr><td width="68px">
+<img src="../images/b64x64_help.png" width="64px" height="64px"
+class="singleimg" align="left" alt="Help" />
+</td><td valign="middle"><h1>Technical FAQ</h1><br />
+Frequently Asked Questions about the usage of KeePass.
+</td></tr></table>
+
+<br />
+Configuration:
+<ul>
+<li><a href="#nooptsave">I've saved my options, but when I reopen KeePass I
+get the old options. What's wrong?</a></li>
+</ul>
+
+Installation / Integration:
+<ul>
+
+
+<li><a href="#sysreq2x">Why doesn't KeePass 2.x run on my computer?</a></li>
+<li><a href="#netshare2x">Why does KeePass 2.x crash when starting it from a
+network drive/share?</a></li>
+<li><a href="#fips2x">Why does KeePass 2.x show a FIPS compliance error at
+startup?</a></li>
+
+
+<li><a href="#remotechm">Why doesn't the CHM help file work?</a></li>
+<li><a href="#moreappicons">Where can I find more <i>application icons</i> for Windows shortcuts?</a></li>
+<li><a href="#moreclienticons">How can I add more <i>client icons</i> for password entries?</a></li>
+<li><a href="#minimode">Does KeePass support a <i>mini mode</i>?</a></li>
+<li><a href="#nolockafterat">Why doesn't KeePass lock after Auto-Type?</a></li>
+<li><a href="#athotkey">Why doesn't Auto-Type work correctly on Polish systems?</a></li>
+
+
+
+<li><a href="#internet">Why does KeePass try to connect to the Internet?</a></li>
+</ul>
+
+Security:
+<ul>
+<li><a href="#autotypelog">Is <i>Auto-Type</i> keylogger-safe?</a></li>
+<li><a href="#autotypetarget">Can <i>Auto-Type</i> locate child controls?</a></li>
+<li><a href="#encryptionalgo">Could you add the ... encryption algorithm to KeePass?</a></li>
+<li><a href="#noautolock">Why doesn't KeePass lock when Windows locks and a KeePass sub-dialog is open?</a></li>
+<li><a href="#printtempfile">Printing creates a temporary file. Will it be erased securely?</a></li>
+<!-- <li><a href="#memprot">Why KeePass 2.x resets in-memory protection options?</a></li> -->
+<li><a href="#qualest">Why the estimated quality of a password suddenly drops?</a></li>
+</ul>
+
+Usage:
+<ul>
+<li><a href="#rtftext">How to store and work with large amounts of (formatted) text?</a></li>
+<li><a href="#email">Can an e-mail address field be added?</a></li>
+</ul>
+
+<br />
+
+<a name="nooptsave"></a>
+<h2 class="sectiontitle">
+<img src="../images/b16x16_help.png" class="singleimg" alt="Info" />&nbsp;&nbsp;I've
+saved my options, but when I reopen KeePass I get the old options. What's wrong?</h2>
+
+<p>KeePass supports two different locations for storing configuration information:
+the global configuration file in the KeePass directory and a local, user-dependent
+one in the user's private configuration folder. Most likely you do not have write
+access to your global configuration file.</p>
+
+<p>For more details, see
+<img src="../images/b16x16_kmultiple.png" class="singleimg" alt="Cascading" />
+<a href="configuration.html">Configuration</a>.</p>
+
+<br />
+
+
+
+<a name="sysreq2x"></a>
+<h2 class="sectiontitle">
+<img src="../images/b16x16_help.png" class="singleimg" alt="Info" />&nbsp;&nbsp;Why
+doesn't KeePass 2.x run on my computer?</h2>
+
+<p><b>Symptoms:</b> When trying to run KeePass 2.x on Windows &le; XP,
+an error message like the following is displayed:<br />
+<i>&quot;A required .DLL file, MSCOREE.DLL, was not found&quot;</i> or<br />
+<i>&quot;The application failed to initialize properly (0xc0000135)&quot;</i>.</p>
+
+<p><b>Cause:</b> KeePass 2.x requires Microsoft .NET Framework &ge; 2.0.</p>
+
+<p><b>Resolution:</b> Install Microsoft .NET Framework 2.0 or higher.
+It is available as a free download from the Microsoft website:
+<a href="http://msdn.microsoft.com/en-us/netframework/aa569263.aspx"
+target="_blank">Microsoft .NET Framework download</a>. Alternatively,
+you can install it through
+Windows Update (the framework is an optional component).</p>
+
+<p>KeePass 1.x does not require this framework.</p>
+
+<br /> 
+
+<a name="netshare2x"></a>
+<h2 class="sectiontitle">
+<img src="../images/b16x16_help.png" class="singleimg" alt="Info" />&nbsp;&nbsp;Why
+does KeePass 2.x crash when starting it from a network drive/share?</h2>
+
+<p><b>Symptoms:</b> When trying to run KeePass 2.x from a network drive/share,
+you get an error message like the following:<br />
+<i>&quot;Application has generated an exception that could not be
+handled&quot;</i> or<br />
+<i>&quot;KeePass has encountered a problem and needs to close&quot;</i>.</p>
+
+<p><b>Cause:</b> The strict default security policy by the Microsoft .NET
+Framework disallows running .NET applications from a network drive/share.</p>
+
+<p><b>Recommended resolution:</b> Copy/install KeePass 2.x onto a local hard
+disk, and run the copy.</p>
+
+<p><b>Alternative, not recommended resolution:</b>
+Configure the security policy to allow running .NET applications from
+network drives/shares. Ask your administrator to do this (administrative
+rights are required). If you have administrative rights and want to do
+it yourself, you can use the
+<a href="http://msdn.microsoft.com/en-us/library/cb6t8dtz.aspx"
+target="_blank">Code Access Security Policy Tool (Caspol.exe)</a>
+that ships with the .NET framework (helpful instructions can be found
+<a href="http://blogs.msdn.com/shawnfa/archive/2004/12/30/344554.aspx"
+target="_blank">here</a> and
+<a href="http://blogs.msdn.com/shawnfa/archive/2005/07/27/443975.aspx"
+target="_blank">here</a>).</p>
+
+<br />
+
+<a name="fips2x"></a>
+<h2 class="sectiontitle">
+<img src="../images/b16x16_help.png" class="singleimg" alt="Info" />&nbsp;&nbsp;Why
+does KeePass 2.x show a FIPS compliance error at startup?</h2>
+
+<p><b>Symptoms:</b> When trying to run KeePass 2.x,
+you get an error message like the following:<br />
+<i>&quot;This implementation is not part of the Windows Platform FIPS validated
+cryptographic algorithms.&quot;</i>.</p>
+
+<p><b>Cause:</b> KeePass uses the AES/Rijndael encryption and SHA-256
+hashing algorithms, for which the Microsoft .NET Framework provides
+implementations. These implementations might not be FIPS compliant.
+If the local security policy of the system enforces the usage of
+FIPS compliant implementations, KeePass cannot run and shows an
+error message.</p>
+
+<p><b>Resolution:</b> Configure the local security policy of the
+system to allow FIPS non-compliant algorithm implementations. To
+do this, go to <i>Control Panel</i> -&gt; <i>Administrative Tools</i> -&gt;
+<i>Local Security Policy</i>, open <i>Local Policies</i> -&gt;
+<i>Security Options</i>, and change the option
+<i>'System cryptography: Use FIPS compliant algorithms for encryption,
+hashing, and signing'</i> to <i>'Disabled'</i>.</p>
+
+<p><b>Alternative resolution:</b> Download and run the following
+Windows registry file:
+<a href="http://keepass.info/help/download/FipsDisable.reg"
+target="_blank">FipsDisable.reg</a>.
+By running this file (i.e. importing the modifications in this file
+into the registry), FIPS compliance enforcement is disabled.</p>
+
+<p><b>Note:</b> Currently only weaker cryptographic algorithms
+in the Microsoft .NET Framework are FIPS compliant. As security is the
+top priority for the KeePass project, an option to use these weaker
+FIPS compliant algorithms will <i>not</i> be added.
+Future .NET frameworks might have FIPS compliant implementations of
+the algorithms that KeePass requires.</p>
+
+<br />
+
+
+<a name="remotechm"></a>
+<h2 class="sectiontitle">
+<img src="../images/b16x16_help.png" class="singleimg" alt="Info" />&nbsp;&nbsp;Why
+doesn't the CHM help file work?</h2>
+
+<p><b>Symptoms:</b> When trying to open the KeePass CHM help file from
+a remote computer or shared network drive, it's not displayed correctly
+(navigation aborted, ...).</p>
+
+<p><b>Solution:</b> See
+<a href="https://support.microsoft.com/en-us/kb/896358" target="_blank">Microsoft
+Security Bulletin MS05-026</a>.</p>
+
+<br />
+
+<a name="moreappicons"></a>
+<h2 class="sectiontitle">
+<img src="../images/b16x16_help.png" class="singleimg" alt="Info" />&nbsp;&nbsp;Where
+can I find more <i>application icons</i> for Windows shortcuts?</h2>
+
+<br />
+<table border="0px" width="100%" cellpadding="0px" cellspacing="0px">
+<tr><td align="left" valign="top">
+Application icons are icons in Windows ICO format. They can be used in
+Windows shortcuts and/or as file association icons. The KeePass executable
+contains various application icons which can be used for these purposes.<br />
+<br />
+Additional application icons are available from the &quot;<code>Ext/Icons_*</code>&quot;
+directories of the KeePass source code <a href="http://keepass.info/download.html"
+target="_blank">package</a>.
+Most of them, shown at right, are slight variations of the main KeePass icon.<br />
+<br />
+Even more, contributed icons (by users) can be found on the
+<a href="http://keepass.info/plugins.html#appicons"
+target="_blank">plugins page</a>.<br />
+<br />
+If you have multiple KeePass databases, you can use differently colored KeePass
+application icons in order to distinguish them.<br />
+<br />
+These icons are not included in the binary distribution because this would make
+the application file too large.<br /><br />
+</td>
+<td width="154px" align="right" valign="top">
+<img src="../images/appicons.png" alt="Application Icons" />
+</td></tr></table>
+
+<br />
+
+<a name="moreclienticons"></a>
+<h2 class="sectiontitle">
+<img src="../images/b16x16_help.png" class="singleimg" alt="Info" />&nbsp;&nbsp;How
+can I add more <i>client icons</i> for password entries?</h2>
+
+<br />
+<table border="0px" width="100%" cellpadding="0px" cellspacing="0px">
+<tr><td align="left" valign="top">
+Client icons are the icons used for password entries and groups within KeePass.
+Each entry can be assigned its own icon.<br />
+<br />
+
+
+
+You can import your own icons into KeePass databases. For this, click the <i>'Add...'</i>
+button in the icon picker dialog.<br />
+<br />
+Supported formats are BMP, EMF, GIF, ICO, JPEG, PNG, TIFF and WMF.
+
+<br />
+</td>
+<td width="154px" align="right" valign="top">
+<img src="../images/clienticons.gif" alt="Application Icons" />
+</td></tr></table>
+
+<br />
+
+<a name="minimode"></a>
+<h2 class="sectiontitle">
+<img src="../images/b16x16_help.png" class="singleimg" alt="Info" />&nbsp;&nbsp;Does
+KeePass support a <i>mini mode</i>?</h2>
+
+<br />
+
+
+
+
+
+
+A mini mode is not supported yet.
+
+
+<br /><br />
+
+<a name="nolockafterat"></a>
+<h2 class="sectiontitle">
+<img src="../images/b16x16_help.png" class="singleimg" alt="Info" />&nbsp;&nbsp;Why
+doesn't KeePass lock after Auto-Type?</h2>
+
+<br />
+
+
+
+
+
+
+This does not apply to KeePass 2.x.
+
+
+<br /><br />
+
+<a name="athotkey"></a>
+<h2 class="sectiontitle">
+<img src="../images/b16x16_help.png" class="singleimg" alt="Info" />&nbsp;&nbsp;Why
+doesn't Auto-Type work correctly on Polish systems?</h2>
+
+<p>On Polish systems, the default auto-type hot key
+<kbd><kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>A</kbd></kbd>
+conflicts with a system command and is frequently used in typing.
+Therefore, auto-type is often executed accidentally.</p>
+
+<p>The global auto-type hot key can be changed to a different key combination
+in the KeePass options (see
+<a href="autotype.html#autoglobal">Auto-Type</a> for details).</p>
+
+<br />
+
+
+<a name="print1x"></a>
+<h2 class="sectiontitle">
+<img src="../images/b16x16_help.png" class="singleimg" alt="Info" />&nbsp;&nbsp;Why
+doesn't printing work in KeePass 1.x?</h2>
+
+<p><b>Symptoms:</b> When trying to print a password list in KeePass 1.x,
+nothing happens after clicking OK in the 'Print Options' dialog.</p>
+
+<p><b>Cause:</b> KeePass 1.x uses the application associated with <code>.html</code>
+files to print the password list. If this application doesn't support the
+&quot;print&quot; shell verb (like Mozilla Firefox), nothing happens.</p>
+
+<p><b>Resolution:</b> Associate <code>.html</code> files with a different
+application that supports the &quot;print&quot; shell verb (like Internet Explorer).</p>
+
+<p><b>Alternative Resolution / Workaround:</b>
+Click <i>'File' -&gt; 'Print Preview'</i> in KeePass 1.x and
+manually print the document in the application that just opened the file.</p>
+
+<br />
+
+
+<a name="internet"></a>
+<h2 class="sectiontitle">
+<img src="../images/b16x16_help.png" class="singleimg" alt="Info" />&nbsp;&nbsp;Why
+does KeePass try to connect to the Internet?</h2>
+
+<p>KeePass has an option to automatically check for updates on each program start.
+In order to check for updates, KeePass downloads a small version information
+file and compares the available version with the installed version.
+No personal information is sent to the KeePass web server.</p>
+
+<p>Automatic update checks are performed unintrusively in the background.
+A notification is only displayed when an update is available. Updates are not
+downloaded or installed automatically.</p>
+
+<p>The option is disabled by default. You can enable/disable it in
+'Tools' -&gt; 'Options' -&gt; tab 'Advanced'.</p>
+
+<br />
+
+<a name="autotypelog"></a>
+<h2 class="sectiontitle">
+<img src="../images/b16x16_ktouch.png" class="singleimg" alt="Info" />&nbsp;&nbsp;Is
+<i>Auto-Type</i> keylogger-safe?</h2>
+
+<p><i>Is the Auto-Type feature resistant to keyloggers?</i></p>
+
+
+
+
+
+
+By default: no. The Auto-Type method in KeePass 2.x works the same as the one in
+1.x and consequently is not keylogger-safe.<br />
+<br />
+However, KeePass features an alternative method called
+<a href="../v2/autotype_obfuscation.html">Two-Channel Auto-Type Obfuscation (TCATO)</a>,
+which renders keyloggers completely useless. This is an opt-in feature (because it
+doesn't work with all windows) and must be enabled for entries manually. See the
+TCATO documentation for details.<br />
+
+
+<br /><br />
+
+<a name="autotypetarget"></a>
+<h2 class="sectiontitle">
+<img src="../images/b16x16_ktouch.png" class="singleimg" alt="Key" />&nbsp;&nbsp;Can
+<i>Auto-Type</i> locate child controls?</h2>
+
+<p>No. Auto-Type only checks whether the title of the currently active top level
+window matches.</p>
+
+<p>Browsers like Mozilla Firefox completely draw the window (all controls)
+themselves, without using standard Windows controls. Consequently it is
+technically impossible for KeePass to check whether an URL matches (methods
+like creating a screenshot and using optical character recognition
+are not reliable and secure). Also, it's impossible to check which child
+control currently has the focus. These problems can only be avoided by using
+browser integration plugins, i.e. not using auto-type at all.</p>
+
+<p>The user must make sure that the focus
+is placed in the correct control before starting auto-type.</p>
+
+<br />
+
+<a name="encryptionalgo"></a>
+<h2 class="sectiontitle">
+<img src="../images/b16x16_help.png" class="singleimg" alt="Info" />&nbsp;&nbsp;Could
+you add the ... encryption algorithm to KeePass?</h2>
+
+<br />
+
+
+
+
+
+
+Only Rijndael (AES) is supported, but KeePass supports additional algorithms
+through <i>encryption plugins</i>. You can find encryption plugins on the
+<a href="http://keepass.info/plugins.html" target="_blank">plugins page</a>.<br />
+<br />
+If you'd like to implement an algorithm, have a look at the <i>ArcFourCipher</i> sample plugin.
+
+
+<br /><br />
+
+<a name="noautolock"></a>
+<h2 class="sectiontitle">
+<img src="../images/b16x16_help.png" class="singleimg" alt="Info" />&nbsp;&nbsp;Why
+doesn't KeePass lock when Windows locks and a KeePass sub-dialog is open?</h2>
+
+<p>KeePass automatically tries to lock its workspace when Windows is locked, with one
+exception: when a KeePass sub-dialog (like the <i>'Edit Entry'</i> window) is currently opened,
+the workspace is not locked.</p>
+
+<p>To understand why this behavior makes sense, it is first important to know what happens
+when the workspace is locked. When locking, KeePass completely closes the database
+and only remembers several view parameters, like the last selected group, the top visible
+entry, selected entries, etc. From a security point of view, this achieves best
+security possible: breaking a locked workspace is equal to breaking the database itself.</p>
+
+<p>Now back to the original question. Let's assume an edit dialog is open and the
+workstation locks. What should KeePass do now? Obviously, it's too late to ask the user
+what to do (the workstation is locked already and no window can't be displayed),
+consequently KeePass must make an automatic decision. There are several possibilities:</p>
+
+<ul>
+<li><i>Do not save the database and lock.</i><br />
+In this case, all unsaved data of the database would be lost. This not only applies to
+the data entered in the current dialog, but to all other entries that have been modified
+previously.</li>
+<li><i>Save the database and lock.</i><br />
+In this case, possibly unwanted changes are saved. Often you open files, try something,
+having in mind that you can just close the file without saving the changes.
+KeePass has an option 'Automatically save database when KeePass closes or the workspace
+is locked'. If this option is enabled and no sub-dialog is open, it's clear what to do:
+try to save the database and if successful: lock the workspace. But what to do with
+the unsaved changes in the sub-dialog? Should it be saved automatically, taking away the
+possibility of pressing the 'Cancel' button?</li>
+<li><i>Save to a temporary location and lock.</i><br />
+While this sounds the best alternative at first glance, there are several problems with
+it, too. First of all, saving to a temporary location could fail (for example there could be too
+few disk space or some other program like virus scanner could have blocked it).
+Secondly, saving to a temporary location isn't uncritical from a security point of view.
+When having to choose such a location, mostly the user's temporary directory on the hard
+disk is chosen (because it likely has enough free space, required rights for access, etc.).
+Therefore, KeePass databases could be leaked and accumulated there.
+It's not clear what should happen if the computer is shutdown or crashes while being
+locked. When the database is opened the next time, should it use the database stored in
+the temporary directory instead? What should happen if the 'real' database has been modified
+in the meanwhile (quite a realistic situation if you're carrying your database on an USB stick)?
+</li>
+</ul>
+
+<p>Obviously, none of these alternatives is satisfactory. Therefore, KeePass implements the
+following simple and easy to understand behavior:</p>
+
+<p><i>When Windows is locked and a KeePass sub-dialog is opened, the KeePass workspace
+is not locked.</i></p>
+
+<p>This simple concept avoids all the problems above. The user is responsible for the
+state of the program.</p>
+
+<p>Security consequence: the database is left open when Windows locks.
+Normally, you are the only one who can log back in to Windows. When someone else logs in
+(like administrator), he can't use your programs anyway. By default, KeePass keeps
+in-memory passwords encrypted, therefore it does not matter if Windows caches the process
+to disk at some time. So, your passwords are pretty safe anyway.</p>
+
+<p><b>Note.</b> On Windows &le; XP, the <i>'Terminal Services'</i>
+Windows service should be enabled. If this service is disabled, locking KeePass
+when Windows locks might not work. This service isn't required on newer
+operating systems.</p>
+
+<br />
+
+<a name="printtempfile"></a>
+<h2 class="sectiontitle">
+<img src="../images/b16x16_help.png" class="singleimg" alt="Info" />&nbsp;&nbsp;Printing
+creates a temporary file. Will it be erased securely?</h2>
+
+<p>KeePass creates a temporary HTML file when printing password lists and showing
+print previews. This file is securely deleted when closing the database.</p>
+
+<p>You must wait for the file being printed completely before closing KeePass
+(and close the print preview before closing KeePass), otherwise it could happen
+that the printing application blocks KeePass from deleting the file.</p>
+
+<p>There is no way around the temporary file in the current printing system.
+If you want to write a plugin that directly sends the data to the printer, you can
+find a plugin development tutorial here:
+<a href="http://keepass.info/help/v2_dev/plg_index.html"
+target="_blank">KeePass 2.x Plugin Development</a>.</p>
+
+<br />
+
+<!-- <a name="memprot"></a>
+<h2 class="sectiontitle">
+<img src="../images/b16x16_help.png" class="singleimg" alt="Info" />&nbsp;&nbsp;Why
+KeePass 2.x resets in-memory protection options?</h2>
+
+<p><i>Important: the following describes a behavior related to in-memory protection,
+which has nothing to do with database encryption. All database fields are
+encrypted; see the <a href="security.html">Security</a> page for details.</i></p>
+
+<p>For all fields except the password field, in-memory protection is turned
+off automatically when the fields are searched or displayed as plain text.</p>
+
+<p>If you want data to be in-memory protected,
+you additionally must turn on hiding by asterisks for the column and
+never search this field type. In-memory protection is useless otherwise.
+If you don't hide by asterisks or search, your data is clear in memory, no
+matter whether the in-memory protection is on or off.</p>
+
+<br /> -->
+
+<a name="qualest"></a>
+<h2 class="sectiontitle">
+<img src="../images/b16x16_help.png" class="singleimg" alt="Info" />&nbsp;&nbsp;Why
+the estimated quality of a password suddenly drops?</h2>
+
+<p>For estimating the quality/strength of a password, KeePass not only uses
+statistical methods (like checking which character ranges are used,
+repeating characters and differences), it also has a built-in list of
+common passwords and checks for patterns. When completing a common password or a
+repetition, the estimated quality can drop.</p>
+
+<p>Details can be found on the
+<a href="http://keepass.info/help/kb/pw_quality_est.html"
+target="_blank">Password Quality Estimation</a> help page.</p>
+
+<br />
+
+<a name="rtftext"></a>
+<h2 class="sectiontitle">
+<img src="../images/b16x16_help.png" class="singleimg" alt="Info" />&nbsp;&nbsp;How
+to store and work with large amounts of (formatted) text?</h2>
+
+<br />
+
+
+
+
+
+
+<table border="0px" width="100%" cellpadding="0px" cellspacing="0px">
+<tr><td align="left" valign="top">
+KeePass has a built-in editor that allows working conveniently with
+large amounts of (formatted) texts.<br />
+<br />
+To add a large text to an entry, import the file as attachment
+(or click 'Attach' -&gt; 'Create Empty Attachment').
+The built-in editor supports *.TXT (simple text) and *.RTF (formatted text) files.<br />
+<br />
+In order to edit an attachment, right-click onto the entry in the main window,
+point on 'Attachments' and click '<i>YourFile.*</i>'. Alternatively,
+if the text file
+is the only attachment, you can even open it by just double-clicking onto
+it in the main window (enable showing the attachment column in 'View' -&gt;
+'Show Columns' -&gt; 'Attachments'). Alternatively, it's also possible to click the name of
+the attachment in the entry details view in the main window.<br />
+<br />
+For TXT files, the built-in editor supports standard operations like cut,
+copy, paste, undo, word wrap, etc. For RTF files, additionally standard formatting
+commands are available: choosing the font, font size, bold, italic, underline,
+strikeout, text and background colors, align left / center / right, etc.
+</td>
+<td width="154px" align="right" valign="top">
+<a href="../images/rtfeditor.png"><img src="../images/rtfeditor_small.png"
+alt="Editor screenshot" /></a>
+</td></tr></table>
+
+
+<br /><br />
+
+<a name="email"></a>
+<h2 class="sectiontitle">
+<img src="../images/b16x16_help.png" class="singleimg" alt="Info" />&nbsp;&nbsp;Can
+an e-mail address field be added?</h2>
+
+<p>A few times it has been requested that a standard entry field for e-mail addresses
+is added (on the main tab page in the entry editing dialog).
+The short answer: an e-mail address field will not be added
+due to usability reasons. Now the long answer.</p>
+
+<p>First of all, let's assume that most of the entries stored in KeePass
+contain information for logging in to websites.
+When you register an account for a website, you often have to specify a
+user name as well as an e-mail address. When you regularly
+log in later, you usually only need to provide either user name + password
+or e-mail + password (never user name + e-mail + password).
+Here the first part (which is either user name or e-mail) serves as
+identification: you tell the website who you are.
+The second part (password) provides authentication: you prove to the
+website that you're really the one who you claim to be.</p>
+
+<p>There are various methods how KeePass can transfer data to
+other applications. All of these methods by default assume that the content
+of the user name field is used for identification. For example,
+the default <a href="autotype.html#autoseq">auto-type sequence</a> of
+an entry is
+<code>{USERNAME}{TAB}{PASSWORD}{ENTER}</code>, the default
+<a href="http://keepass.info/plugins.html#formfiller" target="_blank">KeeForm</a>
+configuration uses the user name, etc.
+Now on the one hand some websites require an e-mail address instead
+of a user name. On the other hand we want the default data transfer configuration
+to work for most websites (such that the work that the user has to put
+into the configuration is kept minimal and only needed for
+websites using special login forms).</p>
+
+<p>The solution is simple: instead of interpreting the 'User Name' field
+strictly as a field containing a user name, users should rather interpret
+it as a field in which the data required for identification is stored.
+This data can consist of a user name, an e-mail address or something else
+(e.g. an account number for an online banking website).
+By handling it like this, the default data transfer configuration will work for most
+websites, i.e. zero amount of work needs to be put into
+the configuration.
+If you had to provide both a user name and an e-mail address at
+registration time, the other information (which isn't required
+on a regular basis) can be stored e.g. in
+the notes field or a custom string field of the KeePass entry.</p>
+
+<p>Now assume a separate e-mail field would be added.
+When users store both a user name and an e-mail address,
+KeePass cannot know which of the two is required for identification.
+So, in order to setup data transfer for the entry, users would be forced
+to choose which of the two fields should be used.</p>
+
+<p>So, adding an e-mail field would be a step back in usability,
+because it forces users to put additional time into data transfer configuration.
+The current system ('User Name' containing identification information,
+without a separate e-mail field) doesn't require this, and thus is
+the better solution.</p>
+
+<p>For users that are willing to manually configure the data transfer for each
+entry, there are multiple ways to get a separate e-mail address field.
+After switching to the 'Advanced' tab in the entry editing dialog,
+an e-mail address field can be added as custom string.
+If the field should appear on the main tab page of the dialog, the
+<a href="http://keepass.info/plugins.html#kpentrytemplates"
+target="_blank">KPEntryTemplates</a> plugin can be used.</p>
+
+</body></html>
+

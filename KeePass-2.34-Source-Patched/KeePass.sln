@@ -1,0 +1,63 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KeePassLib", "KeePassLib\KeePassLib.csproj", "{53573E4E-33CB-4FDB-8698-C95F5E40E7F3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KeePass", "KeePass\KeePass.csproj", "{10938016-DEE2-4A25-9A5A-8FD3444379CA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrlUtil", "Translation\TrlUtil\TrlUtil.csproj", "{B7E890E7-BF50-4450-9A52-C105BD98651C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|Mixed Platforms = Debug|Mixed Platforms
+		Debug|Win32 = Debug|Win32
+		Debug|x64 = Debug|x64
+		Release|Any CPU = Release|Any CPU
+		Release|Mixed Platforms = Release|Mixed Platforms
+		Release|Win32 = Release|Win32
+		Release|x64 = Release|x64
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{53573E4E-33CB-4FDB-8698-C95F5E40E7F3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{53573E4E-33CB-4FDB-8698-C95F5E40E7F3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{53573E4E-33CB-4FDB-8698-C95F5E40E7F3}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{53573E4E-33CB-4FDB-8698-C95F5E40E7F3}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{53573E4E-33CB-4FDB-8698-C95F5E40E7F3}.Debug|Win32.ActiveCfg = Debug|Any CPU
+		{53573E4E-33CB-4FDB-8698-C95F5E40E7F3}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{53573E4E-33CB-4FDB-8698-C95F5E40E7F3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{53573E4E-33CB-4FDB-8698-C95F5E40E7F3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{53573E4E-33CB-4FDB-8698-C95F5E40E7F3}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{53573E4E-33CB-4FDB-8698-C95F5E40E7F3}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{53573E4E-33CB-4FDB-8698-C95F5E40E7F3}.Release|Win32.ActiveCfg = Release|Any CPU
+		{53573E4E-33CB-4FDB-8698-C95F5E40E7F3}.Release|x64.ActiveCfg = Release|Any CPU
+		{10938016-DEE2-4A25-9A5A-8FD3444379CA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{10938016-DEE2-4A25-9A5A-8FD3444379CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{10938016-DEE2-4A25-9A5A-8FD3444379CA}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{10938016-DEE2-4A25-9A5A-8FD3444379CA}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{10938016-DEE2-4A25-9A5A-8FD3444379CA}.Debug|Win32.ActiveCfg = Debug|Any CPU
+		{10938016-DEE2-4A25-9A5A-8FD3444379CA}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{10938016-DEE2-4A25-9A5A-8FD3444379CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{10938016-DEE2-4A25-9A5A-8FD3444379CA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{10938016-DEE2-4A25-9A5A-8FD3444379CA}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{10938016-DEE2-4A25-9A5A-8FD3444379CA}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{10938016-DEE2-4A25-9A5A-8FD3444379CA}.Release|Win32.ActiveCfg = Release|Any CPU
+		{10938016-DEE2-4A25-9A5A-8FD3444379CA}.Release|x64.ActiveCfg = Release|Any CPU
+		{B7E890E7-BF50-4450-9A52-C105BD98651C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B7E890E7-BF50-4450-9A52-C105BD98651C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B7E890E7-BF50-4450-9A52-C105BD98651C}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{B7E890E7-BF50-4450-9A52-C105BD98651C}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{B7E890E7-BF50-4450-9A52-C105BD98651C}.Debug|Win32.ActiveCfg = Debug|Any CPU
+		{B7E890E7-BF50-4450-9A52-C105BD98651C}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{B7E890E7-BF50-4450-9A52-C105BD98651C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B7E890E7-BF50-4450-9A52-C105BD98651C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B7E890E7-BF50-4450-9A52-C105BD98651C}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{B7E890E7-BF50-4450-9A52-C105BD98651C}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{B7E890E7-BF50-4450-9A52-C105BD98651C}.Release|Win32.ActiveCfg = Release|Any CPU
+		{B7E890E7-BF50-4450-9A52-C105BD98651C}.Release|x64.ActiveCfg = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

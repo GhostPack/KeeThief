@@ -1,0 +1,139 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta name="author" content="Dominik Reichl" />
+
+	<meta name="description" content="KeePass is an open source password manager. Passwords can be stored in highly-encrypted databases, which can be unlocked with one master password or key file." />
+	<meta name="keywords" content="KeePass, Password, Safe, Security, Database, Encryption, Secure, Manager, Open, Source, Free, Code, Key, Master, Disk, Dominik, Reichl" />
+
+	<meta name="robots" content="index" />
+
+	<meta name="DC.Title" content="KeePass - The Open Source Password Manager" />
+	<meta name="DC.Creator" content="Dominik Reichl" />
+	<meta name="DC.Subject" content="Open-Source Password Safe" />
+	<meta name="DC.Description" content="KeePass is an open source password manager. Passwords can be stored in highly-encrypted databases, which can be unlocked with one master password or key file." />
+	<meta name="DC.Publisher" content="Dominik Reichl" />
+	<meta name="DC.Contributor" content="Dominik Reichl" />
+	<meta name="DC.Type" content="text" />
+	<meta name="DC.Format" content="text/html" />
+	<meta name="DC.Identifier" content="http://keepass.info/" />
+	<meta name="DC.Language" content="en" />
+	<meta name="DC.Rights" content="Copyright (c) 2003-2016 Dominik Reichl" />
+
+	<title>Field References - KeePass</title>
+	<base target="_self" />
+	<link rel="stylesheet" type="text/css" href="../../default.css" />
+	
+</head>
+<body>
+
+
+
+
+<table class="sectionsummary"><tr><td width="68px">
+<img src="../images/b64x64_usb.png" width="64px" height="64px"
+class="singleimg" align="left" alt="Split" />
+</td><td valign="middle"><h1>Field References</h1><br />
+How to put references to data in fields of other entries.
+</td></tr></table>
+
+<ul>
+<li><a href="#intro">Introduction</a></li>
+<li><a href="#syntax">Placeholder Syntax</a></li>
+<li><a href="#example">Example</a></li>
+</ul>
+
+<br />
+
+<a name="intro"></a>
+<h2 class="sectiontitle"><img src="../images/b16x16_help.png"
+class="singleimg" alt="Text" />&nbsp;&nbsp;Introduction</h2>
+
+<p>KeePass can insert data stored in different
+entries into fields of an entry.
+This means that multiple entries can share a common
+field (user name, password, ...), and by changing the actual data entry,
+all other entries will also use the new value.</p>
+
+<p>To create a field reference, you can either use the
+convenient field references wizard (in the entry editing window,
+click the 'Tools' button at the bottom left and select
+'Insert Field Reference'), or insert the placeholder manually
+(see the syntax below).</p>
+
+<p>Note that field references are intended for referencing data stored
+in <i>different</i> entries. If you want to insert data from the
+<i>same/current</i> entry, you should use local placeholders, like
+<code>{TITLE}</code> and <code>{S:<i>FieldName</i>}</code>;
+see <a href="placeholders.html">Placeholders</a>.</p>
+
+<br />
+
+<a name="syntax"></a>
+<h2 class="sectiontitle"><img src="../images/b16x16_rotate_cw.png"
+class="singleimg" alt="Text" />&nbsp;&nbsp;Placeholder Syntax</h2>
+
+<p>The placeholder syntax for field references is the following:</p>
+
+<p><code>{REF:<i>&lt;WantedField&gt;</i>@<i>&lt;SearchIn&gt;</i>:<i>&lt;Text&gt;</i>}</code></p>
+
+<p>The <i>WantedField</i> and <i>SearchIn</i> parts need to be replaced by
+1-letter codes identifying the field:</p>
+
+<table class="tablebox75">
+<tr><th width="25%">Code</th><th width="75%">Field</th></tr>
+<tr><td width="25%">T</td><td width="75%">Title</td></tr>
+<tr><td width="25%">U</td><td width="75%">User name</td></tr>
+<tr><td width="25%">P</td><td width="75%">Password</td></tr>
+<tr><td width="25%">A</td><td width="75%">URL</td></tr>
+<tr><td width="25%">N</td><td width="75%">Notes</td></tr>
+<tr><td width="25%">I</td><td width="75%">UUID</td></tr>
+<tr><td width="25%">O</td><td width="75%">Other custom strings <i>(KeePass 2.x only)</i></td></tr>
+</table>
+
+<p>The <i>Text</i> part is the search string, i.e. this text
+must occur in the specified field of an entry to match.</p>
+
+<p>If multiple entries match the specified search criterion, the first
+entry will be used.
+To avoid ambiguity, entries can be identified by their UUIDs, which are unique.
+Example:
+<code>{REF:P@I:46C9B1FFBD4ABC4BBB260C6190BAD20C}</code> would insert the
+password of the entry having 46C9B1FFBD4ABC4BBB260C6190BAD20C as UUID.</p>
+
+
+Referencing fields of other entries only works with standard fields, not
+with custom user strings.
+If you want to reference a custom user string, you need
+to place a redirection in a standard field of the entry with the custom string,
+using <code>{S:<i>&lt;Name&gt;</i>}</code>,
+and reference the standard field.<br />
+<br />
+Custom strings can locally (i.e. within an entry) be referenced using
+<code>{S:<i>&lt;Name&gt;</i>}</code>,
+see the page <a href="placeholders.html">Placeholders</a> for details.<br />
+<br />
+You can use the <code>O</code> code to make KeePass search the database for
+custom string fields (to identify the referenced source entry),
+but <code>O</code> cannot be used to retrieve data from custom fields (i.e. the
+code can't be used as <i>WantedField</i>).
+
+
+<br />
+
+<br />
+
+<a name="example"></a>
+<h2 class="sectiontitle"><img src="../images/b16x16_help.png"
+class="singleimg" alt="Text" />&nbsp;&nbsp;Example</h2>
+
+<p>Let's assume you have two entries: one with title &quot;Mozilla Website&quot;
+and one with &quot;Mozilla Forums&quot;, and want to insert the user name
+of the website account into the URL of the forums entry. Within the forum entry's
+URL, you could reference the user name like this:<br />
+<code>http://fictitious-forum.mozilla.org/?user={REF:U@T:Mozilla Website}</code></p>
+
+</body></html>
+

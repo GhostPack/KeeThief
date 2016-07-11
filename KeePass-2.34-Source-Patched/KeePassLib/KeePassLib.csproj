@@ -1,0 +1,174 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="14.0">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{53573E4E-33CB-4FDB-8698-C95F5E40E7F3}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>KeePassLib</RootNamespace>
+    <AssemblyName>KeePassLib</AssemblyName>
+    <SignAssembly>false</SignAssembly>
+    <AssemblyOriginatorKeyFile>KeePassLib.pfx</AssemblyOriginatorKeyFile>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\Build\KeePassLib\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>..\Build\KeePassLib\Debug\KeePassLib.xml</DocumentationFile>
+    <NoWarn>1591</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\Build\KeePassLib\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>..\Build\KeePassLib\Release\KeePassLib.xml</DocumentationFile>
+    <NoWarn>1591</NoWarn>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Collections\AutoTypeConfig.cs" />
+    <Compile Include="Collections\ProtectedBinaryDictionary.cs" />
+    <Compile Include="Collections\ProtectedStringDictionary.cs" />
+    <Compile Include="Collections\PwObjectList.cs" />
+    <Compile Include="Collections\PwObjectPool.cs" />
+    <Compile Include="Collections\StringDictionaryEx.cs" />
+    <Compile Include="Cryptography\Cipher\CipherPool.cs" />
+    <Compile Include="Cryptography\Cipher\Salsa20Cipher.cs" />
+    <Compile Include="Cryptography\Cipher\StandardAesEngine.cs" />
+    <Compile Include="Cryptography\CryptoRandom.cs" />
+    <Compile Include="Cryptography\CryptoRandomStream.cs" />
+    <Compile Include="Cryptography\Cipher\ICipherEngine.cs" />
+    <Compile Include="Cryptography\HashingStreamEx.cs" />
+    <Compile Include="Cryptography\HmacOtp.cs" />
+    <Compile Include="Cryptography\PasswordGenerator\CharSetBasedGenerator.cs" />
+    <Compile Include="Cryptography\PasswordGenerator\CustomPwGenerator.cs" />
+    <Compile Include="Cryptography\PasswordGenerator\CustomPwGeneratorPool.cs" />
+    <Compile Include="Cryptography\PasswordGenerator\PatternBasedGenerator.cs" />
+    <Compile Include="Cryptography\PasswordGenerator\PwCharSet.cs" />
+    <Compile Include="Cryptography\PasswordGenerator\PwProfile.cs" />
+    <Compile Include="Cryptography\PopularPasswords.cs" />
+    <Compile Include="Cryptography\QualityEstimation.cs" />
+    <Compile Include="Cryptography\SelfTest.cs" />
+    <Compile Include="Interfaces\IStructureItem.cs" />
+    <Compile Include="Interfaces\IUIOperations.cs" />
+    <Compile Include="Interfaces\IXmlSerializerEx.cs" />
+    <Compile Include="Keys\KcpCustomKey.cs" />
+    <Compile Include="Keys\KeyProvider.cs" />
+    <Compile Include="Keys\KeyProviderPool.cs" />
+    <Compile Include="Keys\KeyValidator.cs" />
+    <Compile Include="Keys\KeyValidatorPool.cs" />
+    <Compile Include="Keys\UserKeyType.cs" />
+    <Compile Include="Native\NativeMethods.cs" />
+    <Compile Include="Native\NativeMethods.Unix.cs" />
+    <Compile Include="PwCustomIcon.cs" />
+    <Compile Include="Resources\KLRes.Generated.cs" />
+    <Compile Include="Resources\KSRes.Generated.cs" />
+    <Compile Include="Security\XorredBuffer.cs" />
+    <Compile Include="Delegates\Handlers.cs" />
+    <Compile Include="Interfaces\IDeepCloneable.cs" />
+    <Compile Include="Interfaces\IStatusLogger.cs" />
+    <Compile Include="Interfaces\ITimeLogger.cs" />
+    <Compile Include="Keys\KcpKeyFile.cs" />
+    <Compile Include="Keys\IUserKey.cs" />
+    <Compile Include="Keys\KcpPassword.cs" />
+    <Compile Include="Keys\KcpUserAccount.cs" />
+    <Compile Include="PwDeletedObject.cs" />
+    <Compile Include="PwUuid.cs" />
+    <Compile Include="Security\ProtectedBinary.cs" />
+    <Compile Include="Security\ProtectedString.cs" />
+    <Compile Include="PwDefs.cs" />
+    <Compile Include="PwEntry.cs" />
+    <Compile Include="PwGroup.cs" />
+    <Compile Include="Keys\CompositeKey.cs" />
+    <Compile Include="PwDatabase.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PwEnums.cs" />
+    <Compile Include="Serialization\BinaryReaderEx.cs" />
+    <Compile Include="Serialization\FileLock.cs" />
+    <Compile Include="Serialization\FileTransactionEx.cs" />
+    <Compile Include="Serialization\HashedBlockStream.cs" />
+    <Compile Include="Serialization\IOConnection.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Serialization\IocProperties.cs" />
+    <Compile Include="Serialization\IocPropertyInfo.cs" />
+    <Compile Include="Serialization\IocPropertyInfoPool.cs" />
+    <Compile Include="Serialization\KdbxFile.cs" />
+    <Compile Include="Serialization\KdbxFile.Read.cs" />
+    <Compile Include="Serialization\KdbxFile.Read.Streamed.cs" />
+    <Compile Include="Serialization\KdbxFile.Write.cs" />
+    <Compile Include="Serialization\IOConnectionInfo.cs" />
+    <Compile Include="Serialization\OldFormatException.cs" />
+    <Compile Include="Translation\KPControlCustomization.cs" />
+    <Compile Include="Translation\KPFormCustomization.cs" />
+    <Compile Include="Translation\KPStringTable.cs" />
+    <Compile Include="Translation\KPStringTableItem.cs" />
+    <Compile Include="Translation\KPTranslation.cs" />
+    <Compile Include="Translation\KPTranslationProperties.cs" />
+    <Compile Include="Utility\AppLogEx.cs" />
+    <Compile Include="Utility\GfxUtil.cs" />
+    <Compile Include="Utility\MemUtil.cs" />
+    <Compile Include="Utility\MessageService.cs" />
+    <Compile Include="Native\NativeLib.cs" />
+    <Compile Include="Cryptography\PasswordGenerator\PwGenerator.cs" />
+    <Compile Include="Utility\MonoWorkarounds.cs" />
+    <Compile Include="Utility\StrUtil.cs" />
+    <Compile Include="Utility\UrlUtil.cs" />
+    <Compile Include="Utility\TimeUtil.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="KeePassLib.pfx" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

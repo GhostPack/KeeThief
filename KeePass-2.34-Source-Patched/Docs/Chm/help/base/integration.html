@@ -1,0 +1,100 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta name="author" content="Dominik Reichl" />
+
+	<meta name="description" content="KeePass is an open source password manager. Passwords can be stored in highly-encrypted databases, which can be unlocked with one master password or key file." />
+	<meta name="keywords" content="KeePass, Password, Safe, Security, Database, Encryption, Secure, Manager, Open, Source, Free, Code, Key, Master, Disk, Dominik, Reichl" />
+
+	<meta name="robots" content="index" />
+
+	<meta name="DC.Title" content="KeePass - The Open Source Password Manager" />
+	<meta name="DC.Creator" content="Dominik Reichl" />
+	<meta name="DC.Subject" content="Open-Source Password Safe" />
+	<meta name="DC.Description" content="KeePass is an open source password manager. Passwords can be stored in highly-encrypted databases, which can be unlocked with one master password or key file." />
+	<meta name="DC.Publisher" content="Dominik Reichl" />
+	<meta name="DC.Contributor" content="Dominik Reichl" />
+	<meta name="DC.Type" content="text" />
+	<meta name="DC.Format" content="text/html" />
+	<meta name="DC.Identifier" content="http://keepass.info/" />
+	<meta name="DC.Language" content="en" />
+	<meta name="DC.Rights" content="Copyright (c) 2003-2016 Dominik Reichl" />
+
+	<title>Integration - KeePass</title>
+	<base target="_self" />
+	<link rel="stylesheet" type="text/css" href="../../default.css" />
+	
+</head>
+<body>
+
+
+
+
+<table class="sectionsummary"><tr><td width="68px">
+<img src="../images/b64x64_package_system.png" width="64px" height="64px"
+class="singleimg" align="left" alt="Help" />
+</td><td valign="middle"><h1>Integration</h1><br />
+How KeePass integrates into your operating system environment.
+</td></tr></table>
+
+<ul>
+<li><a href="#wndrestore">Global Hot Key to Restore KeePass Window</a></li>
+<li><a href="#singleinstance">Limit to Single Instance Option</a></li>
+</ul>
+
+<br />
+
+<a name="wndrestore"></a>
+<h2 class="sectiontitle">
+<img src="../images/b16x16_window_list.png" class="singleimg" alt="Info" />&nbsp;&nbsp;Global
+Hot Key to Restore KeePass Window</h2>
+
+<p>To quickly switch back from an application to KeePass, you can use the
+global hot key that restores the KeePass main window.</p>
+
+<p>If you have multiple instances of KeePass running, pressing the global hot
+key will restore the first instance that has been started.</p>
+
+<p>The global hot key is <kbd><kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>K</kbd></kbd>.</p>
+
+
+
+
+
+
+The hot key can freely be changed to a different key combination
+(or disabled) in the 'Options' dialog, tab page 'Integration'.
+
+
+<br /><br />
+
+<a name="singleinstance"></a>
+<h2 class="sectiontitle">
+<img src="../images/b16x16_kcmsystem.png" class="singleimg" alt="Info" />&nbsp;&nbsp;Limit
+to Single Instance Option</h2>
+
+<p>If you enable the <i>'Limit to Single Instance'</i> option, at most one KeePass instance can
+be running at a time. If you try to start a second KeePass instance, it is
+immediately terminated, and the first instance is brought to
+the foreground.</p>
+
+
+
+
+
+
+KeePass 2.x can open multiple databases in one instance/window (a tab bar appears,
+which allows you to conveniently switch between the databases).<br />
+<br />
+When multiple databases are opened in one instance and you press the
+global auto-type hot key, auto-type searches in all opened databases for
+matching entries. Note that only exactly one KeePass instance can register
+the global hot key; so when you disable the single instance option and
+open databases in different instances, only the first instance searches
+for matching entries when global auto-type is invoked, not the others.
+
+
+</body></html>
+

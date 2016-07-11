@@ -1,0 +1,400 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta name="author" content="Dominik Reichl" />
+
+	<meta name="description" content="KeePass is an open source password manager. Passwords can be stored in highly-encrypted databases, which can be unlocked with one master password or key file." />
+	<meta name="keywords" content="KeePass, Password, Safe, Security, Database, Encryption, Secure, Manager, Open, Source, Free, Code, Key, Master, Disk, Dominik, Reichl" />
+
+	<meta name="robots" content="index" />
+
+	<meta name="DC.Title" content="KeePass - The Open Source Password Manager" />
+	<meta name="DC.Creator" content="Dominik Reichl" />
+	<meta name="DC.Subject" content="Open-Source Password Safe" />
+	<meta name="DC.Description" content="KeePass is an open source password manager. Passwords can be stored in highly-encrypted databases, which can be unlocked with one master password or key file." />
+	<meta name="DC.Publisher" content="Dominik Reichl" />
+	<meta name="DC.Contributor" content="Dominik Reichl" />
+	<meta name="DC.Type" content="text" />
+	<meta name="DC.Format" content="text/html" />
+	<meta name="DC.Identifier" content="http://keepass.info/" />
+	<meta name="DC.Language" content="en" />
+	<meta name="DC.Rights" content="Copyright (c) 2003-2016 Dominik Reichl" />
+
+	<title>Triggers - KeePass</title>
+	<base target="_self" />
+	<link rel="stylesheet" type="text/css" href="../../default.css" />
+	
+</head>
+<body>
+
+
+
+
+
+<table class="sectionsummary"><tr><td width="68px">
+<img src="../images/b64x64_winprops.png" width="64px" height="64px"
+class="singleimg" align="left" alt="Triggers" />
+</td><td valign="middle"><h1>Triggers</h1><br />
+Automate workflows using the trigger system.
+</td></tr></table>
+
+<ul>
+<li><a href="#intro">Trigger System Introduction</a></li>
+<li><a href="#events">Events</a></li>
+<li><a href="#conditions">Conditions</a></li>
+<li><a href="#actions">Actions</a></li>
+<li><a href="#examples">Examples</a></li>
+</ul>
+
+<br />
+
+<a name="intro"></a>
+<h2 class="sectiontitle">
+<img src="../images/b16x16_make_kdevelop.png" class="singleimg" alt="Triggers" />&nbsp;&nbsp;Trigger
+System Introduction</h2>
+
+<p>KeePass features a powerful event-condition-action trigger system.
+With this system, workflows can be automated. For example, you could define
+a trigger that automatically uploads your database to a backup server after
+saving the file locally.</p>
+
+<p>A trigger starts to run when <i>any</i> of the specified events matches.
+When this happens, the conditions are checked. If <i>all</i> conditions
+are fulfilled, the actions of the trigger are performed.
+Actions are performed consecutively; if one action fails, typically the execution
+of the event is aborted (i.e. all following actions aren't performed).</p>
+
+<p>A trigger must be both <i>enabled</i> and <i>on</i> in order to get executed.
+The <i>enabled</i> state is set by the user; a disabled trigger has no
+function. The <i>on</i> state is dependent on the state of the program. By
+enabling the <i>'Initially On'</i> option, a trigger is <i>on</i> by default.
+If you enable the option <i>'Turn off after executing actions'</i>, the trigger
+will be <i>off</i> after running once. There are actions to turn triggers on and off,
+i.e. triggers can turn themselves and other triggers on and off, which allows
+to define a complex state-dependent system of triggers.</p>
+
+<p>Note that most strings in the trigger system are Spr-compiled, i.e.
+<a href="../base/placeholders.html">placeholders</a>,
+environment variables, etc. can be used.</p>
+
+<br />
+
+<a name="events"></a>
+<h2 class="sectiontitle">
+<img src="../images/b16x16_make_kdevelop.png" class="singleimg" alt="Triggers" />&nbsp;&nbsp;Events</h2>
+
+<ul>
+
+<li><b>Application initialized:</b><br />
+This event occurs when KeePass has finished initializing, but didn't perform
+any main window automations (like opening a default database) yet.
+<ul>
+<li><i>Parameters:</i> None.<br /><br /></li>
+</ul></li>
+
+<li><b>Application started and ready:</b><br />
+This event occurs when KeePass has started up, performed main window
+automations (like opening a default database) and is ready for user actions.
+<ul>
+<li><i>Parameters:</i> None.<br /><br /></li>
+</ul></li>
+
+<li><b>Application exit:</b><br />
+This event occurs when KeePass is about to exit. Databases have been closed
+already, but resources (like fonts, ...) are still valid.
+<ul>
+<li><i>Parameters:</i> None.<br /><br /></li>
+</ul></li>
+
+<li><b>Opened database file:</b><br />
+This event occurs right after a database file has been opened successfully.
+<ul>
+<li><i>File/URL:</i> An optional event filter. If a filter is specified
+(i.e. something is entered in <i>'File/URL - Filter'</i>), the trigger
+is only evaluated, if the filter matches the actual database file path.
+For example, if you enter <i>F:\</i> as filter string and specify
+<i>'Starts with'</i> as comparison method, the trigger will only be evaluated,
+if the database (that has just been opened) path starts with <i>F:\</i>.
+<br /><br /></li>
+</ul></li>
+
+<li><b>Saving database file:</b><br />
+This event occurs right before a database file is saved.
+<ul>
+<li><i>Parameters:</i> See 'Opened database file' event.<br /><br /></li>
+</ul></li>
+
+<li><b>Saved database file:</b><br />
+This event occurs right after a database file has been saved successfully.
+<ul>
+<li><i>Parameters:</i> See 'Opened database file' event.<br /><br /></li>
+</ul></li>
+
+<li><b>Closing database file (before saving):</b><br />
+This event occurs right before a database file is closed.
+It occurs before KeePass saves the database automatically or asks the
+user whether to save unsaved changes.
+<ul>
+<li><i>Parameters:</i> See 'Opened database file' event.<br /><br /></li>
+</ul></li>
+
+<li><b>Closing database file (after saving):</b><br />
+This event occurs right before a database file is closed.
+The database file already was saved automatically or unsaved changes were
+saved/discarded depending on the user's choice.
+<ul>
+<li><i>Parameters:</i> See 'Opened database file' event.<br /><br /></li>
+</ul></li>
+
+<li><b>Copied entry data to clipboard:</b><br />
+This event occurs when entry data (user name, password, ...) is copied
+to the Windows clipboard.
+<ul>
+<li><i>Value:</i> An optional value (copied data) filter.<br /><br /></li>
+</ul></li>
+
+<li><b>User interface state updated:</b><br />
+This event occurs when KeePass has finished updating the state of the
+user interface (menus, toolbar, ...). The user interface state is updated
+after most user actions, like adding / editing / deleting entries and groups, etc.
+<ul>
+<li><i>Parameters:</i> None.<br /><br /></li>
+</ul></li>
+
+<li><b>Custom toolbar button clicked:</b><br />
+This event occurs when the user clicks a custom toolbar button. Custom
+toolbar buttons can be added using the 'Add custom toolbar button'
+trigger action.
+<ul>
+<li><i>ID:</i> ID of the toolbar button that must have been clicked (see action).</li>
+</ul></li>
+
+</ul>
+
+<br />
+
+<a name="conditions"></a>
+<h2 class="sectiontitle">
+<img src="../images/b16x16_make_kdevelop.png" class="singleimg" alt="Triggers" />&nbsp;&nbsp;Conditions</h2>
+
+<ul>
+
+<li><b>Environment variable:</b><br />
+<ul>
+<li><i>Name:</i> Name of the environment variable to check. The name must <i>not</i>
+be enclosed in percent (<code>%</code>) characters.</li>
+<li><i>Value:</i> The value that the specified environment variable must have
+for the condition to be true.<br /><br /></li>
+</ul></li>
+
+<li><b>String:</b><br />
+<ul>
+<li><i>String:</i> A string (KeePass Spr-compiles this, i.e. you can e.g. use
+<a href="../base/placeholders.html">placeholders</a>).</li>
+<li><i>Value:</i> The value that the specified, evaluated string must have
+for the condition to be true.<br /><br /></li>
+</ul></li>
+
+<li><b>File exists:</b><br />
+<ul>
+<li><i>File:</i> The file that must exist in order for the condition to be true.<br /><br /></li>
+</ul></li>
+
+<li><b>Remote host is reachable (ping):</b><br />
+<ul>
+<li><i>Host:</i> Host to send the ping to.<br /><br /></li>
+</ul></li>
+
+<li><b>Database has unsaved changes:</b><br />
+Evaluates to true, if the specified database has unsaved changes.
+<ul>
+<li><i>Database:</i> The database to check for unsaved changes.</li>
+</ul></li>
+
+</ul>
+
+<br />
+
+<a name="actions"></a>
+<h2 class="sectiontitle">
+<img src="../images/b16x16_make_kdevelop.png" class="singleimg" alt="Triggers" />&nbsp;&nbsp;Actions</h2>
+
+<ul>
+
+<li><b>Execute command line / URL:</b><br />
+The file/URL and arguments are parsed by the Spr engine before they
+are sent to the shell, i.e. generic and database-dependent
+<a href="../base/placeholders.html">placeholders</a> can
+be used.
+If you want to use built-in shell commands, like <code>COPY</code>, please
+see: <a href="../base/autourl.html#builtin">Executing Built-In Shell Commands</a>.
+<ul>
+<li><i>File/URL:</i> The string to be executed by the shell.</li>
+<li><i>Arguments:</i> Optional. If <i>'File/URL'</i> points to an executable
+file, this string is sent to the executable as command line argument(s).</li>
+<li><i>Wait for exit:</i> If this option is checked, KeePass waits indefinitely
+for the started process to exit.<br /><br /></li>
+</ul></li>
+
+<li><b>Change trigger on/off state:</b><br />
+<ul>
+<li><i>Trigger name:</i> Name of the target trigger whose on/off state
+should be changed. If this field is left empty, the target trigger is
+the current one.</li>
+<li><i>New state:</i> Specifies the new state of the target trigger.<br /><br /></li>
+</ul></li>
+
+<li><b>Open database file:</b><br />
+Open a KDBX database file (in a new tab). If the given database file is opened
+already, KeePass brings it to the foreground.
+<ul>
+<li><i>File/URL:</i> Path of the database file to open. If it is an URL,
+the protocol (prefix) must be specified.</li>
+<li><i>IO Connection - User Name / Password:</i> Optional credentials that are used
+for connecting to the target file system (for example FTP account user name /
+password). These credentials are not used to decrypt the database.</li>
+<li><i>Password / Key file / User account:</i> Optional credentials that are used
+to decrypt the database file.<br /><br /></li>
+</ul></li>
+
+<li><b>Save active database:</b><br />
+Save the currently active database. This action always saves the database,
+even if there are no unsaved changes. To only save if there are unsaved changes,
+use the 'Active database has unsaved changes' trigger condition.
+<ul>
+<li><i>Parameters:</i> None.<br /><br /></li>
+</ul></li>
+
+<li><b>Synchronize active database with a file/URL:</b><br />
+Synchronize the currently opened and active database with a file.
+<ul>
+<li><i>File/URL:</i> Path of the database file to synchronize with.
+If it is an URL, the protocol (prefix) must be specified.</li>
+<li><i>IO Connection - User Name / Password:</i> Optional credentials that are used
+for connecting to the target file system (for example FTP account user name /
+password). These credentials are not used to decrypt the database.<br /><br /></li>
+</ul></li>
+
+<li><b>Import into active database:</b><br />
+Import a file into the currently opened and active database.
+<ul>
+<li><i>File/URL:</i> Path of the source file to import.
+If it is an URL, the protocol (prefix) must be specified.</li>
+<li><i>File format:</i> Specifies the import format (see the import
+dialog for possible values).</li>
+<li><i>Method:</i> Specifies the behavior for groups/entries that exist
+in both the currently active database and the import file.</li>
+<li><i>Password / Key file / User account:</i> Optional credentials that are used
+to decrypt the import file, if required.
+If no credentials are specified, but the import file is encrypted, KeePass
+shows a key prompt dialog.<br /><br /></li>
+</ul></li>
+
+<li><b>Export active database:</b><br />
+Export the currently opened and active database to a file.
+<ul>
+<li><i>File/URL:</i> Path of the target file to export to.
+If it is an URL, the protocol (prefix) must be specified.</li>
+<li><i>File format:</i> Specifies the export format (see the export
+dialog for possible values).</li>
+<li><i>Filter - Group:</i> Specifies the path of the group to export
+(optional; an empty string means the whole database).
+The path must start with the character used as separator, and the
+name of the root group of the database must not be specified.
+For example, to export a group 'B' that is a subgroup of the group
+'A', specify <code>/A/B</code> as group path.</li>
+<li><i>Filter - Tag:</i> Export only the entries that have the
+specified tag (optional parameter).<br /><br /></li>
+</ul></li>
+
+<li><b>Close active database:</b><br />
+Close the currently active database.
+<ul>
+<li><i>Parameters:</i> None.<br /><br /></li>
+</ul></li>
+
+<li><b>Activate database (select tab):</b><br />
+<ul>
+<li><i>File/URL:</i> Path of the database to activate. This may be a
+substring of the actual database path. For example, specifying
+<code>MyDatabase</code> would match a database
+<code>C:\Documents\KeePass\MyDatabase.kdbx</code>.</li>
+<li><i>Filter:</i> Specifies the databases that are being
+considered. If 'Triggering' is selected and the 'File/URL' field is empty,
+the database that triggered the event is activated.<br /><br /></li>
+</ul></li>
+
+<li><b>Wait:</b><br />
+Wait for the specified amount of time.
+<ul>
+<li><i>Time span:</i> Number of milliseconds to wait.<br /><br /></li>
+</ul></li>
+
+<li><b>Show message box:</b><br />
+Displays a message box.
+<ul>
+<li><i>Main instruction:</i> First line of the message text
+(which is possibly displayed using a stronger font).</li>
+<li><i>Text:</i> Message text.</li>
+<li><i>Icon:</i> The icon that is displayed next to the message text.</li>
+<li><i>Buttons:</i> Specifies the available buttons.</li>
+<li><i>Default button:</i> The button that initially has the focus.</li>
+<li><i>Action - Condition:</i> Specifies the condition that must be fulfilled
+for the following action to be performed. For example, if 'Button OK/Yes' is
+selected, the action is only performed if the user clicks the 'OK' or
+'Yes' button of the message box.</li>
+<li><i>Action:</i> The action to perform after showing the message box.</li>
+<li><i>Action - Parameters:</i> Parameters for the specified action. For
+example, if executing a command line / URL is specified as action, this field
+must contain the command line / URL.<br /><br /></li>
+</ul></li>
+
+<li><b>Perform global auto-type:</b><br />
+Execute global auto-type (like pressing the global auto-type hot key).
+<ul>
+<li><i>Parameters:</i> None.<br /><br /></li>
+</ul></li>
+
+<li><b>Perform auto-type with selected entry:</b><br />
+Executes auto-type with the currently selected entry as context.
+<ul>
+<li><i>Sequence:</i> The keystroke sequence to send. If this field is empty,
+the default sequence is used.<br /><br /></li>
+</ul></li>
+
+<li><b>Show entries by tag:</b><br />
+Search all entries having the specified tag and show them in the
+entry list of the main window.
+<ul>
+<li><i>Tag:</i> Tag that the entries must have.<br /><br /></li>
+</ul></li>
+
+<li><b>Add custom toolbar button:</b><br />
+Add a custom button to the toolbar in the main window.
+<ul>
+<li><i>ID:</i> ID of the toolbar button (see the event handler).</li>
+<li><i>Name:</i> Text that is shown on the toolbar button.</li>
+<li><i>Description:</i> Text that is shown in the tooltip of the button.<br /><br /></li>
+</ul></li>
+
+<li><b>Remove custom toolbar button:</b><br />
+Remove a custom button from the toolbar in the main window.
+<ul>
+<li><i>ID:</i> ID of the toolbar button (see the event handler).</li>
+</ul></li>
+
+</ul>
+
+<br />
+
+<a name="examples"></a>
+<h2 class="sectiontitle">
+<img src="../images/b16x16_make_kdevelop.png" class="singleimg" alt="Triggers" />&nbsp;&nbsp;Examples</h2>
+
+<p>See the <a href="http://keepass.info/help/kb/trigger_examples.html"
+target="_blank">Trigger Examples</a> page.</p>
+
+</body></html>
+

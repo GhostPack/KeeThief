@@ -1,0 +1,615 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta name="author" content="Dominik Reichl" />
+
+	<meta name="description" content="KeePass is an open source password manager. Passwords can be stored in highly-encrypted databases, which can be unlocked with one master password or key file." />
+	<meta name="keywords" content="KeePass, Password, Safe, Security, Database, Encryption, Secure, Manager, Open, Source, Free, Code, Key, Master, Disk, Dominik, Reichl" />
+
+	<meta name="robots" content="index" />
+
+	<meta name="DC.Title" content="KeePass - The Open Source Password Manager" />
+	<meta name="DC.Creator" content="Dominik Reichl" />
+	<meta name="DC.Subject" content="Open-Source Password Safe" />
+	<meta name="DC.Description" content="KeePass is an open source password manager. Passwords can be stored in highly-encrypted databases, which can be unlocked with one master password or key file." />
+	<meta name="DC.Publisher" content="Dominik Reichl" />
+	<meta name="DC.Contributor" content="Dominik Reichl" />
+	<meta name="DC.Type" content="text" />
+	<meta name="DC.Format" content="text/html" />
+	<meta name="DC.Identifier" content="http://keepass.info/" />
+	<meta name="DC.Language" content="en" />
+	<meta name="DC.Rights" content="Copyright (c) 2003-2016 Dominik Reichl" />
+
+	<title>Acknowledgements - KeePass</title>
+	<base target="_self" />
+	<link rel="stylesheet" type="text/css" href="../../default.css" />
+	
+</head>
+<body>
+
+
+
+
+
+<table class="sectionsummary"><tr><td width="68px">
+<img src="../images/b64x64_kdmconfig.png" width="64px" height="64px"
+class="singleimg" align="left" alt="Help" />
+</td><td valign="middle"><h1>Acknowledgements / Credits</h1><br />
+Thanks to various people for contributions and/or work.
+</td></tr></table>
+
+<p>At this place I want to thank a lot of people very much for their help,
+source code, suggestions and other contributions (in no particular order).</p>
+
+<ul>
+<li><a href="#donations">Donation Acknowledgements</a></li>
+<li><a href="#sourcecode">Source Code Acknowledgements</a></li>
+<li><a href="#icons">Icon Acknowledgements</a></li>
+<li><a href="#translations">Translation Acknowledgements</a></li>
+<li><a href="#plugins">Plugin Acknowledgements</a></li>
+<li><a href="#tools">Tools Acknowledgements</a></li>
+<li><a href="#distribution">Hosting/Distribution Acknowledgements</a></li>
+<li><a href="#help">Suggestions and Forum Support Acknowledgements</a></li>
+<li><a href="#special">Special Acknowledgements</a></li>
+<li><a href="#lic">Licenses of Components/Resources/etc.</a>:
+<ul>
+<li><a href="#lic_nuvola">Nuvola Icon Theme</a></li>
+<li><a href="#lic_boost">Boost</a></li>
+<li><a href="#lic_twofish">Twofish Implementation</a></li>
+<li><a href="#lic_sha2">SHA-2 Implementation</a></li>
+<li><a href="#lic_sendkeys">CSendKeys</a></li>
+<li><a href="#lic_cmdline">Command Line Classes</a></li>
+<li><a href="#lic_bouncycastle">Bouncy Castle Cryptographic C# API</a></li>
+<li><a href="#lic_cookieconsent">Cookie Consent</a></li>
+</ul></li>
+</ul>
+
+<br />
+
+<a name="donations"></a>
+<h2 class="sectiontitle">
+<img src="../images/b16x16_kdmconfig.png" class="singleimg" alt="Info" />&nbsp;&nbsp;Donation
+Acknowledgements</h2>
+
+<p>Developing high-quality applications takes much time and resources.
+Donations make it possible to keep up the current development standard.
+Therefore, thanks a lot to all who donated to the project.</p>
+
+<p>More information about donations and a list of people who donated
+can be found here:
+<a href="http://keepass.info/donate.html" target="_blank">KeePass
+Donations</a>.</p>
+
+<br />
+
+<a name="sourcecode"></a>
+<h2 class="sectiontitle">
+<img src="../images/b16x16_kdmconfig.png" class="singleimg" alt="Info" />&nbsp;&nbsp;Source
+Code Acknowledgements</h2>
+
+<p>KeePass uses some classes and libraries written by different
+people and given away for free. Here I want to thank them for writing
+these classes and libraries.</p>
+
+<table class="tablebox">
+<tr><th width="30%">Author</th>
+<th width="70%">Class / Library</th></tr>
+
+<tr><td>Szymon Stefanek</td>
+<td>C++ <a href="http://www.pragmaware.net/" target="_blank">implementation</a>
+of the AES/Rijndael encryption algorithm.</td></tr>
+
+<tr><td>Niels Ferguson</td>
+<td>C implementation of the Twofish encryption algorithm.</td></tr>
+
+<tr><td>Brian Gladman</td>
+<!-- http://fp.gladman.plus.com/ -->
+<td>C <a href="http://www.gladman.me.uk/" target="_blank">implementation</a>
+of the SHA-2 (256/384/512) hashing algorithms.</td></tr>
+
+<tr><td>Alvaro Mendez</td>
+<td>MFC class for validating edit controls (<a href="http://www.codeproject.com/Articles/1425/Validating-Edit-Controls"
+target="_blank">CAMSEdit</a>).</td></tr>
+
+<tr><td>Brent Corkum</td>
+<td>MFC class for XP-style menu (<a href="http://www.rocscience.com/~corkum/"
+target="_blank">BCMenu</a>).</td></tr>
+
+<tr><td>Davide Calabro</td>
+<td>MFC class for buttons with icons (<a href="http://www.codeproject.com/KB/buttons/cbuttonst.aspx"
+target="_blank">CButtonST</a>).</td></tr>
+
+<tr><td>Zorglab, Chris Maunder, Alexander Bischofberger, James White, Descartes Systems Sciences Inc.</td>
+<td>MFC class for color pickers (<a href="http://www.codeproject.com/Articles/3608/CColourPickerXP-a-Theme-aware-Colour-Picker-with"
+target="_blank">CColourPickerXP</a>).</td></tr>
+
+<!-- <tr><td>Matt Weagle</td>
+<td>MFC class for gradient progress controls (<a href="http://www.codeproject.com/Articles/592/Gradient-Progress-Control"
+target="_blank">CGradientProgressCtrl</a>).</td></tr> -->
+
+<tr><td>Peter Mares</td>
+<td>MFC class for window side banners (<a href="http://www.codeproject.com/KB/miscctrl/kcsidebannerwnd.aspx"
+target="_blank">CKCSideBannerWnd</a>).</td></tr>
+
+<tr><td>Chris Maunder</td>
+<td>MFC class for system tray icons (<a href="http://www.codeproject.com/KB/shell/systemtray.aspx"
+target="_blank">CSystemTray</a>).</td></tr>
+
+<tr><td>Hans Dietrich, Chris Maunder</td>
+<td>MFC class for hyperlinks in dialogs (<a href="http://www.codeproject.com/KB/miscctrl/XHyperLink.aspx"
+target="_blank">XHyperLink</a>).</td></tr>
+
+<tr><td>Lallous</td>
+<td>Class for sending simulated keystrokes to other applications
+(<a href="http://www.codeproject.com/KB/cpp/sendkeys_cpp_Article.aspx"
+target="_blank">CSendKeys</a>).</td></tr>
+
+<tr><td>PJ Naughter</td>
+<td>MFC classes for checking for single instance
+(<a href="http://www.naughter.com/sinstance.html" target="_blank">CSingleInstance</a>)
+and version information
+(<a href="http://www.naughter.com/versioninfo.html" target="_blank">CVersionInfo</a>).</td></tr>
+
+<tr><td>Bill Rubin</td>
+<td>Command line C++ classes.</td></tr>
+
+<tr><td>Boost Developers</td>
+<td><a href="http://www.boost.org/" target="_blank">Boost</a> C++ libraries.</td></tr>
+
+<!-- <tr><td>Jarrod Nelson</td>
+<td>Class for computing SHA-256 hashes
+(<a href="http://islab.oregonstate.edu/koc/ece575/04Project1/Nelson/NetSHA.htm"
+target="_blank">NetSHA.SHA256</a>).</td></tr> -->
+
+<!-- <tr><td>Bouncy Castle Developers</td>
+<td>Class for computing SHA-256 hashes (<a href="http://www.bouncycastle.org/"
+target="_blank">Bouncy Castle</a>).</td></tr> -->
+
+<!-- <tr><td>Mike Krueger, John Reilly</td>
+<td>Library to handle GZip files (<a href="http://www.icsharpcode.net/OpenSource/SharpZipLib/"
+target="_blank">SharpZipLib</a>).</td></tr> -->
+
+<tr><td>Silktide</td>
+<td><a href="http://silktide.com/cookieconsent" target="_blank">Cookie Consent</a> JavaScript plugin.</td></tr>
+</table>
+
+<br />
+
+<table class="tablebox">
+<tr><th width="30%">Author</th>
+<th width="70%">Resource</th></tr>
+
+<tr><td>Mark Burnett</td>
+<td>List of
+<a href="http://xato.net/passwords/more-top-worst-passwords/"
+target="_blank">10000 Top Passwords</a>, which KeePass uses in its
+<a href="http://keepass.info/help/kb/pw_quality_est.html"
+target="_blank">password quality estimation</a> algorithm.</td></tr>
+</table>
+
+<br /><br />
+
+<a name="icons"></a>
+<h2 class="sectiontitle">
+<img src="../images/b16x16_kdmconfig.png" class="singleimg" alt="Info" />&nbsp;&nbsp;Icon
+Acknowledgements</h2>
+
+<p>Thanks a lot to <b>Christopher Bolin</b> for creating the main KeePass icon
+(see top left on this page) and its
+<a href="faq_tech.html#moreappicons">variations</a>.
+Many thanks to <b>Victor Andreyenkov</b> for refining the application icons.</p>
+
+<p>Many thanks to <b>David Vignoni</b> for creating the nice <i>'Nuvola'</i> icon theme.
+Most of the icons used in KeePass and on its website are icons of this theme. You can find the
+original images on the <a href="http://www.icon-king.com/" target="_blank">website
+of the author</a>, and the license <a href="#lic_nuvola">below</a>.</p>
+
+<p>Furthermore, thanks to the authors of the following icons that KeePass uses:</p>
+<ul>
+<li><a href="https://openclipart.org/detail/103855/tux-the-penguin"
+target="_blank" rel="nofollow">Tux the Penguin</a> by <b>Mairin</b>.</li>
+<li><a href="https://openclipart.org/detail/122017/feathers"
+target="_blank" rel="nofollow">Feathers</a> by <b>Dear_Theophilus</b>.</li>
+<li><a href="https://openclipart.org/detail/24319/apple"
+target="_blank" rel="nofollow">Apple</a> by <b>James Birkett</b>.</li>
+<li><a href="https://openclipart.org/detail/16729/certificate-in-colour"
+target="_blank" rel="nofollow">Certificate in Colour</a> by <b>Olo</b>.</li>
+<li><a href="https://openclipart.org/detail/19480/modern-touch-phone-mobile"
+target="_blank" rel="nofollow">Modern Touch Phone Mobile</a> by <b>Shokunin</b>.</li>
+<li><a href="https://openclipart.org/detail/212355/font-bold"
+target="_blank" rel="nofollow">Font Bold</a>,
+<a href="https://openclipart.org/detail/212356/font-italic"
+target="_blank" rel="nofollow">Font Italic</a>,
+<a href="https://openclipart.org/detail/212359/font-underline"
+target="_blank" rel="nofollow">Font Underline</a> and
+<a href="https://openclipart.org/detail/212358/font-strikethrough"
+target="_blank" rel="nofollow">Font Strikethrough</a>
+by <b>Sixsixfive</b>.</li>
+<li><a href="http://www.fatcow.com/free-icons"
+target="_blank" rel="nofollow">FreeBSD Icon</a> by <b>FatCow</b>.</li>
+</ul>
+
+<br />
+
+<a name="translations"></a>
+<h2 class="sectiontitle">
+<img src="../images/b16x16_kdmconfig.png" class="singleimg" alt="Info" />&nbsp;&nbsp;Translation
+Acknowledgements</h2>
+
+<p>Thanks a lot to all people who created <a href="http://keepass.info/translations.html"
+target="_blank">translations</a> for KeePass.</p>
+
+<br />
+
+<a name="plugins"></a>
+<h2 class="sectiontitle">
+<img src="../images/b16x16_kdmconfig.png" class="singleimg" alt="Info" />&nbsp;&nbsp;Plugin
+Acknowledgements</h2>
+
+<p>Many thanks to all people who wrote <a href="http://keepass.info/plugins.html"
+target="_blank">plugins</a> for KeePass. Without you, KeePass
+would be a lot less powerful and useful!</p>
+
+<br />
+
+<a name="tools"></a>
+<h2 class="sectiontitle">
+<img src="../images/b16x16_kdmconfig.png" class="singleimg" alt="Info" />&nbsp;&nbsp;Tools
+Acknowledgements</h2>
+
+<!-- <p>Thanks to the <b>UPX Team</b> for the writing the Ultimate Packer for
+eXecutables (<a href="http://upx.sourceforge.net/"
+target="_blank">UPX</a>). This tool is used to compress the final KeePass executables,
+in order to create a smaller distribution and making KeePass start up
+faster.</p> -->
+
+<p>Thanks to <b>Jordan Russell</b> for creating <a href="http://www.jrsoftware.org/"
+target="_blank">Inno Setup</a>. This
+tool is used to create the KeePass installation program.</p>
+
+<p>Thanks to <b>Dimitri van Heesch</b> for the <a href="http://www.stack.nl/~dimitri/doxygen/"
+target="_blank">Doxygen</a> utility, which is used to compile the source
+code documentation.</p>
+
+<br />
+
+<a name="distribution"></a>
+<h2 class="sectiontitle">
+<img src="../images/b16x16_kdmconfig.png" class="singleimg" alt="Info" />&nbsp;&nbsp;Hosting/Distribution
+Acknowledgements</h2>
+
+<br />
+
+<table border="0px" width="100%" cellspacing="0px" cellpadding="0px">
+<tr>
+
+<td valign="middle">
+Thanks to <b>SourceForge.net</b>
+for hosting the KeePass downloads / translations / plugins and for providing the
+project support platform (forums, feature requests / bug trackers, ...) for free.
+</td></tr>
+
+<tr>
+
+<td valign="middle">
+Thanks to <b>domain)FACTORY</b>
+for hosting the KeePass website.
+</td></tr>
+
+<tr>
+
+<td valign="middle">
+Thanks to <b>datensysteme-lenk</b>
+for hosting the German KeePass support forum in the past.
+</td></tr>
+</table>
+
+<br /><br />
+
+<a name="help"></a>
+<h2 class="sectiontitle">
+<img src="../images/b16x16_kdmconfig.png" class="singleimg" alt="Info" />&nbsp;&nbsp;Suggestions
+and Forum Support Acknowledgements</h2>
+
+<p>Thanks to all the people answering questions of others in the KeePass
+forums! A product is only as good as its support is, and I alone could
+never provide such an excellent individual help platform.</p>
+
+<p>A few persons should be mentioned here, because of an extraordinary amount
+of suggestions (features, bug reports, ...) and helping others in the forums:
+<b>Paul Tannard</b>, <b>Wellread1</b> and <b>Michael Scheer</b>.</p>
+
+<br />
+
+<a name="special"></a>
+<h2 class="sectiontitle">
+<img src="../images/b16x16_kdmconfig.png" class="singleimg" alt="Info" />&nbsp;&nbsp;Special
+Acknowledgements</h2>
+
+<p>Thanks to <b>Daniel Turini</b> for suggesting <i>&quot;KeePass&quot;</i>
+as the name of the project.</p>
+
+<p>An especially <i>big</i> thanks to <b>Bill Rubin</b>. He not only contributed a lot of
+source code to KeePass, he also had an enormous amount of feature and improvement suggestions,
+helped people in the KeePass forums, and wrote a KeePass plugin for backing up
+databases. He's also the reason why many of the sections in the KeePass Help
+are very precise, helpful, clear and easy to understand.
+In our countless hours long IM chats, we not only discussed much about the design
+of KeePass, Bill also told me a lot about C++ and other stuff. Thanks!</p>
+
+<br />
+
+<a name="lic"></a>
+<h2 class="sectiontitle">
+<img src="../images/b16x16_kmultiple.png" class="singleimg" alt="Info" />&nbsp;&nbsp;Licenses
+of Components/Resources/etc.</h2>
+
+<a name="lic_nuvola"></a>
+<h3>Nuvola Icon Theme</h3>
+
+<p>Usage of the icons is allowed under the terms of the LGPL license (which you can find
+here: <a href="license_lgpl.html">GNU Lesser General Public License</a>), plus
+an addition.</p>
+
+<pre>TITLE:  NUVOLA ICON THEME for KDE 3.x
+AUTHOR: David Vignoni | ICON KING
+SITE:   http://www.icon-king.com
+MAILING LIST: http://mail.icon-king.com/mailman/listinfo/nuvola_icon-king.com
+
+Copyright (c)  2003-2004  David Vignoni.
+
+This library is free software; you can redistribute it and/or
+modify it under the terms of the GNU Lesser General Public
+License as published by the Free Software Foundation,
+version 2.1 of the License.
+This library is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+Lesser General Public License for more details.
+You should have received a copy of the GNU Lesser General Public
+License along with this library (see the the license.txt file); if not, write
+to the Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston,
+MA  02111-1307  USA
+#######**** NOTE THIS ADD-ON ****#######
+The GNU Lesser General Public License or LGPL is written for software libraries
+in the first place. The LGPL has to be considered valid for this artwork
+library too.
+Nuvola icon theme for KDE 3.x is a special kind of software library, it is an
+artwork library, it's elements can be used in a Graphical User Interface, or
+GUI.
+Source code, for this library means:
+ - raster png image* .
+The LGPL in some sections obliges you to make the files carry
+notices. With images this is in some cases impossible or hardly usefull.
+With this library a notice is placed at a prominent place in the directory
+containing the elements. You may follow this practice.
+The exception in section 6 of the GNU Lesser General Public License covers
+the use of elements of this art library in a GUI.
+dave [at] icon-king.com
+
+Date:       15 october 2004
+Version:    1.0
+
+DESCRIPTION:
+
+Icon theme for KDE 3.x.
+Icons where designed using Adobe Illustrator, and then exported to PNG format.
+Icons shadows and minor corrections were done using Adobe Photoshop.
+Kiconedit was used to correct some 16x16 and 22x22 icons.
+
+LICENSE
+
+Released under GNU Lesser General Public License (LGPL)
+Look at the license.txt file.
+
+CONTACT
+
+David Vignoni
+e-mail :        david [at] icon-king.com
+ICQ :           117761009
+http:           http://www.icon-king.com</pre>
+
+<br />
+
+<a name="lic_boost"></a>
+<h3>Boost</h3>
+
+<pre>Boost Software License - Version 1.0 - August 17th, 2003
+
+Permission is hereby granted, free of charge, to any person or organization
+obtaining a copy of the software and accompanying documentation covered by
+this license (the "Software") to use, reproduce, display, distribute,
+execute, and transmit the Software, and to prepare derivative works of the
+Software, and to permit third-parties to whom the Software is furnished to
+do so, all subject to the following:
+
+The copyright notices in the Software and this entire statement, including
+the above license grant, this restriction and the following disclaimer,
+must be included in all copies of the Software, in whole or in part, and
+all derivative works of the Software, unless such copies or derivative
+works are solely in the form of machine-executable object code generated by
+a source language processor.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE, TITLE AND NON-INFRINGEMENT. IN NO EVENT
+SHALL THE COPYRIGHT HOLDERS OR ANYONE DISTRIBUTING THE SOFTWARE BE LIABLE
+FOR ANY DAMAGES OR OTHER LIABILITY, WHETHER IN CONTRACT, TORT OR OTHERWISE,
+ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
+DEALINGS IN THE SOFTWARE.</pre>
+
+<br />
+
+<a name="lic_twofish"></a>
+<h3>Twofish Implementation</h3>
+
+<pre>Fast, portable, and easy-to-use Twofish implementation,
+Version 0.3.
+Copyright (c) 2002 by Niels Ferguson.
+
+The author hereby grants a perpetual license to everybody to
+use this code for any purpose as long as the copyright message is included
+in the source code of this or any derived work.</pre>
+
+<br />
+
+<a name="lic_sha2"></a>
+<h3>SHA-2 Implementation</h3>
+
+<pre>Copyright (c) 2003, Dr Brian Gladman, Worcester, UK.   All rights reserved.
+
+LICENSE TERMS
+
+The free distribution and use of this software in both source and binary
+form is allowed (with or without changes) provided that:
+
+  1. distributions of this source code include the above copyright
+     notice, this list of conditions and the following disclaimer;
+
+  2. distributions in binary form include the above copyright
+     notice, this list of conditions and the following disclaimer
+     in the documentation and/or other associated materials;
+
+  3. the copyright holder's name is not used to endorse products
+     built using this software without specific written permission.
+
+ALTERNATIVELY, provided that this notice is retained in full, this product
+may be distributed under the terms of the GNU General Public License (GPL),
+in which case the provisions of the GPL apply INSTEAD OF those given above.
+
+DISCLAIMER
+
+This software is provided 'as is' with no explicit or implied warranties
+in respect of its properties, including, but not limited to, correctness
+and/or fitness for purpose.
+---------------------------------------------------------------------------
+Issue 01/08/2005</pre>
+
+<br />
+
+<a name="lic_sendkeys"></a>
+<h3>CSendKeys</h3>
+
+<pre>Copyright (c) 2004 lallous &lt;lallousx86@yahoo.com&gt;
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions
+are met:
+1. Redistributions of source code must retain the above copyright
+   notice, this list of conditions and the following disclaimer.
+2. Redistributions in binary form must reproduce the above copyright
+   notice, this list of conditions and the following disclaimer in the
+   documentation and/or other materials provided with the distribution.
+
+THIS SOFTWARE IS PROVIDED BY THE AUTHOR AND CONTRIBUTORS ``AS IS'' AND
+ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ARE DISCLAIMED.  IN NO EVENT SHALL THE AUTHOR OR CONTRIBUTORS BE LIABLE
+FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS
+OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
+OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
+SUCH DAMAGE.
+
+---------------------------------------
+
+The Original SendKeys copyright info
+
+SendKeys (sndkeys32.pas) routine for 32-bit Delphi.
+Written by Ken Henderson
+Copyright (c) 1995 Ken Henderson &lt;khen@compuserve.com&gt;</pre>
+
+<br />
+
+<a name="lic_cmdline"></a>
+<h3>Command Line Classes</h3>
+
+<pre>Copyright (c) 2006, Bill Rubin &lt;rubin@contractor.net&gt;
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are met:
+
+    * Redistributions of source code must retain the above copyright
+      notice, this list of conditions and the following disclaimer.
+
+    * Redistributions in binary form must reproduce the above copyright
+      notice, this list of conditions and the following disclaimer in the
+      documentation and/or other materials provided with the distribution.
+
+    * Neither the name of Quality Object Software, Inc., nor the names of
+      its contributors may be used to endorse or promote products derived
+      from this software without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
+LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+POSSIBILITY OF SUCH DAMAGE.</pre>
+
+<br />
+
+<a name="lic_bouncycastle"></a>
+<h3>Bouncy Castle Cryptographic C# API</h3>
+
+<pre>The Bouncy Castle License
+Copyright (c) 2000-2010 The Legion Of The Bouncy Castle
+(http://www.bouncycastle.org)
+
+Permission is hereby granted, free of charge, to any person obtaining a
+copy of this software and associated documentation files (the &quot;Software&quot;),
+to deal in the Software without restriction, including without limitation
+the rights to use, copy, modify, merge, publish, distribute, sub license,
+and/or sell copies of the Software, and to permit persons to whom the
+Software is furnished to do so, subject to the following conditions:
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
+DEALINGS IN THE SOFTWARE.</pre>
+
+<br />
+
+<a name="lic_cookieconsent"></a>
+<h3>Cookie Consent</h3>
+
+<pre>Copyright (c) 2015 Silktide Ltd
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the &quot;Software&quot;), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.</pre>
+
+<br />
+
+</body></html>
+

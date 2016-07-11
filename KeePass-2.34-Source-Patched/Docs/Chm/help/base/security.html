@@ -1,0 +1,459 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta name="author" content="Dominik Reichl" />
+
+	<meta name="description" content="KeePass is an open source password manager. Passwords can be stored in highly-encrypted databases, which can be unlocked with one master password or key file." />
+	<meta name="keywords" content="KeePass, Password, Safe, Security, Database, Encryption, Secure, Manager, Open, Source, Free, Code, Key, Master, Disk, Dominik, Reichl" />
+
+	<meta name="robots" content="index" />
+
+	<meta name="DC.Title" content="KeePass - The Open Source Password Manager" />
+	<meta name="DC.Creator" content="Dominik Reichl" />
+	<meta name="DC.Subject" content="Open-Source Password Safe" />
+	<meta name="DC.Description" content="KeePass is an open source password manager. Passwords can be stored in highly-encrypted databases, which can be unlocked with one master password or key file." />
+	<meta name="DC.Publisher" content="Dominik Reichl" />
+	<meta name="DC.Contributor" content="Dominik Reichl" />
+	<meta name="DC.Type" content="text" />
+	<meta name="DC.Format" content="text/html" />
+	<meta name="DC.Identifier" content="http://keepass.info/" />
+	<meta name="DC.Language" content="en" />
+	<meta name="DC.Rights" content="Copyright (c) 2003-2016 Dominik Reichl" />
+
+	<title>Security - KeePass</title>
+	<base target="_self" />
+	<link rel="stylesheet" type="text/css" href="../../default.css" />
+	
+</head>
+<body>
+
+
+
+
+
+<table class="sectionsummary"><tr><td width="68px">
+<img src="../images/b64x64_file_locked.png" class="singleimg" align="left" alt="Locked" />
+</td><td valign="middle"><h1>Security</h1><br />
+Detailed information about the security of KeePass.
+</td></tr></table>
+
+<br />
+<ul>
+<li><a href="#secencrypt">Database Encryption</a></li>
+<li><a href="#seckeyhash">Hashing and Key Derivation</a></li>
+<li><a href="#secrandom">Random Number Generation</a></li>
+<li><a href="#secdictprotect">Protection against Dictionary Attacks</a></li>
+<li><a href="#secmemprot">Process Memory Protection</a></li>
+<li><a href="#secdesktop">Enter Master Key on Secure Desktop (Protection against Keyloggers)</a></li>
+<li><a href="#seclocking">Locking the Workspace</a></li>
+<li><a href="#secattach">Viewing/Editing Attachments</a></li>
+<li><a href="#secplugins">Plugins</a></li>
+<li><a href="#secselftests">Self-Tests</a></li>
+<li><a href="#secspecattacks">Specialized Spyware</a></li>
+<li><a href="#secissues">Security Issues</a></li>
+<li><a href="#secref">References</a></li>
+</ul>
+
+<br />
+
+<a name="secencrypt"></a>
+<h2 class="sectiontitle">
+<img src="../images/b16x16_password.png" class="singleimg" alt="Key" />&nbsp;&nbsp;Database
+Encryption</h2>
+
+<p>KeePass database files are encrypted. KeePass encrypts the complete database,
+i.e. not only your passwords. The user names, notes, etc. are encrypted, too.</p>
+
+<p>Databases are encrypted using one of the following block ciphers:</p>
+
+<center><table class="tablebox75">
+<tr><th align="left" nowrap="nowrap"><small>Cipher</small></th>
+<th align="left" nowrap="nowrap"><small>Block Size</small></th>
+<th align="left" nowrap="nowrap"><small>Key Size</small></th></tr>
+
+<tr><td align="left"><small>Advanced Encryption Standard (AES / Rijndael)</small></td>
+<td align="left" nowrap="nowrap"><small>128 bits</small></td>
+<td align="left" nowrap="nowrap"><small>256 bits</small></td></tr>
+
+<tr><td align="left" nowrap="nowrap"><small>Twofish</small></td>
+<td align="left" nowrap="nowrap"><small>128 bits</small></td>
+<td align="left" nowrap="nowrap"><small>256 bits</small></td></tr>
+
+</table></center>
+
+<p>These algorithms are well-known, analyzed thoroughly and
+considered to be very secure (see
+<a href="#secref">[1]</a>
+for comments by the NIST on AES for example).
+AES e.g. became effective as a U.S. Federal government standard
+and is approved by the National Security Agency (NSA)
+for top secret information.</p>
+
+
+KeePass 2.x doesn't support Twofish, but additional encryption algorithms
+can be provided by plugins.
+
+
+<p>The block ciphers are used in the CBC (cipher-block chaining)
+<a href="http://en.wikipedia.org/wiki/Block_cipher_modes_of_operation"
+target="_blank" rel="nofollow">block cipher mode</a>.
+In CBC mode, plaintext patterns are concealed.</p>
+
+<p>For both algorithms, a 128-bit initialization vector (IV) is generated randomly
+each time you save the database. This allows multiple databases to be encrypted using
+the same key without observable patterns being revealed.</p>
+
+<br />
+
+<a name="seckeyhash"></a>
+<h2 class="sectiontitle">
+<img src="../images/b16x16_password.png" class="singleimg" alt="Key" />&nbsp;&nbsp;Hashing
+and Key Derivation</h2>
+
+<p>In order to generate the 256-bit key for the block ciphers, the Secure Hash
+Algorithm SHA-256 is used. This algorithm compresses
+the <i>user key</i> provided by the user (consisting of password and/or key file)
+to a fixed-size key of 256 bits. This transformation is one-way, i.e. it is
+computationally infeasible to invert the hash function or find a second message
+that compresses to the same hash.</p>
+
+<p>The recently discovered attack against SHA-1
+<a href="#secref">[2]</a> doesn't affect the security
+of SHA-256. SHA-256 is still considered as being very secure
+<a href="#secref">[3]</a>.</p>
+
+<p><b>Key Derivation:</b><br />
+If only a password is used (i.e. no key file), the password plus a 128-bit
+random <i>salt</i> are hashed using SHA-256 to form the final key (but note there is
+some preprocessing: <a href="#secdictprotect">Protection against Dictionary
+Attacks</a>). The random salt prevents attacks that are based on pre-computed hashes.</p>
+
+<p>When using both password <i>and</i> key file, the final key is
+derived as follows: <code>SHA-256(SHA-256(password), key file contents)</code>, i.e.
+the hash of the master password is concatenated with the key file bytes and
+the resulting byte string is hashed with SHA-256 again. If the key file doesn't
+contain exactly 32 bytes (256 bits), they are hashed with SHA-256, too, to form
+a 256-bit key. The formula above then changes to: <code>SHA-256(SHA-256(password),
+SHA-256(key file contents))</code>.</p>
+
+<br />
+
+<a name="secrandom"></a>
+<h2 class="sectiontitle">
+<img src="../images/b16x16_binary.png" class="singleimg" alt="Binary" />&nbsp;&nbsp;Random
+Number Generation</h2>
+
+<p>KeePass needs to generate several random bytes (for the IV, the master key salt,
+etc.). For this,
+several pseudo-random sources are used: current tick count, performance counter,
+system date/time, mouse cursor position, memory status (free virtual memory,
+etc.), active window, clipboard owner, various process and thread IDs, various window
+handles (active window, desktop, ...), window message stack, process heap
+status, process startup information and several system information structures.
+Additionally, KeePass uses random bytes provided by the system's default CSP RNG.</p>
+
+<p>This pseudo-random data is collected in a random pool. To generate 16 random bytes,
+the pool is hashed (SHA-256) with a counter. The
+counter is increased after 16 generated bytes. This way,
+as many secure random bytes can be produced efficiently as needed.</p>
+
+<br />
+
+<a name="secdictprotect"></a>
+<h2 class="sectiontitle">
+<img src="../images/b16x16_password.png" class="singleimg" alt="Key" />&nbsp;&nbsp;Protection
+against Dictionary Attacks</h2>
+
+<p>KeePass supports a protection against guessing and dictionary attacks.</p>
+
+<p>You can't really prevent these attacks:
+nothing prevents an attacker to just try
+all possible keys and look if the database decrypts. But what we can do (and
+KeePass does) is to make it harder: by adding a constant work factor to the
+key initialization, we can make them as hard as we want.</p>
+
+<p>To generate the
+final 256-bit key that is used for the block cipher, KeePass first hashes the
+user's password using SHA-256, encrypts the result <i>N</i> times using the Advanced Encryption
+Standard (AES) algorithm (called <i>key transformation rounds</i> from on now),
+and then hashes it again using SHA-256. For AES, a random
+256-bit key is used, which is stored in the database file. As the AES transformations
+aren't pre-computable (key is random), an attacker has to perform all the encryptions, too, otherwise
+he cannot try and see if the current key is correct.</p>
+
+<p>An attacker now needs much more time to try a key. If he can only try
+a few keys per second, a dictionary attack is not practical anymore.
+<i>N</i> is a work factor, only indirectly a time factor. A super computer
+can try a key a lot faster than a standard PC, but anyway testing one key
+with <i>N</i> transformation rounds will take <i>N</i> times longer than
+trying a key with no transformation rounds on the super computer.</p>
+
+<p>By default, KeePass
+sets <i>N</i> to 6000 encryption rounds (full encryptions are meant; <i>N</i> has nothing
+to do with the internal encryption rounds of AES). This number has been chosen
+in order to
+provide compatibility with portable device versions (PocketPC processors are slower,
+therefore the key computation takes longer).</p>
+
+<p>If you are using KeePass on PC only, it is highly recommended to increase the number
+of key transformation rounds. You can change the number in the database options dialog.
+Right of the field for the rounds, you'll find a button. When clicking this button, KeePass
+computes the rounds number that leads to a 1-second delay. Waiting 1 second at database
+opening isn't a problem, but for an attacker of course it is. But, the number can be
+freely set to a number of your choice; the button only should give you a rough idea how many
+rounds can be computed in 1 second on your computer.</p>
+
+<p>This protection feature is only useful for master passwords; key files are random anyway,
+there's no need to transform the key file contents. Guessing the key file contents is equally hard to
+a brute-force attack on the final key.</p>
+
+<p>KeePass uses multithreading to compute the transformations (the master key is split
+up to two parts of 128 bits, which is the AES block size). On dual/multi core
+processors, the computation can be twice as fast
+as on a single core processor. <!-- Note the 1-second button in the database
+settings dialog always shows the single core rounds number (the dual/multi
+core optimization only affects the &quot;real&quot; transformation code,
+not the benchmark). --></p>
+
+<p>On Windows Vista and higher, KeePass can use Windows' CNG/BCrypt API
+for the key transformations, which is about 50% faster than the KeePass
+built-in key transformation code.</p>
+
+<p><b>KeePassX:</b> In contrast to KeePass, the Linux port project 'KeePassX'
+only partially supports protection against dictionary and guessing attacks.</p>
+
+<br />
+
+<a name="secmemprot"></a>
+<h2 class="sectiontitle">
+<img src="../images/b16x16_file_locked.png" class="singleimg"
+alt="Application Protection" />&nbsp;&nbsp;Process Memory Protection</h2>
+
+<p>While KeePass is running, sensitive data (like the hash of the master key and
+entry passwords) is stored encryptedly in process memory.
+This means that even if you would dump the KeePass process memory to disk,
+you couldn't find any sensitive data.</p>
+
+<!-- By default, entry passwords are in-memory protected, the other fields not
+(like in 1.x). However, you can turn on in-memory protection for other fields
+in the database settings dialog (not recommended though, because of
+performance reasons). -->
+
+<!-- <p>For example, when you are copying a password to the clipboard, KeePass
+first decrypts the password field, copies it to the clipboard
+and immediately re-encrypts it using the random key.</p> -->
+
+<p>Additionally, KeePass erases all security-critical memory when it's not
+needed anymore, i.e. it overwrites these memory areas before releasing them
+(this applies to all security-critical memory, not only the password fields).</p>
+
+<p>KeePass uses the Windows DPAPI for in-memory encrypting the
+sensitive data. With DPAPI, the key for in-memory encryption is stored in a
+secure, non-swappable memory area managed by Windows.
+DPAPI is available on Windows 2000 and higher.
+KeePass 2.x always uses DPAPI when it's available;
+in KeePass 1.x, this can be disabled (in the advanced options; by default
+using DPAPI is enabled; if it's disabled, KeePass uses the ARC4 encryption
+algorithm with a random key; note that this is less secure than DPAPI, mainly <i>not</i>
+because ARC4 cryptographically isn't that strong, but because the key for in-memory
+encryption is also stored in swappable process memory;
+similarly, KeePass 2.x falls back to encrypting the process memory using
+Salsa20, if DPAPI is unavailable).
+On Unix-like systems, KeePass 2.x uses Salsa20, because Mono doesn't provide
+any effective memory protection method.</p>
+
+<p>For some operations, KeePass must make sensitive data available
+unencryptedly in process memory. For example, in order to show a password
+in the standard list view control provided by Windows, KeePass must pass
+the cell content (the password) as unencrypted string
+(unless hiding using asterisks is enabled).
+Operations that result in unencrypted data in process memory include,
+but are not limited to: displaying data (not asterisks) in standard controls,
+searching data, replacing placeholders (during auto-type, drag&amp;drop,
+copying to clipboard, ...), and computing password quality estimations.</p>
+
+<br />
+
+<a name="secdesktop"></a>
+<h2 class="sectiontitle">
+<img src="../images/b16x16_kgpg.png" class="singleimg" alt="User Key" />&nbsp;&nbsp;Enter
+Master Key on Secure Desktop (Protection against Keyloggers)</h2>
+
+<p><i>Note: KeePass was one of the first (maybe even the first) password
+manager that allows entering the master key on a different/secure desktop!</i></p>
+
+<p>KeePass 2.x has an option (in 'Tools' -&gt; 'Options' -&gt; tab 'Security')
+to show the master key dialog on a different/secure desktop
+(supported on Windows &ge; 2000), similar to Windows'
+User Account Control (UAC). Almost no keylogger works on a secure desktop.</p>
+
+<p>The option is turned off by default for compatibility reasons.</p>
+
+<p>More information can be found on the
+<a href="http://keepass.info/help/kb/sec_desk.html" target="_blank">Secure Desktop</a>
+help page.</p>
+
+
+Note that auto-type can be secured against keyloggers, too, by using
+<a href="../v2/autotype_obfuscation.html">Two-Channel Auto-Type Obfuscation</a>.
+
+
+<br /><br />
+
+<a name="seclocking"></a>
+<h2 class="sectiontitle">
+<img src="../images/b16x16_file_locked.png" class="singleimg"
+alt="Application Protection" />&nbsp;&nbsp;Locking the Workspace</h2>
+
+<p>When locking the workspace, KeePass closes the database file and
+only remembers its path.</p>
+
+<p>This provides maximum security: unlocking the
+workspace is as hard as opening the database file the normal way. Also, it prevents
+data loss (the computer can crash while KeePass is locked, without doing any damage
+to the database).</p>
+
+<br />
+
+<a name="secattach"></a>
+<h2 class="sectiontitle">
+<img src="../images/b16x16_desktop.png" class="singleimg" alt="Desktop" />&nbsp;&nbsp;Viewing/Editing
+Attachments</h2>
+
+<p>KeePass 2.x has an internal viewer/editor for attachments.
+For details how to use it for working with texts, see
+'<a href="faq_tech.html#rtftext">How to store and work with large amounts of
+(formatted) text?</a>'.</p>
+
+<p>The internal viewer/editor works with the data in main memory.
+It does not extract/store the data onto disk.</p>
+
+<p>When trying to open an attachment that the internal viewer/editor cannot handle
+(e.g. a PDF file), KeePass extracts the attachment to a (EFS-encrypted)
+temporary file and opens it using the default application associated with this file type.
+After finishing viewing/editing, the user can choose between importing
+or discarding any changes made to the temporary file.
+In any case, KeePass afterwards securely deletes the temporary file
+(including overwriting it).</p>
+
+<br />
+
+<a name="secplugins"></a>
+<h2 class="sectiontitle">
+<img src="../images/b16x16_blockdevice.png" class="singleimg" alt="Plugins" />&nbsp;&nbsp;Plugin
+Security</h2>
+
+
+
+
+<p>A separate page exist about the security of plugins:
+<a href="../v2/plugins.html">Plugin Security</a>.</p>
+
+
+<br />
+
+<a name="secselftests"></a>
+<h2 class="sectiontitle">
+<img src="../images/b16x16_kblackbox.png" class="singleimg" alt="Black Box" />&nbsp;&nbsp;Self-Tests</h2>
+
+<p>Each time you start KeePass, the program performs a quick self-test to see
+whether the block ciphers and the hash algorithms work correctly and pass
+their test-vectors. If one of the algorithms doesn't pass its test vectors,
+KeePass shows a security exception message box.</p>
+
+<br />
+
+<a name="secspecattacks"></a>
+<h2 class="sectiontitle">
+<img src="../images/b16x16_openterm.png" class="singleimg" alt="Terminal" />&nbsp;&nbsp;Specialized
+Spyware</h2>
+
+<p>This section gives answers to questions like the following:</p>
+
+<ul>
+<li>Would encrypting the configuration file increase security by preventing
+changes by a malicious program?</li>
+<li>Would encrypting the application (executable file, eventually together
+with the configuration file) increase security by preventing changes
+by a malicious program?</li>
+<li>Would an option to prevent plugins from being loaded increase security?</li>
+<li>Would storing security options in the database (to override the settings of
+the KeePass instance) increase security?</li>
+<li>Would locking the main window in such a way that only auto-type is allowed
+increase security?</li>
+</ul>
+
+<p>The answer to all these questions is: no. Adding any of these features
+would not increase security.</p>
+
+<p>All security features in KeePass protect against <i>generic</i> threats like
+keyloggers, clipboard monitors, password control monitors, etc. (and against
+non-runtime attacks on the database, memory dump analyzers, ...).
+However in all the questions above we're assuming that there's a spyware
+program running on the system that's specialized on attacking KeePass.</p>
+
+<p>In this situation, the best security features will fail.
+This is law #1 of the
+10 Immutable Laws of Security <a href="#secref">[4]</a> <a href="#secref">[5]</a>:
+<i>&quot;If a bad guy can persuade you to run his program on your
+computer, it's not your computer anymore&quot;</i>.</p>
+
+<p>For example, consider the following very simple spyware specialized
+for KeePass: an application that waits for KeePass to be started, then hides
+the started application and imitates KeePass itself. All interactions
+(like entering a password for decrypting the configuration, etc.) can be
+simulated.
+The only way to discover this spyware is to use a program that the spyware
+doesn't know about or can't manipulate (secure desktop);
+in any case it can't be KeePass.</p>
+
+
+
+<br />
+
+<a name="secissues"></a>
+<h2 class="sectiontitle">
+<img src="../images/b16x16_message.png" class="singleimg" alt="Message" />&nbsp;&nbsp;Security
+Issues</h2>
+
+<p>For a list of security issues, their status and clarifications, please see the page
+<a href="http://keepass.info/help/kb/sec_issues.html"
+target="_blank">Security Issues</a>.</p>
+
+<br />
+
+<a name="secref"></a>
+<h2 class="sectiontitle">
+<img src="../images/b16x16_kmultiple.png" class="singleimg" alt="References" />&nbsp;&nbsp;References
+and Further Reading</h2>
+
+<p>[1]
+National Institute of Standards and Technology:
+<a href="http://csrc.nist.gov/archive/aes/round2/r2report.pdf"
+target="_blank"><i>Report on the Development of the Advanced Encryption Standard (AES)</i></a> (PDF).</p>
+
+<p>[2]
+Bruce Schneier's blog:
+<a href="http://www.schneier.com/blog/archives/2005/02/sha1_broken.html"
+target="_blank"><i>SHA-1 broken</i></a>.</p>
+
+<p>[3]
+Bruce Schneier's blog:
+<a href="http://www.schneier.com/blog/archives/2005/02/cryptanalysis_o.html"
+target="_blank"><i>Cryptanalysis of SHA-1</i></a>, with
+comments about the impact of that discovery and what to do now.</p>
+
+<p>[4]
+Scott Culp, Microsoft TechNet Essay, 2000:
+<a href="http://technet.microsoft.com/en-us/library/cc722487.aspx"
+target="_blank"><i>10 Immutable Laws of Security</i></a>.</p>
+
+<p>[5]
+Jesper M. Johansson, Microsoft TechNet Magazine, 2008:
+<a href="http://technet.microsoft.com/en-us/magazine/2008.10.securitywatch.aspx"
+target="_blank"><i>Revisiting the 10 Immutable Laws of Security, Part 1</i></a>.</p>
+
+</body></html>
+

@@ -1,0 +1,135 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta name="author" content="Dominik Reichl" />
+
+	<meta name="description" content="KeePass is an open source password manager. Passwords can be stored in highly-encrypted databases, which can be unlocked with one master password or key file." />
+	<meta name="keywords" content="KeePass, Password, Safe, Security, Database, Encryption, Secure, Manager, Open, Source, Free, Code, Key, Master, Disk, Dominik, Reichl" />
+
+	<meta name="robots" content="index" />
+
+	<meta name="DC.Title" content="KeePass - The Open Source Password Manager" />
+	<meta name="DC.Creator" content="Dominik Reichl" />
+	<meta name="DC.Subject" content="Open-Source Password Safe" />
+	<meta name="DC.Description" content="KeePass is an open source password manager. Passwords can be stored in highly-encrypted databases, which can be unlocked with one master password or key file." />
+	<meta name="DC.Publisher" content="Dominik Reichl" />
+	<meta name="DC.Contributor" content="Dominik Reichl" />
+	<meta name="DC.Type" content="text" />
+	<meta name="DC.Format" content="text/html" />
+	<meta name="DC.Identifier" content="http://keepass.info/" />
+	<meta name="DC.Language" content="en" />
+	<meta name="DC.Rights" content="Copyright (c) 2003-2016 Dominik Reichl" />
+
+	<title>Plugins - KeePass</title>
+	<base target="_self" />
+	<link rel="stylesheet" type="text/css" href="../../default.css" />
+	
+</head>
+<body>
+
+
+
+
+<table class="sectionsummary"><tr><td width="68px">
+<img src="../images/b64x64_blockdevice.png" width="64px" height="64px"
+class="singleimg" align="left" alt="Settings" />
+</td><td valign="middle"><h1>KeePass 2.x Plugins</h1><br />
+Installation, uninstallation and security of KeePass plugins.
+</td></tr></table>
+
+<br />
+
+<h2 class="sectiontitle">
+<img src="../images/b16x16_blockdevice.png" class="singleimg" alt="Plugin" />&nbsp;&nbsp;Introduction</h2>
+
+<p>KeePass features a plugin framework. Plugins can provide additional
+functionality, like support of more file formats for import/export,
+network functionalities, backup features, etc.</p>
+
+<br />
+
+<h2 class="sectiontitle">
+<img src="../images/b16x16_message.png" class="singleimg" alt="Info" />&nbsp;&nbsp;Online
+Resources</h2>
+
+<p>You can download the latest KeePass plugins (and their source code) from
+<a href="http://keepass.info/plugins.html"
+target="_blank">http://keepass.info/plugins.html</a>.</p>
+
+<br />
+
+<h2 class="sectiontitle">
+<img src="../images/b16x16_package_system.png" class="singleimg" alt="Computer" />&nbsp;&nbsp;Plugin
+Installation and Uninstallation</h2>
+
+<p>If the plugin doesn't provide explicit instructions how to install it,
+follow these steps:</p>
+
+<ol>
+<li>Download the plugin from the page above and unpack the ZIP file to a
+directory of your choice.</li>
+<li>In the KeePass application directory (where the <i>KeePass.exe</i> file is),
+there is a folder called 'Plugins'.
+Move the unpacked plugin files into this folder (or any subdirectory of it).</li>
+<li>Restart KeePass in order to load the new plugin.</li>
+</ol>
+
+<p>In short, to &quot;install&quot; a plugin you simply need to unpack it
+somewhere into the 'Plugins' folder.</p>
+
+<p>To &quot;uninstall&quot; a plugin, delete the plugin files.</p>
+
+<br />
+
+<h2 class="sectiontitle">
+<img src="../images/b16x16_file_locked.png" class="singleimg" alt="Locked" />&nbsp;&nbsp;Security</h2>
+
+<p><i>What about the security of plugins? Can't malicious plugins
+'inject' themselves into KeePass?</i></p>
+
+<p>If plugins can register themselves
+(i.e. have write access to the KeePass directory), they could also just
+replace the whole <i>KeePass.exe</i>. It's rather a problem of file access
+rights, not the plugin system.</p>
+
+<p>If you worry about this,
+install KeePass as administrator into the program files directory
+(which is the default, typically in a folder in 'C:\Program Files (x86)').
+Afterwards, run KeePass and other applications only as normal user
+(without administrator privileges).</p>
+
+<p>This solves the problem above. As the KeePass directory is write-protected
+for normal users, no other program can copy files into it. KeePass requires the plugins to
+be in the application directory. Therefore, plugins cannot inject themselves anymore.</p>
+
+<p>If you use the portable package of KeePass or installed it into a different
+directory, you need to adjust the directory permissions yourself.</p>
+
+<br />
+
+<h2 class="sectiontitle">
+<img src="../images/b16x16_package_system.png" class="singleimg" alt="Computer" />&nbsp;&nbsp;Plugin
+Cache</h2>
+
+<p>PLGX plugins are compiled and stored in a plugin cache directory on the
+user's system. This cache highly improves the startup performance of KeePass.
+Old files are normally deleted from the cache
+automatically (this can be disabled in the plugins dialog).</p>
+
+<p>By default, the plugin cache is located in the user's application data
+directory. However, this can be overridden using the
+<code>Application/PluginCachePath</code> setting in the configuration file
+(this setting supports placeholders and environment variables).
+So, if you're for example using KeePass on a portable device and don't want
+the cache to be on the system, you could set the path to <code>{APPDIR}\PluginCache</code>.</p>
+
+<p><img src="../images/b16x16_warning.png" alt="Warning"
+style="vertical-align: middle; height: 1em;" />
+Do not relocate the plugin cache into the 'Plugins' folder of the
+KeePass application directory, because this can result in a severe
+performance degradation.</p>
+
+</body></html>
+

@@ -1,0 +1,280 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta name="author" content="Dominik Reichl" />
+
+	<meta name="description" content="KeePass is an open source password manager. Passwords can be stored in highly-encrypted databases, which can be unlocked with one master password or key file." />
+	<meta name="keywords" content="KeePass, Password, Safe, Security, Database, Encryption, Secure, Manager, Open, Source, Free, Code, Key, Master, Disk, Dominik, Reichl" />
+
+	<meta name="robots" content="index" />
+
+	<meta name="DC.Title" content="KeePass - The Open Source Password Manager" />
+	<meta name="DC.Creator" content="Dominik Reichl" />
+	<meta name="DC.Subject" content="Open-Source Password Safe" />
+	<meta name="DC.Description" content="KeePass is an open source password manager. Passwords can be stored in highly-encrypted databases, which can be unlocked with one master password or key file." />
+	<meta name="DC.Publisher" content="Dominik Reichl" />
+	<meta name="DC.Contributor" content="Dominik Reichl" />
+	<meta name="DC.Type" content="text" />
+	<meta name="DC.Format" content="text/html" />
+	<meta name="DC.Identifier" content="http://keepass.info/" />
+	<meta name="DC.Language" content="en" />
+	<meta name="DC.Rights" content="Copyright (c) 2003-2016 Dominik Reichl" />
+
+	<title>Two-Channel Auto-Type Obfuscation - KeePass</title>
+	<base target="_self" />
+	<link rel="stylesheet" type="text/css" href="../../default.css" />
+	
+</head>
+<body>
+
+
+
+
+
+<table class="sectionsummary"><tr><td width="68px">
+<img src="../images/b64x64_ktouch.png" width="64px" height="64px"
+class="singleimg" align="left" alt="Auto-Type Icon" />
+</td><td valign="middle"><h1>Two-Channel Auto-Type Obfuscation</h1><br />
+Description of the Two-Channel Auto-Type Obfuscation feature in KeePass 2.x.
+</td></tr></table>
+
+<ul>
+<li>Information for Users:
+
+<ul>
+<li><a href="#intro">Introduction: What is Two-Channel Auto-Type Obfuscation?</a></li>
+<li><a href="#usage">When can Two-Channel Auto-Type Obfuscation be used?</a></li>
+<li><a href="#setup">How to enable / configure Two-Channel Auto-Type Obfuscation?</a></li>
+</ul>
+
+</li>
+<li>Technical Information:
+
+<ul>
+<li><a href="#tech">Technical Overview</a></li>
+<!-- <li><a href="#clipblock">Clipboard Event Blocker</a></li> -->
+<li><a href="#splittext">Intelligently Splitting the Text</a></li>
+<li><a href="#splitsecret">Splitting the Secrets</a></li>
+</ul>
+
+</li>
+</ul>
+
+<br />
+
+<a name="intro"></a>
+<h2 class="sectiontitle">
+<img src="../images/b16x16_help.png" class="singleimg" alt="Text" />&nbsp;&nbsp;Introduction:
+What is Two-Channel Auto-Type Obfuscation?</h2>
+
+<p>The <a href="../base/autotype.html">Auto-Type</a> feature of KeePass
+is very powerful: it sends simulated keypresses to other applications.
+This works with all Windows applications and
+for the target applications it's not possible to distinguish between
+real keypresses and the ones simulated by Auto-Type.
+
+This at the same time is the main disadvantage of Auto-Type, because
+keyloggers can eavesdrop the simulated keys.
+
+That's where Two-Channel Auto-Type Obfuscation (TCATO) comes into play.</p>
+
+<p>TCATO makes standard keyloggers useless. It uses the
+Windows clipboard to transfer parts of the auto-typed text into the
+target application. Keyloggers can see the <kbd><kbd>Ctrl</kbd>+<kbd>V</kbd></kbd>
+presses, but do not log the actual contents pasted from the clipboard.</p>
+
+<p>Clipboard spies don't work either, because only parts of the sensitive
+information is transferred on this way.</p>
+
+<p>Anyway, it's not perfectly secure (and unfortunately cannot be made
+by theory). None of the currently available keyloggers or clipboard spies
+can eavesdrop an obfuscated auto-type process, but it is theoretically possible
+to write a dedicated spy application that specializes on logging obfuscated
+auto-type.</p>
+
+<br />
+
+<a name="usage"></a>
+<h2 class="sectiontitle">
+<img src="../images/b16x16_help.png" class="singleimg" alt="Text" />&nbsp;&nbsp;When can
+Two-Channel Auto-Type Obfuscation be used?</h2>
+
+<p>TCATO cannot be used with all windows. The target window(s) must
+support clipboard operations and navigation within edit controls using arrow keys.
+Additionally, the target user interface must not contain automation features like
+jumping focus when maximum length of a text box is reached (as seen in registration
+number dialogs for example).</p>
+
+<p>Rules of thumb:</p>
+
+<ul>
+<li><b>Can be used in:</b>
+
+<ul>
+<li>Browsers.</li>
+<li>Windows programs with standard text boxes.</li>
+</ul>
+
+</li>
+<li><b>Can not be used in:</b>
+
+<ul>
+<li>Console-based applications (interactive terminals, ...).</li>
+<li>Games.</li>
+</ul>
+
+</li>
+</ul>
+
+<p>Because it doesn't work with all windows, it's an opt-in feature for each
+entry. You have to enable it explicitly on the <i>'Auto-Type'</i> tab page in the
+<i>'Edit Entry'</i> dialog.</p>
+
+<br />
+
+<a name="setup"></a>
+<h2 class="sectiontitle">
+<img src="../images/b16x16_help.png" class="singleimg" alt="Text" />&nbsp;&nbsp;How to enable
+/ configure Two-Channel Auto-Type Obfuscation?</h2>
+
+<p>All you need to do is to tick the checkbox <i>&quot;Two-channel auto-type obfuscation&quot;</i>
+of an entry ('Auto-Type' tab of the entry editing window); KeePass will do the rest.</p>
+
+<br />
+
+<a name="tech"></a>
+<h2 class="sectiontitle">
+<img src="../images/b16x16_help.png" class="singleimg" alt="Text" />&nbsp;&nbsp;Technical
+Overview</h2>
+
+<p>Instead of simply sending simulated keypresses to the target application (as normal
+auto-type does), obfuscated auto-type does the following:</p>
+
+<ul>
+<!-- <li>Enable clipboard event blocker.</li> -->
+<li>Backup the current clipboard contents.</li>
+<li>Intelligently split the text into parts.</li>
+<li>For each part: check if the clipboard can be used.
+
+<ul>
+<li><i>If yes:</i> Split it into two subparts (character-wise, like two
+flat intertwining combs). Copy/paste the first part, merge the rest by sending keypresses.</li>
+<li><i>If no:</i> Send it normally using simulated keypresses.</li>
+</ul>
+
+</li>
+<li>Restore previous clipboard contents.</li>
+<!-- <li>Disable clipboard event blocker.</li> -->
+</ul>
+
+<p>These steps are described in detail below.</p>
+
+<br />
+
+<!-- <a name="clipblock"></a>
+<h2 class="sectiontitle">
+<img src="../images/b16x16_file_locked.png" class="singleimg" alt="Text" />&nbsp;&nbsp;Clipboard
+Event Blocker</h2>
+
+<p>Because we are heavily using the clipboard, it is useful to block all
+current clipboard monitors. This means that no other applications will get
+notified when KeePass changes the clipboard.</p>
+
+<p>For this, an invisible window is created and added to the top of the
+clipboard event handler chain. This window simply throws away all clipboard
+change messages it receives, practically blocking all other applications
+from receiving any events.</p>
+
+<br /> -->
+
+<a name="splittext"></a>
+<h2 class="sectiontitle">
+<img src="../images/b16x16_kmultiple.png" class="singleimg" alt="Text" />&nbsp;&nbsp;Intelligently
+Splitting the Text</h2>
+
+<p>The text to be sent must first be split intelligently. Not all parts of the
+string can be sent using the clipboard: special key codes and key modifiers must be passed
+unchanged to the <code>SendInput</code> function. For an example, have a look at the following
+string:</p>
+
+<pre>mymail@myprovider.com{TAB}MyTopSecretPassword{TAB} {TAB}{ENTER}</pre>
+
+<p>This is an example of a typical string sent by KeePass to another application. First
+it types the user's email address, then a tab, then the password, a tab, toggles a checkbox,
+another tab and finally presses the enter key. This sequence can be split into the following parts:</p>
+
+<pre>mymail@myprovider.com
+{TAB}
+MyTopSecretPassword
+{TAB}
+' ' (space)
+{TAB}
+{ENTER}</pre>
+
+<p>For each line, it is checked if the clipboard can be used. If the line contains a '{', '}', '(', ')',
+'+', '^', '%' or whitespace (space), it can only be sent by the <code>SendInput</code> function
+directly. '+' for example presses the Shift key, it should not be copy/pasted as '+' character.
+Spaces can't be copy/pasted either, because they are usually used to toggle checkboxes.</p>
+
+<p>In the example above, &quot;mymail@myprovider.com&quot; and &quot;MyTopSecretPassword&quot; can
+be sent using the clipboard.</p>
+
+<br />
+
+<a name="splitsecret"></a>
+<h2 class="sectiontitle">
+<img src="../images/b16x16_kmultiple.png" class="singleimg" alt="Text" />&nbsp;&nbsp;Splitting
+the Secrets</h2>
+
+<p>Let's transfer &quot;mymail@myprovider.com&quot; to the target application using
+TCATO.<!--
+the clipboard now. KeePass could simply copy it to the clipboard and send a Ctrl+V keypress to the target
+application, making it paste the clipboard contents. This would be perfectly secure against keyloggers
+because they only see the Ctrl+V keypress but not the actual contents pasted. But there's
+still a problem: a malicious application could monitor the clipboard based on time intervals
+(i.e. not using the events - we've blocked those). Although the duration of the complete
+copy/paste operation is only a few milliseconds, there's still a small chance that an attacker
+could get the data in the clipboard. Therefore, the secrets are split. --></p>
+
+<p>First, the secret string &quot;mymail@myprovider.com&quot; is randomly split character-wise
+into two parts like two flat intertwining combs:</p>
+
+<pre>&nbsp;y&nbsp;&nbsp;il&nbsp;m&nbsp;&nbsp;&nbsp;o&nbsp;&nbsp;d&nbsp;&nbsp;.c
+m&nbsp;ma&nbsp;&nbsp;@&nbsp;ypr&nbsp;vi&nbsp;er&nbsp;&nbsp;om</pre>
+
+<p>The first string &quot;yilmod.c&quot; is now copied to the clipboard. The string to be
+sent by the <code>SendInput</code> function is now assembled as follows:</p>
+
+<ul>
+<li>Begin with pasting from the clipboard: <code>^v</code>.</li>
+<li>Press the left arrow key <i>n</i> times, with <i>n = length of the clipboard string</i>.</li>
+<li>Send the remaining characters and press the right arrow key to skip the ones that were
+already pasted from the clipboard.</li>
+</ul>
+
+<p>In our example above, the key sequence would be assembled to:</p>
+
+<pre>^v{LEFT 8}m{RIGHT}ma{RIGHT}{RIGHT}@{RIGHT}ypr{RIGHT}vi{RIGHT}er{RIGHT}{RIGHT}om</pre>
+
+<p>This will first paste the clipboard contents, go to its start and fill in the remaining characters,
+building up the original string &quot;mymail@myprovider.com&quot;.</p>
+
+<p>The time in which the first string part remains in the clipboard is minimal.
+It is copied to the clipboard, pasted into the target application and immediately
+cleared. This process usually takes only a few milliseconds at maximum.</p>
+
+<p><b>More about secret string splitting:</b><br />
+In the above example, the string &quot;mymail@myprovider.com&quot; was
+split and sent. If the string would be split differently each time,
+a malicious application could reassemble the string by
+capturing multiple auto-types and combining them. In order to prevent this,
+KeePass initializes the random number generator for splitting based on a
+hash of the string. This means that each string is split differently,
+but the partitions of a string are uniquely determined. So, by invoking
+auto-type multiple times, an attacker cannot reassemble the original string,
+because he always captures the same half part.</p>
+
+</body></html>
+

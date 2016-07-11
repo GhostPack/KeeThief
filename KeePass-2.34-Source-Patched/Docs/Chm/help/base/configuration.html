@@ -1,0 +1,271 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta name="author" content="Dominik Reichl" />
+
+	<meta name="description" content="KeePass is an open source password manager. Passwords can be stored in highly-encrypted databases, which can be unlocked with one master password or key file." />
+	<meta name="keywords" content="KeePass, Password, Safe, Security, Database, Encryption, Secure, Manager, Open, Source, Free, Code, Key, Master, Disk, Dominik, Reichl" />
+
+	<meta name="robots" content="index" />
+
+	<meta name="DC.Title" content="KeePass - The Open Source Password Manager" />
+	<meta name="DC.Creator" content="Dominik Reichl" />
+	<meta name="DC.Subject" content="Open-Source Password Safe" />
+	<meta name="DC.Description" content="KeePass is an open source password manager. Passwords can be stored in highly-encrypted databases, which can be unlocked with one master password or key file." />
+	<meta name="DC.Publisher" content="Dominik Reichl" />
+	<meta name="DC.Contributor" content="Dominik Reichl" />
+	<meta name="DC.Type" content="text" />
+	<meta name="DC.Format" content="text/html" />
+	<meta name="DC.Identifier" content="http://keepass.info/" />
+	<meta name="DC.Language" content="en" />
+	<meta name="DC.Rights" content="Copyright (c) 2003-2016 Dominik Reichl" />
+
+	<title>Configuration - KeePass</title>
+	<base target="_self" />
+	<link rel="stylesheet" type="text/css" href="../../default.css" />
+	
+</head>
+<body>
+
+
+
+
+
+<table class="sectionsummary"><tr><td width="68px">
+<img src="../images/b64x64_kmultiple.png" width="64px" height="64px"
+class="singleimg" align="left" alt="Configuration" />
+</td><td valign="middle"><h1>Configuration</h1><br />
+Details about how and where KeePass stores its configuration.
+</td></tr></table>
+
+<p>KeePass supports multiple locations for storing configuration information:
+the <i>global</i> configuration file in the KeePass application directory,
+a <i>local</i> user-dependent one in the user's private configuration folder, and
+an <i>enforced</i> configuration file in the KeePass application directory.
+The first one is called <i>global</i>,
+because everyone using this KeePass installation will
+write to the same configuration file (and possibly overwriting settings of other
+users). The second one is called <i>local</i>, because changes made to this configuration
+file only affect the current user.</p>
+
+
+
+
+
+
+Configuration files are stored in XML format.<br /><br />
+<table class="tablebox">
+<tr><th>Configuration</th><th>Location</th><th>Typical File Path</th></tr>
+<tr>
+<td>Global</td>
+<td>Application Directory</td>
+<td>C:\Program Files (x86)\KeePass Password Safe 2\KeePass.config.xml</td>
+</tr>
+<tr>
+<td>Global (Virtualized)</td>
+<td>Windows Vista/7/8 Virtual Store</td>
+<td>C:\Users\<i>User Name</i>\AppData\Local\VirtualStore\Program Files (x86)\KeePass Password Safe 2\KeePass.config.xml</td>
+</tr>
+<tr>
+<td>Local</td>
+<td>User Application Data</td>
+<td>C:\Users\<i>User Name</i>\AppData\Roaming\KeePass\KeePass.config.xml</td>
+</tr>
+<tr>
+<td>Enforced</td>
+<td>Application Directory</td>
+<td>C:\Program Files (x86)\KeePass Password Safe 2\KeePass.config.enforced.xml</td>
+</tr>
+</table>
+
+
+<p>On 32-bit systems, the name of the program files folder is 'Program Files'
+instead of 'Program Files (x86)'.</p>
+
+<br />
+
+<a name="local"></a>
+<h2 class="sectiontitle">
+<img src="../images/b16x16_package_system.png" class="singleimg" alt="Text" />&nbsp;&nbsp;Installation
+by Administrator, Usage by User</h2>
+
+<p>If you use the KeePass installer and install the program with administrator rights,
+the program directory will be write-protected when working
+as a normal/limited user. KeePass will use local configuration files, i.e. save and load
+the configuration from a file in your user directory.</p>
+
+<p>Multiple users can use the locally installed KeePass. Configuration settings
+will not be shared and can be configured individually by each user.</p>
+
+<br />
+
+<a name="portable"></a>
+<h2 class="sectiontitle">
+<img src="../images/b16x16_usbpendrive_unmount.png" class="singleimg" alt="Text" />&nbsp;&nbsp;Portable
+Version</h2>
+
+<p>If you downloaded the portable version of KeePass (ZIP package), KeePass will
+try to store its configuration in the application directory. No configuration
+settings will be stored in the user directory (if the global configuration file is
+writable).</p>
+
+<br />
+
+<a name="itp"></a>
+<h2 class="sectiontitle">
+<img src="../images/b16x16_usbpendrive_unmount.png" class="singleimg" alt="Text" />&nbsp;&nbsp;Create
+Portable Version of Installed KeePass</h2>
+
+<p>If you are currently using a locally installed version of KeePass
+(installed by the KeePass installer) and want to create a portable version of it,
+first copy all files of KeePass to the portable device. Then get the configuration file
+from your user directory (application data, see above) and copy it
+over the configuration file on the portable device.</p>
+
+<br />
+
+<a name="network"></a>
+<h2 class="sectiontitle">
+<img src="../images/b16x16_server.png" class="singleimg" alt="Text" />&nbsp;&nbsp;For
+Network Administrators: Enforced Configuration</h2>
+
+<p>KeePass can be forced to load specific configuration settings. Enforced configuration
+settings are loaded from
+<code>KeePass.enforced.ini</code> (KeePass 1.x) and <code>KeePass.config.enforced.xml</code>
+(KeePass 2.x) files in the application directory (where <code>KeePass.exe</code> is
+stored).</p>
+
+<p>Configuration items that are not present in the enforced configuration file are
+loaded normally from global/local configuration files.</p>
+
+<table border="0px" width="100%" cellpadding="0px" cellspacing="0px">
+<tr><td align="left" valign="top">
+<b>Example (2.x).</b>
+The following <code>KeePass.config.enforced.xml</code> file enforces the
+values/states of the settings 'Clipboard auto-clear time (seconds)',
+'Lock workspace when minimizing main window' and
+'Lock workspace when locking the computer or switching the user'.
+All other settings can be configured by the user.
+
+<pre>&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;Configuration xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
+	xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot;&gt;
+	&lt;Security&gt;
+		&lt;WorkspaceLocking&gt;
+			&lt;LockOnWindowMinimize&gt;true&lt;/LockOnWindowMinimize&gt;
+			&lt;LockOnSessionSwitch&gt;true&lt;/LockOnSessionSwitch&gt;
+		&lt;/WorkspaceLocking&gt;
+		&lt;ClipboardClearAfterSeconds&gt;20&lt;/ClipboardClearAfterSeconds&gt;
+	&lt;/Security&gt;
+&lt;/Configuration&gt;</pre></td>
+<td width="210px" align="right" valign="top">
+<a href="../images/options_enf_big.png"><img
+src="../images/options_enf.png" align="right" border="0px" alt="Enforced Options" /></a>
+</td></tr></table>
+
+<p><b>UI disabled.</b>
+KeePass 2.x disables most user interface items that are enforced.
+This can be seen in the screenshot for the example above:
+the enforced settings are drawn using
+gray text and clicking on them has no effect.</p>
+
+<p><b>Security.</b>
+Users must not have write access to the enforced configuration file
+(otherwise they could modify it, e.g. using a text editor).</p>
+
+<p>Furthermore, this method only is effective as long as your users run the KeePass
+installation on the network drive. If they copy KeePass to their hard drives and
+run it from there, the options you set are not enforced (the local KeePass
+installation doesn't know anything of the enforced configuration file on the network drive
+in this case).</p>
+
+<!-- Configuration items that are not present in the enforced configuration file are
+set to their default values. -->
+
+
+All data nodes (leaf nodes) are optional, however preceding non-leaf nodes <i>with
+the same tag name</i> in parent
+nodes of data leafs that you want to enforce are mandatory. For example, to
+enforce hiding user names and passwords using asterisks by default,
+the enforced configuration file would look like the following:
+
+<pre>&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;Configuration xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
+	xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot;&gt;
+	&lt;MainWindow&gt;
+		&lt;EntryListColumnCollection&gt;
+			<b>&lt;Column /&gt;</b>
+			&lt;Column&gt;
+				&lt;Type&gt;UserName&lt;/Type&gt;
+				&lt;HideWithAsterisks&gt;true&lt;/HideWithAsterisks&gt;
+			&lt;/Column&gt;
+			&lt;Column&gt;
+				&lt;Type&gt;Password&lt;/Type&gt;
+				&lt;HideWithAsterisks&gt;true&lt;/HideWithAsterisks&gt;
+			&lt;/Column&gt;
+		&lt;/EntryListColumnCollection&gt;
+	&lt;/MainWindow&gt;
+&lt;/Configuration&gt;</pre>
+
+In this example, the empty <code>&lt;Column /&gt;</code> non-leaf node
+(representing the title field)
+has the same tag name as the following sibling nodes (&quot;Column&quot;),
+and therefore is required.
+
+
+<br /><br />
+
+<a name="tech"></a>
+<h2 class="sectiontitle">
+<img src="../images/b16x16_kmultiple.png" class="singleimg" alt="Text" />&nbsp;&nbsp;Technical
+Details</h2>
+
+<p>This section explains in detail how loading and saving the configuration works.</p>
+
+<p>When KeePass starts up and finds both global and local configuration files, it must
+decide the order in which KeePass tries to get the configuration items.
+This is controlled by the
+(<code>Kee</code>)<code>PreferUserConfiguration</code> flag in the global configuration
+file. If it is not present, it defaults to <i>false</i>.</p>
+
+<p>The flag is set to <i>true</i> in the global configuration file of the
+KeePass installer package. The portable ZIP package does not contain a configuration file,
+consequently the flag defaults to <i>false</i>.</p>
+
+
+
+
+
+
+Loading:
+<ul>
+<li>Try to get the configuration item from the enforced configuration file. If found, use this
+one.</li>
+<li>If the <code>PreferUserConfiguration</code> flag is <i>true</i>, use the item from
+the local configuration file, otherwise use the one of the global one.
+If the global one doesn't exist or doesn't contain this item, use the default value.</li>
+</ul>
+
+Saving:
+<ul>
+<li>If the <code>PreferUserConfiguration</code> flag is <i>true</i>, try to store
+all configuration items into the local configuration file.
+If this fails, try to store them into the global configuration file.
+If this fails, report error.</li>
+<li>If the <code>PreferUserConfiguration</code> flag is <i>false</i>, try to store
+all items into the global configuration file.
+If this fails try to store them into the local configuration file.
+If this fails, report error.</li>
+</ul>
+
+The path of the local configuration file can be changed
+using the '<code>-cfg-local:</code>' <a href="cmdline.html">command line</a> parameter.
+
+
+<!-- <p>If the enforced configuration is used, KeePass makes no attempt to save the current
+configuration.</p> -->
+
+</body></html>
+

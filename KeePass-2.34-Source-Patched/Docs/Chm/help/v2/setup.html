@@ -1,0 +1,414 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta name="author" content="Dominik Reichl" />
+
+	<meta name="description" content="KeePass is an open source password manager. Passwords can be stored in highly-encrypted databases, which can be unlocked with one master password or key file." />
+	<meta name="keywords" content="KeePass, Password, Safe, Security, Database, Encryption, Secure, Manager, Open, Source, Free, Code, Key, Master, Disk, Dominik, Reichl" />
+
+	<meta name="robots" content="index" />
+
+	<meta name="DC.Title" content="KeePass - The Open Source Password Manager" />
+	<meta name="DC.Creator" content="Dominik Reichl" />
+	<meta name="DC.Subject" content="Open-Source Password Safe" />
+	<meta name="DC.Description" content="KeePass is an open source password manager. Passwords can be stored in highly-encrypted databases, which can be unlocked with one master password or key file." />
+	<meta name="DC.Publisher" content="Dominik Reichl" />
+	<meta name="DC.Contributor" content="Dominik Reichl" />
+	<meta name="DC.Type" content="text" />
+	<meta name="DC.Format" content="text/html" />
+	<meta name="DC.Identifier" content="http://keepass.info/" />
+	<meta name="DC.Language" content="en" />
+	<meta name="DC.Rights" content="Copyright (c) 2003-2016 Dominik Reichl" />
+
+	<title>Setup - KeePass</title>
+	<base target="_self" />
+	<link rel="stylesheet" type="text/css" href="../../default.css" />
+	
+</head>
+<body>
+
+
+
+
+
+<table class="sectionsummary"><tr><td width="68px">
+<img src="../images/b64x64_package_system.png" class="singleimg" align="left" alt="System" />
+</td><td valign="middle"><h1>Installation / Portability</h1><br />
+KeePass 2.x installation, uninstallation, portability and updates.
+</td></tr></table>
+
+<ul>
+<li><a href="#info">General information</a></li>
+<li><a href="#installer">Installer program (KeePass-2.xx-Setup.exe file)</a></li>
+<li><a href="#portable">Portable version (KeePass-2.xx.zip file)</a></li>
+<!-- <li>Other operating systems than Windows:
+<ul> -->
+<li><a href="#mono">Running KeePass under Mono (Linux, Mac OS X, BSD, ...)</a></li>
+<li><a href="#monoportable">Portable KeePass using Mono</a></li>
+<!-- </ul>
+</li> -->
+</ul>
+
+<br />
+<a name="info"></a>
+<h2 class="sectiontitle">
+<img src="../images/b16x16_tar.png" class="singleimg" alt="Setup" />&nbsp;&nbsp;General
+information</h2>
+
+<p>When downloading KeePass, you have the choice between 3 different packages:</p>
+
+<ul>
+<li><b>KeePass-<i>2.xx</i>-Setup.exe:</b> An installer program for Windows.</li>
+<li><b>KeePass-<i>2.xx</i>.zip:</b> A KeePass ZIP package (portable version).</li>
+<li><b>KeePass-<i>2.xx</i>-Source.zip:</b> The source code.</li>
+</ul>
+
+<p>The installer and the portable version are described in detail below.</p>
+
+<p>The source code package contains everything you need to compile KeePass. It includes
+the C#/C++ source code and header files, resource files,
+sources for building the installer, etc.</p>
+
+<p>Both installed and portable KeePass versions require a .NET framework,
+see the downloads page for details.</p>
+
+<p><b>Updating KeePass:</b><br />
+When a new KeePass version has been released, you can update your existing KeePass
+installation, without losing any configuration settings. The steps are
+depending on which package you are using (installer or portable), see below.</p>
+
+<p>Translations should also be updated when you install a new KeePass version.
+You can find the latest translation files here:
+<a href="http://keepass.info/translations.html" target="_blank">KeePass Translations</a>.</p>
+
+<br />
+<a name="installer"></a>
+<h2 class="sectiontitle">
+<img src="../images/b16x16_package_system.png" class="singleimg" alt="Setup" />&nbsp;&nbsp;Installer
+program (KeePass-2.xx-Setup.exe file)</h2>
+
+<p>The KeePass development team provides an installer, which copies KeePass
+to your hard disk, creates shortcuts in the start menu and associates
+KDBX files with KeePass, if desired.</p>
+
+<p>Additionally, KeePass is automatically configured to store its settings in
+the application data directory of the current user.
+This way multiple users can use one KeePass
+installation without overwriting each other's settings (each user has his
+own <a href="../base/configuration.html">configuration</a> file).
+The setup program must run with administrative
+rights, however KeePass runs fine without administrative rights once it
+is installed.</p>
+
+<p><b>Installation:</b><br />
+To install KeePass, run the <code>KeePass-2.xx-Setup.exe</code> file
+and follow the wizard.</p>
+
+<p><b>Updating:</b><br />
+Run the <code>KeePass-2.xx-Setup.exe</code> file.
+You do <i>not</i> need to uninstall the old version first.
+Your configuration options will not be lost.</p>
+
+<p><b>Uninstallation:</b><br />
+In order to uninstall KeePass, run the uninstallation program, which is
+accessible by a shortcut in the start menu folder of KeePass, or in
+the program section of the system control panel. If you also want
+to remove your configuration settings, you need to delete the configuration
+file in the application data directory of your user profile, see
+<a href="../base/configuration.html">Configuration</a>.</p>
+
+<p><b>Silent Installation:</b><br />
+The KeePass installer <code>KeePass-2.xx-Setup.exe</code> supports command line
+switches for silent installation, i.e. the program gets installed without
+asking the user for target directory or association options. The default settings
+of the installer are used.</p>
+
+<p>The <code>/SILENT</code> command line switch performs a silent
+installation and shows a status dialog during the setup process. No questions
+will be asked though.</p>
+
+<p>The <code>/VERYSILENT</code> command line switch performs a silent
+installation and does <i>not</i> show a status dialog during the setup process.</p>
+
+<p><b>Destination Path:</b><br />
+The installer allows to choose the destination path to which KeePass is
+installed.
+However, when the installer detects an existing KeePass installation, it
+assumes that the user wants to perform an upgrade and thus doesn't
+display the destination path selection page; the old version will be overwritten
+by the new version.
+If you want to move an existing KeePass installation to a different path,
+first uninstall the old version; the installer of the new version will then
+display the destination path selection page again.</p>
+
+<p><b>Options/Components:</b><br />
+The installation options/components are explained in detail here:
+<a href="http://keepass.info/help/kb/faq.html#instopt2x" target="_blank">What
+do the 2.x installation options/components mean in detail?</a>.</p>
+
+<br />
+
+<a name="portable"></a>
+<h2 class="sectiontitle">
+<img src="../images/b16x16_usbpendrive_unmount.png" class="singleimg" alt="Setup" />&nbsp;&nbsp;Portable
+version (KeePass-2.xx.zip file)</h2>
+
+<p>The portable version can be carried around on portable devices (like USB
+sticks) and runs on any computer directly from the device, without any
+installation (provided that a .NET framework is installed).
+It doesn't store anything on your system (in contrast to
+the setup package, see above). KeePass doesn't create any new
+registry keys and it doesn't create any configuration files in your Windows
+or application data directory of your user profile.</p>
+
+<p>Make sure that KeePass has write access to
+its application directory. Otherwise, if it doesn't have, it'll attempt
+to store the configuration options (nothing security-relevant though) into the
+application data directory of the currently logged on user.
+For more about that, see this page:
+<a href="../base/configuration.html">Configuration</a>.</p>
+
+<p><b>Installation:</b><br />
+KeePass does not need to be installed. Just download the ZIP package, unpack
+it with your favorite ZIP program and KeePass is ready to be used. Copy it to
+a location of your choice (for example onto your USB stick); no
+additional configuration or installation is needed.</p>
+
+<p><b>Updating:</b><br />
+Download the latest portable package of KeePass, unpack it
+and copy all new files over the old ones. Your configuration settings will not
+be lost (the settings are stored in the <i>KeePass.config.xml</i> file,
+which won't be overwritten, because KeePass ZIP packages don't
+include a <i>KeePass.config.xml</i> file).</p>
+
+<p><b>Uninstallation:</b><br />
+Simply delete the KeePass folder. This will leave no trace of KeePass on
+your system.</p>
+
+<br />
+
+<a name="mono"></a>
+<h2 class="sectiontitle">
+<img src="../images/b16x16_package_system.png" class="singleimg" alt="Setup" />&nbsp;&nbsp;Running
+KeePass under Mono (Linux, Mac OS X, BSD, ...)</h2>
+
+<p>In addition to Windows, KeePass 2.x runs under Mono,
+i.e. Linux, Mac OS X, BSD, etc.</p>
+
+<p>Links to all supported packages can be found on the KeePass downloads page:
+<a href="http://keepass.info/download.html"
+target="_blank">http://keepass.info/download.html</a>.</p>
+
+<ul>
+<li><strong>Debian/Ubuntu Linux:</strong><br />
+Install the <em>keepass2</em> /
+<em>KeePass 2.x for Debian/Ubuntu Linux</em> package (e.g. using APT).
+A link to a page with more information about this package can be found on the
+downloads page.<br />
+<br /></li>
+
+<li><strong>Fedora Linux:</strong><br />
+Install the <em>keepass</em> package
+(from the Fedora repository; link on the downloads page).<br />
+<br /></li>
+
+<li><strong>OpenSUSE Linux:</strong><br />
+Install the <em>keepass</em> package
+(from the Mono community repository; link on the downloads page).<br />
+<br /></li>
+
+<li><strong>Arch Linux:</strong><br />
+Install the <em>keepass</em> package
+(from the Arch Linux repository; link on the downloads page).<br />
+<br /></li>
+
+<li><strong>Mac OS X:</strong><br />
+Install the <em>KeePass 2.x for Mac OS X</em> package
+(link on the downloads page).<br />
+<br /></li>
+
+<li><strong>FreeBSD:</strong><br />
+Install the <em>keepass</em> package
+(from the FreeBSD ports tree or binary pkg repository; link on the downloads page).<br />
+<br /></li>
+
+<li><strong>Other Unix-like systems:</strong><br />
+In order to run KeePass, follow these steps:
+<ol>
+<li>Install <a href="http://www.mono-project.com/"
+target="_blank">Mono &#8805; 2.6</a> (older versions will not work and are
+not supported). Depending on your platform, the packages to install are called
+<code>mono-stable</code>, <code>MonoFramework</code>,
+<code>mono-devel</code> or <code>mono-2.0-devel</code>; see
+the <a href="http://www.mono-project.com/" target="_blank">Mono project page</a>,
+if you are unsure which packages to install.</li>
+
+<li>On some platforms, the Windows Forms implementation (System.Windows.Forms)
+is offered as a separate package. KeePass requires this package; so if you see one, install it, too.</li>
+
+<li>On some platforms, the Runtime namespace (System.Runtime)
+is offered as a separate package. KeePass requires this package; so if you see one, install it, too.</li>
+
+<li>If you want to use auto-type on Linux / Mac OS X / BSD / etc., you additionally
+need the <code>xdotool</code> package.</li>
+
+<li>Download the portable version of KeePass (file <code>KeePass-2.xx.zip</code>)
+and unpack it in a location of your choice.</li>
+
+<li>When being in the KeePass directory, run the command line
+&quot;<code>mono KeePass.exe</code>&quot;. Alternatively, right-click onto
+the <code>KeePass.exe</code> file, choose &quot;Open with Other Application&quot;
+and type in <code>mono</code> as custom command.</li>
+</ol>
+
+<p>For the last step you might want to create a shortcut
+or shell script file with this command line (use an absolute path to
+<code>KeePass.exe</code>, if the shortcut / shell script file is in a
+different location).</p>
+
+<p><b>Clipboard:</b><br />
+On some systems, Mono's clipboard routines don't work properly.
+In this case, install the <code>xsel</code> package. If <code>xsel</code>
+is installed, KeePass uses this utility for clipboard operations.</p>
+
+<p><b>Global Auto-Type:</b><br />
+In order to use <a href="../base/autotype.html#autoglobal">global auto-type</a>,
+you need to create an appropriate system-wide hot key. This only needs to be done
+manually once. KeePass performs global auto-type when it's invoked with
+the <code>--auto-type</code> <a href="../base/cmdline.html">command line</a> option.</p>
+
+<p>Some examples how to create a system-wide hot key for global auto-type,
+for different operating systems:</p>
+
+<ul>
+<li><b>KDE.</b>
+On Linux systems with KDE, the hot key can be created in <i>Computer</i>
+-&gt; <i>System Settings</i> -&gt; <i>Shortcuts and Gestures</i>:
+in this dialog, go <i>Edit</i> -&gt; <i>New</i> -&gt; <i>Global Shortcut</i> -&gt;
+<i>Command/URL</i>, specify the shortcut on the <i>Trigger</i> tab
+and enter<br />
+<code>mono /<i>YourPathToKeePass</i>/KeePass.exe --auto-type</code><br />
+into the <i>Command/URL</i> field on the <i>Action</i> tab.
+</li>
+
+<li><b>Ubuntu Linux &ge; 11.04 (Unity/GNOME).</b>
+Open the dialog <i>Keyboard Shortcuts</i> in the system preferences,
+click the <i>Add</i> button, enter <code>KeePass Auto-Type</code> as name
+and<br />
+<code>mono /<i>YourPathToKeePass</i>/KeePass.exe --auto-type</code><br />
+as command, then click [Apply]. Click on <i>Disabled</i> of the newly
+created item (such that the text <i>'New shortcut...'</i> appears),
+press <kbd><kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>A</kbd></kbd>, and close the dialog.
+</li>
+ 
+<li><b>Ubuntu Linux &le; 10.10 (GNOME).</b>
+<ol>
+<li>Press Alt-F2, enter <code>gconf-editor</code> and click [OK].</li>
+<li>Navigate to <code>apps</code> -&gt; <code>metacity</code> -&gt; <code>keybinding_commands</code>.</li>
+<li>Double-click one of the <code>command_<i>i</i></code> items, enter<br />
+<code>mono /<i>YourPathToKeePass</i>/KeePass.exe --auto-type</code><br />
+and click [OK].</li>
+<li>Click the <code>global_keybindings</code> node on the left.</li>
+<li>Double-click the appropriate <code>run_command_<i>i</i></code> item
+(for example, when you've used <code>command_5</code> in the previous steps,
+double-click <code>run_command_5</code> now) and specify the hot key of your
+choice. For example, to use <kbd><kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>A</kbd></kbd>
+as hot key, you'd enter <code>&lt;Control&gt;&lt;Alt&gt;a</code>.</li>
+</ol>
+</li>
+</ul>
+
+<p>Important: for global auto-type, the version of the <code>xdotool</code> package
+must be 2.20100818.3004 or higher! If your distribution only offers an
+older version, you can download and install the latest version of the
+package manually, see the <a href="http://www.semicomplete.com/projects/xdotool/"
+target="_blank" rel="nofollow"><code>xdotool</code> website</a>.</p>
+</li>
+</ul>
+
+<!-- <br />
+<a name="wine"></a>
+<h2 class="sectiontitle">
+<img src="../images/b16x16_package_system.png" class="singleimg" alt="Setup" />&nbsp;&nbsp;Running
+KeePass under Wine (Linux, Mac OS X, BSD, ...)</h2>
+
+<p>Although you can run KeePass 2.x more or less natively on Unix-like systems
+using Mono (see above), the user interface doesn't always look pretty.
+Some users therefore
+prefer running KeePass 2.x under Wine, which works perfectly, too.</p>
+
+<p>In order to run KeePass 2.x under Wine, follow these steps:</p>
+
+<ol>
+<li>Make sure Wine is installed. Typically the package to install is called <code>wine</code>.</li>
+<li>Make sure .NET Framework 4.0 is installed. For details how to install it,
+see <a href="https://appdb.winehq.org/objectManager.php?sClass=version&amp;iId=17886"
+target="_blank" rel="nofollow">WineHQ AppDB: .NET Framework 4.0</a>.
+We recommend to use the '<code>winetricks</code>' script for installing the
+.NET Framework
+(instructions can be found on the Wine page above).</li>
+<li>By default, Wine uses the classic Windows theme. If you prefer some other
+theme, you can install it in 'Applications' -&gt; 'Wine' -&gt; 'Configure Wine' -&gt;
+tab 'Desktop Integration'.
+Links to themes can e.g. be found on
+<a href="http://en.wikipedia.org/wiki/Windows_XP_visual_styles"
+target="_blank">Wikipedia: Windows XP visual styles</a>.</li>
+<li>Download the latest portable package of KeePass 2.x (ZIP file) and unpack it into some
+directory of your choice.</li>
+<li>Run <code>wine KeePass.exe</code>.</li>
+</ol> -->
+
+<br />
+
+<a name="monoportable"></a>
+<h2 class="sectiontitle">
+<img src="../images/b16x16_usbpendrive_unmount.png" class="singleimg" alt="Setup" />&nbsp;&nbsp;Portable
+KeePass using Mono</h2>
+
+<p><i>The approach below worked perfectly when this documentation was written.
+However, as this type of Mono installation is nowhere mentioned on the Mono
+website, it might stop working with a future Mono release.</i></p>
+
+<p>Although almost all of today's PCs can run .NET applications (the .NET Framework
+is already preinstalled on Windows &ge; Vista, and for all major Linux / Mac OS X
+distributions Mono is available, which actually even is a dependency of the GNOME
+&ge; 2.16 desktop), you still might want to run KeePass 2.x on a PC without
+any .NET support, like an old Windows XP system where you don't have administrative
+rights to install the .NET Framework.</p>
+
+<p>For such a situation, you can create a portable version of KeePass using Mono,
+which works on PCs without .NET. To do this, follow these steps (assuming a Windows PC):</p>
+
+<ol>
+<li>Download the latest portable ZIP package of KeePass 2.x
+(file <code>KeePass-<i>2.xx</i>.zip</code>).
+Unpack it to some location, e.g. a folder <code>E:\KeePass</code> on your USB stick.</li>
+<li>Download the latest Mono installer. Run it to locally install Mono on your current
+PC (e.g. on <code>C:</code>).
+KeePass doesn't require GTK+, GNOME or XSP, so you can disable the options for these during
+the installation.</li>
+<li>After installing Mono, copy
+the whole Mono application folder
+(e.g. <code>C:\Program Files\Mono</code>)
+to your USB stick, e.g. to <code>E:\Mono</code>.</li>
+<li>In order to simplify starting KeePass, create a batch file on your USB stick,
+e.g. <code>E:\RunKeePass.bat</code>. This batch file should run KeePass using
+the <code>mono.exe</code> application on the USB stick. For example, with the paths above,
+the content of the batch file would look like:
+<pre>
+START &quot;&quot; Mono\bin\mono.exe KeePass\KeePass.exe
+</pre>
+</li>
+</ol>
+
+<p>In order to run KeePass on a PC without .NET support, simply plug in
+the USB stick and run the batch file.</p>
+
+<p>The approach above should be seen as the very last
+possibility to run KeePass 2.x. Installing .NET support (either the .NET
+Framework or Mono) is highly recommended instead!</p>
+
+</body></html>
+

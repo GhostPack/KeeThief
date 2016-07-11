@@ -1,0 +1,223 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta name="author" content="Dominik Reichl" />
+
+	<meta name="description" content="KeePass is an open source password manager. Passwords can be stored in highly-encrypted databases, which can be unlocked with one master password or key file." />
+	<meta name="keywords" content="KeePass, Password, Safe, Security, Database, Encryption, Secure, Manager, Open, Source, Free, Code, Key, Master, Disk, Dominik, Reichl" />
+
+	<meta name="robots" content="index" />
+
+	<meta name="DC.Title" content="KeePass - The Open Source Password Manager" />
+	<meta name="DC.Creator" content="Dominik Reichl" />
+	<meta name="DC.Subject" content="Open-Source Password Safe" />
+	<meta name="DC.Description" content="KeePass is an open source password manager. Passwords can be stored in highly-encrypted databases, which can be unlocked with one master password or key file." />
+	<meta name="DC.Publisher" content="Dominik Reichl" />
+	<meta name="DC.Contributor" content="Dominik Reichl" />
+	<meta name="DC.Type" content="text" />
+	<meta name="DC.Format" content="text/html" />
+	<meta name="DC.Identifier" content="http://keepass.info/" />
+	<meta name="DC.Language" content="en" />
+	<meta name="DC.Rights" content="Copyright (c) 2003-2016 Dominik Reichl" />
+
+	<title>Command Line Options - KeePass</title>
+	<base target="_self" />
+	<link rel="stylesheet" type="text/css" href="../../default.css" />
+	
+</head>
+<body>
+
+
+
+
+
+<table class="sectionsummary"><tr><td width="68px">
+<img src="../images/b64x64_konsole.png" width="64px" height="64px"
+class="singleimg" align="left" alt="Command Line" />
+</td><td valign="middle"><h1>Command Line Options</h1><br />
+Command line options to automate KeePass tasks.
+</td></tr></table>
+
+<p>You can pass a file path in the command line in order to tell KeePass to open
+this file immediately after startup.</p>
+
+<p><!-- Additionally, you can specify the password
+and/or key file location for this database. -->Switches can be either prefixed using
+a minus (<code>-</code>) or two minus characters (<code>--</code>).
+On Windows, a slash (<code>/</code>) is another alternative.
+The prefixes are equivalent; it doesn't matter which one you use.</p>
+
+<p><b>Database file.</b>
+The database file location is passed as argument. Only one database file is allowed.
+If the path contains a space, it must be enclosed in quotes (&quot;).</p>
+
+<p><b>Password.</b>
+Passwords can be passed using the <code>-pw:</code> option. In order to
+pass 'abc' as password, you would add the following argument to the command line:
+<code>-pw:abc</code>. Note that there must be no space between the '<code>:</code>' and the
+password. If your password contains a space, you must enclose it in quotes. For
+example: <code>-pw:&quot;my secret password&quot;</code>.</p>
+
+<p>Using the <code>-pw:</code> option is not recommended, because of
+security reasons (the operating system allows reading the command line
+options of other applications).</p>
+
+<p>When passing the <code>-pw-stdin</code> option, KeePass
+reads the password from the StdIn stream.</p>
+
+<p><b>Key file.</b>
+For supplying the key file location, the <code>-keyfile:</code> switch
+exists. The same rules as above apply, just that you specify the key file location:
+<code>-keyfile:D:\pwsafe.key</code>. You also need to quote the value, if it contains
+a space, tab or other whitespace characters.</p>
+
+<p><b>Pre-selection.</b>
+In order to just pre-select a key file, use the <code>-preselect:</code> option.
+For example, if you lock your database with a password <i>and</i> a key file, but
+just want to type
+in the password (so, without selecting the key file manually), your command line would
+look like this:</p>
+
+<pre>KeePass.exe &quot;C:\My Documents\MyDatabase.kdb&quot; -preselect:C:\pwsafe.key</pre>
+
+<p>KeePass would then show a prompt for the password for the database, but in
+the key file list, the <code>C:\pwsafe.key</code> file is selected already. When using the
+<code>-preselect:</code> switch, KeePass by default activates the key file switch and
+sets the focus to the password edit window.</p>
+
+<p>Note the difference! The <code>-preselect:</code> switch just pre-selects the key file
+for you and displays the login prompt. In contrast, the <code>-keyfile:</code> switch
+doesn't prompt you for the (maybe missing) password.</p>
+
+<p><b>Other.</b>
+The <code>-minimize</code> command line argument makes KeePass start up minimized.</p>
+
+<p>The <code>-auto-type</code> command line argument makes other already opened
+KeePass instances perform a global auto-type.</p>
+
+
+
+
+
+
+Additionally, the <code>-useraccount</code> switch is supported. If specified, the
+current user account credentials will be used.<br />
+<br />
+The <code>-iocredfromrecent</code> switch makes KeePass load file
+system credentials (not database key) from the most recently used files list.
+Alternatively, the file system credentials can be specified using the
+<code>-iousername:</code> and <code>-iopassword:</code> parameters.
+The optional <code>-ioiscomplete</code> switch
+tells KeePass that the path and file system credentials are complete
+(the 'Open URL' dialog will not be displayed then).<br />
+<br />
+The <code>-pw-enc:</code> parameter is similar to <code>-pw:</code>, but
+it requires the password to be encrypted. Encrypted passwords can be
+generated using the <a href="placeholders.html#passwordenc"><code>{PASSWORD_ENC}</code></a>
+placeholder.<br />
+<br />
+The <code>-entry-url-open</code> option makes other already opened KeePass instances
+search for an entry and open its URL. The entry is identified by its UUID,
+which you can pass as <code>-uuid:</code> command line parameter.<br />
+<br />
+Analogously to the <code>-auto-type</code> option, <code>-auto-type-selected</code>
+performs auto-type for the currently selected entry.<br />
+<br />
+The path of the local <a href="configuration.html">configuration</a> file can be changed
+using the <code>-cfg-local:</code> command line parameter.
+
+
+<p>The order of the arguments is arbitrary.</p>
+
+<br />
+
+<h2 class="sectiontitle">
+<img src="../images/b16x16_openterm.png" class="singleimg" alt="Text" />&nbsp;&nbsp;Usage
+Examples</h2>
+
+<p>Open the database file <i>'C:\My Documents\MyDatabase.kdb'</i> (KeePass will prompt you
+for the password and/or key file location):</p>
+
+<pre>KeePass.exe &quot;C:\My Documents\MyDatabase.kdb&quot;</pre>
+
+<p>If you got a database that is locked with a password 'abc', you could open it like this:</p>
+
+<pre>KeePass.exe &quot;C:\My Documents\MyDatabaseWithPw.kdb&quot; -pw:abc</pre>
+
+<p>If your USB stick always mounts to drive F: and you've locked your database with a key file
+on the USB stick, you could open your database as follows:</p>
+
+<pre>KeePass.exe &quot;C:\My Documents\MyDatabaseWithFile.kdb&quot; -keyfile:F:\pwsafe.key</pre>
+
+<p>If you've locked your database using a password <i>and</i> a key file, you can combine
+the two switches and open your database as follows:</p>
+
+<pre>KeePass.exe &quot;C:\My Documents\MyDatabaseWithTwo.kdb&quot; -pw:abc -keyfile:F:\pwsafe.key</pre>
+
+<p>You have locked your database using a password <i>and</i> a key file, but only
+want to have the key file pre-selected (i.e. you want to get prompted for the
+password), your command line would look like this:</p>
+
+<pre>KeePass.exe &quot;C:\My Documents\MyDatabaseWithTwo.kdb&quot; -preselect:F:\pwsafe.key</pre>
+
+<br />
+
+<h2 class="sectiontitle">
+<img src="../images/b16x16_openterm.png" class="singleimg" alt="Text" />&nbsp;&nbsp;Starting
+KeePass using a Batch File</h2>
+
+<p>Batch files can be used to start KeePass. Mostly you want to
+specify some of the parameters listed above. You can theoretically
+simply put the command line (i.e. application path and parameters)
+into the batch file, but this is not recommended as the command
+window will stay open until KeePass is closed. The following
+method is recommended instead:</p>
+
+<pre>START &quot;&quot; KeePass.exe ..\MyDb.kdb -pw:MySecretPw</pre>
+
+<p>This <code>START</code> command will run KeePass (which opens the
+<code>..\MyDb.kdb</code> file using
+<code>MySecretPw</code> as password). KeePass is assumed to be in the same
+directory (working directory) as the batch file, otherwise you need to
+specify a different path.</p>
+
+<p><code>START</code> executes the given command line and immediately exits,
+i.e. it doesn't wait until the application is terminated. Consequently,
+the command window will disappear after KeePass has been started.</p>
+
+<p>Please note the two quotes (<code>&quot;</code>) after the
+<code>START</code> command. These quotes
+are required if the application path contains quotes (in the example
+above, the quotes could also be removed).
+If you want to learn more about the <code>START</code> command syntax, type
+<code>START /?</code> into the command window.</p>
+
+<br />
+
+<h2 class="sectiontitle">
+<img src="../images/b16x16_openterm.png" class="singleimg" alt="Text" />&nbsp;&nbsp;Closing/Locking
+KeePass using a Batch File</h2>
+
+<p>To close all currently running KeePass instances, call
+<code>KeePass.exe</code> with the <code>'--exit-all'</code> parameter:</p>
+
+<pre>KeePass.exe --exit-all</pre>
+
+<p>All KeePass windows will attempt to close. If a database has been modified,
+KeePass will ask you whether you want to save or not. If you wish to save in
+any case (i.e. a forced exit without any confirmation dialog), enable the
+<i>'Automatically save database on exit and workspace locking'</i> option
+in <i>'Tools' -&gt; 'Options' -&gt; tab 'Advanced'</i>.</p>
+
+<p>The KeePass instance that has been created by the command above is not visible (i.e.
+it does not show a main window) and will immediately terminate after sending close
+requests to the other instances.</p>
+
+<p>The <code>--lock-all</code> and
+<code>--unlock-all</code> command line options lock/unlock the workspaces
+of all other KeePass instances.</p>
+
+</body></html>
+

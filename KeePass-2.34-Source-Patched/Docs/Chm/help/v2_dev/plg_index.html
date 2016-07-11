@@ -1,0 +1,557 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta name="author" content="Dominik Reichl" />
+
+	<meta name="description" content="KeePass is an open source password manager. Passwords can be stored in highly-encrypted databases, which can be unlocked with one master password or key file." />
+	<meta name="keywords" content="KeePass, Password, Safe, Security, Database, Encryption, Secure, Manager, Open, Source, Free, Code, Key, Master, Disk, Dominik, Reichl" />
+
+	<meta name="robots" content="index" />
+
+	<meta name="DC.Title" content="KeePass - The Open Source Password Manager" />
+	<meta name="DC.Creator" content="Dominik Reichl" />
+	<meta name="DC.Subject" content="Open-Source Password Safe" />
+	<meta name="DC.Description" content="KeePass is an open source password manager. Passwords can be stored in highly-encrypted databases, which can be unlocked with one master password or key file." />
+	<meta name="DC.Publisher" content="Dominik Reichl" />
+	<meta name="DC.Contributor" content="Dominik Reichl" />
+	<meta name="DC.Type" content="text" />
+	<meta name="DC.Format" content="text/html" />
+	<meta name="DC.Identifier" content="http://keepass.info/" />
+	<meta name="DC.Language" content="en" />
+	<meta name="DC.Rights" content="Copyright (c) 2003-2016 Dominik Reichl" />
+
+	<title>Plugin Development - KeePass</title>
+	<base target="_self" />
+	<link rel="stylesheet" type="text/css" href="../../default.css" />
+	
+</head>
+<body>
+
+
+
+
+
+<table class="sectionsummary"><tr><td width="68px">
+<img src="../images/b64x64_blockdevice.png" width="64px" height="64px"
+class="singleimg" align="left" alt="Settings" />
+</td><td valign="middle"><h1>Plugin Development</h1><br />
+How to develop plugins for KeePass 2.x.
+</td></tr></table>
+
+<p>This documentation applies to KeePass 2.x plugins. 2.x plugins are fundamentally
+different from 1.x plugins. 1.x plugins cannot be loaded by KeePass 2.x.</p>
+
+<ul>
+<li><a href="#req">Requirements</a></li>
+<li><a href="#tutorial">Step-by-Step Tutorial</a></li>
+<li><a href="#commonops">Common Operations</a></li>
+<li><a href="#conventions">Plugin Conventions</a></li>
+<li><a href="#upd">Update Checking</a></li>
+<li><a href="#unmanagedcpp">Can KeePass 2.x Plugins be written in Unmanaged C++?</a></li>
+<li><a href="#plgx">PLGX Files</a></li>
+</ul>
+
+<br />
+
+<a name="req"></a>
+<h2 class="sectiontitle">
+<img src="../images/b16x16_help.png" class="singleimg" alt="Info" />&nbsp;&nbsp;Requirements
+</h2>
+
+<p>Before you can start developing a KeePass plugin, you need the following
+prerequisites:</p>
+
+<ul>
+<li>Latest KeePass source code package. You can get it from the
+<a href="http://keepass.info/download.html">KeePass website</a>.</li>
+<li>A C# 2.0 development IDE
+(<a href="http://msdn.microsoft.com/vstudio/" target="_blank">Microsoft
+Visual Studio</a>,
+<a href="http://icsharpcode.net/" target="_blank">SharpDevelop</a>
+or any other IDE).</li>
+</ul>
+
+<br />
+
+<a name="tutorial"></a>
+<h2 class="sectiontitle">
+<img src="../images/b16x16_help.png" class="singleimg" alt="Info" />&nbsp;&nbsp;Step-by-Step
+Tutorial</h2>
+
+<p>Start your favorite IDE and create a new <i>C# Class Library</i> project.
+In this tutorial the example plugin we're developing is called <code>SamplePlugin</code>.
+The
+first thing you need to do now is to add a <i>reference</i> to KeePass: go
+to the references dialog and select the <code>KeePass.exe</code> file. After
+you added the reference, the namespaces <code>KeePass</code> and <code>KeePassLib</code>
+should be available.</p>
+
+<p>KeePass plugins all need to derive from a base KeePass plugin class (<code>Plugin</code> in
+the <code>KeePass.Plugins</code> namespace).
+By overriding methods of this class, you can customize the behaviour of your plugin.</p>
+
+<p>A minimal plugin looks like this:</p>
+
+<pre><font color="#0000FF">using</font> System;
+<font color="#0000FF">using</font> System.Collections.Generic;
+
+<font color="#0000FF">using</font> KeePass.Plugins;
+
+<font color="#0000FF">namespace</font> SamplePlugin
+{
+	<font color="#0000FF">public sealed class</font> <font color="#008888">SamplePluginExt</font> : <font color="#008888">Plugin</font>
+	{
+		<font color="#0000FF">private</font> <font color="#008888">IPluginHost</font> m_host = <font color="#0000FF">null</font>;
+
+		<font color="#0000FF">public override bool</font> Initialize(<font color="#008888">IPluginHost</font> host)
+		{
+			m_host = host;
+			<font color="#0000FF">return true</font>;
+		}
+	}
+}</pre>
+
+<p>You can find a fully documented and extended version of this simple
+plugin on the KeePass plugins web page.</p>
+
+<p>This plugin does exactly nothing, but it shows some important conventions
+already, which must be followed by all plugins:</p>
+
+<ul>
+<li>The namespace must be named like the DLL file without extension. Our DLL
+file is named <code>SamplePlugin.dll</code>, therefore the namespace must
+be called <code>SamplePlugin</code>.</li>
+<li>The main plugin class (which KeePass will instantiate when it loads your
+plugin) must be called exactly the same as the namespace plus &quot;Ext&quot;.
+In this case: &quot;SamplePlugin&quot; + &quot;Ext&quot; = &quot;SamplePluginExt&quot;.</li>
+<li>The main plugin class must be derived from the <code>KeePass.Plugins.Plugin</code>
+base class.</li>
+</ul>
+
+<p>The <code>Initialize</code> function is the most important one and you
+probably will always override it. In this function, you get an interface
+to the KeePass internals: an <code>IPluginHost</code> interface reference.
+By using this interface, you can access the KeePass main menu, the currently
+opened database, etc. The <code>Initialize</code> function is called immediately
+after KeePass loads your plugin. All initialization should be done in this
+function (<b>not</b> in the constructor of your plugin class!). If you
+successfully initialized everything, you must return <code>true</code>. If
+you return <code>false</code>, KeePass will immediately unload your plugin.</p>
+
+<p>A second function that you will need very often is the <code>Terminate</code>
+function:</p>
+
+<pre><font color="#0000FF">public override void</font> Terminate()
+{
+}</pre>
+
+<p>This function is called shortly before KeePass unloads your plugin. You cannot
+abort this process (it's just a notification and your last chance to clean up
+all used resources, etc.). Immediately after you return from this function, KeePass
+can unload your plugin. It is highly recommended to free all resources in this function
+(<b>not</b> in the destructor of your plugin class!).</p>
+
+<p>We're almost done! We now need to tell KeePass that
+our file is a KeePass plugin. This is done by editing the <i>Version Information Block</i>
+of the file. Open the file version editing dialog (in Visual Studio 2005: right-click
+onto the project name - <i>'Properties'</i> - button <i>'Assembly Information'</i>).
+All fields can be assigned freely except the <i>Product Name</i> field (for more information
+see <a href="#conventions">Plugin Conventions</a>). This field must be set to
+<code>&quot;KeePass Plugin&quot;</code> (without the quotes).</p>
+
+<!-- <p>Now the last step: signing your assembly. Because KeePass is a strong-named assembly,
+your plugin must have a strong name, too. Go to the project options of your plugin
+and open the <i>Signing</i> tab. Enable assembly signing and generate a new key pair.</p> -->
+
+<p>That's it! Now try to compile your plugin and copy the resulting DLL
+file into the KeePass directory. If you start KeePass and go to the plugins
+dialog, you should see your plugin in the list of loaded plugins!</p>
+
+<br />
+
+<a name="commonops"></a>
+<h2 class="sectiontitle">
+<img src="../images/b16x16_help.png" class="singleimg" alt="Info" />&nbsp;&nbsp;Common
+Operations</h2>
+
+<p><b>Adding Menu Items:</b></p>
+
+<p>Very often you want to add some menu items for your plugin. When clicked by the
+user, your plugin should get some notification. This can be done like follows.
+First of all you need to get a reference to the KeePass main menu or one of
+the special submenus (like <i>Import</i>, <i>Tools</i>, etc.). For this you can
+use the <code>IPluginHost</code> interface, which you received in the <code>Initialize</code>
+function. Then you can use standard tool strip operations to add a new menu item for your
+plugin. A very simple example, which adds a menu item to the <i>Tools</i> menu:</p>
+
+<pre><font color="#0000FF">private</font> <font color="#008888">ToolStripSeparator</font> m_tsSeparator = <font color="#0000FF">null</font>;
+<font color="#0000FF">private</font> <font color="#008888">ToolStripMenuItem</font> m_tsmiMenuItem = <font color="#0000FF">null</font>;
+
+<font color="#0000FF">public override bool</font> Initialize(<font color="#008888">IPluginHost</font> host)
+{
+	m_host = host;
+
+	<font color="#008800">// Get a reference to the 'Tools' menu item container</font>
+	<font color="#008888">ToolStripItemCollection</font> tsMenu = m_host.MainWindow.ToolsMenu.DropDownItems;
+
+	<font color="#008800">// Add a separator at the bottom</font>
+	m_tsSeparator = <font color="#0000FF">new</font> <font color="#008888">ToolStripSeparator</font>();
+	tsMenu.Add(m_tsSeparator);
+
+	<font color="#008800">// Add menu item 'Do Something'</font>
+	m_tsmiMenuItem = <font color="#0000FF">new</font> <font color="#008888">ToolStripMenuItem</font>();
+	m_tsmiMenuItem.Text = <font color="#880000">"Do Something"</font>;
+	m_tsmiMenuItem.Click += <font color="#0000FF">this</font>.OnMenuDoSomething;
+	tsMenu.Add(m_tsmiMenuItem);
+}
+
+<font color="#0000FF">public override void</font> Terminate()
+{
+	<font color="#008800">// Remove all of our menu items</font>
+	<font color="#008888">ToolStripItemCollection</font> tsMenu = m_host.MainWindow.ToolsMenu.DropDownItems;
+	m_tsmiMenuItem.Click -= <font color="#0000FF">this</font>.OnMenuDoSomething;
+	tsMenu.Remove(m_tsmiMenuItem);
+	tsMenu.Remove(m_tsSeparator);
+}
+
+<font color="#0000FF">private void</font> OnMenuDoSomething(<font color="#0000FF">object</font> sender, <font color="#008888">EventArgs</font> e)
+{
+	<font color="#008800">// Called when the menu item is clicked</font>
+}
+</pre>
+
+<p>If you are working with tool strips, you of course have to add a reference
+to <code>System.Windows.Forms</code> of the .NET framework.</p>
+
+<p>It is highly recommended that you unlink all event handlers and remove all menu items
+created by your plugin in the <code>Terminate</code> function (as shown in the example above).
+After the <code>Terminate</code> function has been called, everything should
+look like before loading your plugin.</p>
+
+<p>In the example, we created a separator and one menu item. To this menu
+item an event handler for the <code>Click</code> event is attached. There's nothing
+special, this is all standard <i>Windows.Forms</i> code.</p>
+
+<p>For examples of adding popup menus, see the <i>SamplePlugin</i> sample
+plugin (obtainable from the KeePass plugins page).</p>
+
+<br />
+
+<p><b>Adding Groups and Entries:</b></p>
+
+<p>For this, see the sample plugin and the <i>KeePassLib</i> documentation.</p>
+
+<br />
+
+<a name="conventions"></a>
+<h2 class="sectiontitle">
+<img src="../images/b16x16_help.png" class="singleimg" alt="Info" />&nbsp;&nbsp;Plugin
+Conventions</h2>
+
+<p><b>File Version Information Block:</b></p>
+
+<p>KeePass uses the file version information block to detect if a DLL file is a
+KeePass plugin and retrieves information from it to show in the plugins dialog.
+The fields are used as follows:</p>
+
+<ul>
+<li><b>Title:</b> Should contain the full name of the plugin.</li>
+<li><b>Description:</b> Should contain a short description (not more than 5 lines)
+of your plugin.</li>
+<li><b>Company:</b> Should contain the author name of the plugin.</li>
+<li><b>Product Name:</b> Must be set to <code>&quot;KeePass Plugin&quot;</code> (without
+the quotes).</li>
+<li><b>Copyright:</b> Not used by KeePass; freely assignable by the plugin.</li>
+<li><b>Trademarks:</b> Not used by KeePass; freely assignable by the plugin.</li>
+<li><b>Assembly Version:</b> Should be set to the version of your plugin.</li>
+<li><b>File Version:</b> Should be set to the version of your plugin. It is up
+to you how you are versioning your plugin builds, but it should be a scheme that
+allows version comparisons (by comparing the version components).
+Do <i>not</i> use asterisks for creating a version number at build time.</li>
+<li><b>GUID:</b> Not used by KeePass; freely assignable by the plugin.</li>
+</ul>
+
+<br />
+
+<p><b>Namespace and Class Naming:</b></p>
+
+<p>The namespace must be named like the DLL file without
+extension. For example, if the DLL file is named <code>SecretImporter.dll</code>,
+you must call the namespace <code>SecretImporter</code>.</p>
+
+<p>The plugin class must be named like the namespace plus &quot;Ext&quot;.
+For the SecretImporter plugin, this would be <code>SecretImporterExt</code>.</p>
+
+<br />
+
+<a name="upd"></a>
+<h2 class="sectiontitle">
+<img src="../images/b16x16_dataexchange.png" class="singleimg" alt="Exchange" />&nbsp;&nbsp;Update
+Checking</h2>
+
+<p>The update check of KeePass &ge; 2.18 can also check for plugin updates.
+Update check support is optional; plugins don't have to support update
+checks.</p>
+
+<p>In order to support update checks, plugin developers need to do the following:</p>
+
+<ul>
+<li><b>Provide version information file.</b>
+When an end-user invokes an update check, KeePass downloads a version information
+file, which specifies the current version numbers of one or more plugins.
+Every plugin author hosts an own version information file.
+The format of the version information file is described in detail below.</li>
+<li><b>Let KeePass know.</b>
+In order to be able to check the plugin's version, KeePass must know where
+your version information file is located. To let KeePass know,
+override the <code>UpdateUrl</code> string property of your plugin class
+(the one derived from <code>Plugin</code>)
+to return the full, absolute URL of your version information file.
+This should be an <code>http://</code> or <code>https://</code> URL,
+but an <code>ftp://</code> URL is also acceptable.</li>
+</ul>
+
+<p>Plugin developers have to update their version information file each time
+they release new versions of their plugins.</p>
+
+<p><b>Version information file format.</b></p>
+<ul>
+<li>The file is a simple text file. It must be encoded using UTF-8 without
+a byte order mark (KeePass &ge; 2.21 supports UTF-8 BOMs in version information
+files, however for compatibility with KeePass &lt; 2.21 it is recommended
+not to use a BOM).
+All line endings are supported.</li>
+<li>The first line of the file must start with a separator character of
+your choice. The separator character may be any character,
+but it must not appear within plugin names and versions.
+Suggested is '<code>:</code>'.</li>
+<li>Each of the following lines specifies a plugin name and its currently
+available version, separated by the separator character that was specified in
+the header line.</li>
+<li>As plugin name, the value of the 'Title' field in the version information
+block of the plugin must be specified.
+For managed plugins, this is the value specified using the
+<code>AssemblyTitle</code> assembly attribute.</li>
+<li>As version number, the value of the file version in the version information
+block of the plugin must be specified.
+For managed plugins, this is the value specified using the
+<code>AssemblyFileVersion</code> assembly attribute.
+Trailing <code>.0</code> may be removed
+(e.g. specify <code>1.3</code> instead of <code>1.3.0.0</code>).</li>
+<li>The file must end with a line containing only the separator character.</li>
+<li>You may optionally compress your version information file using GZip
+(note this is not the same as Zip). The file
+name must then end with &quot;<code>.gz</code>&quot;.</li>
+</ul>
+
+<p>Example. Let's assume you're developing two plugins: <em>MyPlugin1</em>
+(version 1.5) and <em>MyPlugin2</em> (version 1.13.2.17). Then your version
+information file could look as follows:</p>
+<pre>:
+MyPlugin1:1.5
+MyPlugin2:1.13.2.17
+:</pre>
+
+<p>If you've developed multiple plugins, it is recommended to create one
+version information file, list all your plugins in this file and specify
+the URL of the file in all your plugins. When KeePass checks for updates,
+it'll download your version information file only once.
+This reduces network traffic and is faster than downloading a version information
+file for every plugin separately.</p>
+
+<p><b>Signing.</b> Since KeePass 2.34,
+you can <em>optionally</em> digitally sign your version information file using RSA / SHA-512.</p>
+<ul>
+<li>An RSA key pair can for instance be generated like the following:<br />
+<code>using(RSACryptoServiceProvider rsa = new RSACryptoServiceProvider(4096))<br />
+{<br />
+&nbsp;&nbsp;&nbsp;&nbsp;rsa.PersistKeyInCsp = false;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;Console.WriteLine(&quot;Private key: &quot; + rsa.ToXmlString(true));<br />
+&nbsp;&nbsp;&nbsp;&nbsp;Console.WriteLine(&quot;Public key: &quot; + rsa.ToXmlString(false));<br />
+}</code><br />
+All key lengths supported by <code>RSACryptoServiceProvider</code>
+are supported by KeePass (up to .NET 4.5 that is 384 to 16384 bits in 8 bit steps).
+We recommend at least 2048 bits; the main version information file
+(containing the KeePass version) uses 4096 bits.</li>
+<li>In order to tell KeePass to accept a specific version information file
+only when it's verifiable with a specific public key, your plugin must call the
+<code>UpdateCheckEx.SetFileSigKey</code>
+method to associate the specified URL with the specified public key.
+The public key must be an XML string in the format as returned by the
+<code>RSACryptoServiceProvider.ToXmlString</code> method.
+Do not store the private key in your plugin, only the public key.</li>
+<li>To sign an unsigned version information file, hash all trimmed non-empty lines
+between the header and the footer line
+using SHA-512, UTF-8 encoding, each line terminated by <code>'\n'</code>
+(not <code>&quot;\r\n&quot;</code>).
+Sign the hash using the private key
+(if you're using <code>RSACryptoServiceProvider</code>:
+load the private key using its <code>FromXmlString</code> method,
+then compute the signature using the <code>SignData</code> method).
+Encode the hash using Base64 and append it to the first line of the
+version information file.</li>
+</ul>
+
+<br />
+
+<a name="unmanagedcpp"></a>
+<h2 class="sectiontitle">
+<img src="../images/b16x16_help.png" class="singleimg" alt="Info" />&nbsp;&nbsp;Can
+KeePass 2.x Plugins be written in Unmanaged C++?</h2>
+
+<p>Yes and no. You can write the complete logic of your plugin in unmanaged C++ (native
+Win32 APIs can be used). Anyway you must provide a managed interface to your plugin,
+i.e. you must export a managed class derived from the <code>Plugin</code> base class
+as described in the step-by-step tutorial.</p>
+
+<p>Also, managed C++ will be required to modify the KeePass internals (i.e. entries,
+groups, main window, ...).</p>
+
+<p>For an example how to use unmanaged APIs in a managed C++ plugin assembly, see
+the <i>SamplePluginCpp</i> sample plugin (obtainable from the KeePass plugins
+page).</p>
+
+<br />
+
+<a name="plgx"></a>
+<h2 class="sectiontitle">
+<img src="../images/b16x16_tar.png" class="singleimg" alt="Info" />&nbsp;&nbsp;PLGX
+Files</h2>
+
+<p>PLGX is an <i>optional</i> plugin file format for KeePass &ge; 2.09. Instead of compiling your plugin
+to a DLL assembly, the plugin source code files can be packed into a PLGX
+file and KeePass will compile the plugin itself when loading it.
+The advantage of this approach is that plugins don't need to be recompiled
+by the plugin developers
+for each KeePass release anymore (as KeePass compiles the plugin itself, the generated plugin assembly
+references the current, correct KeePass assembly). Instead of shipping a plugin
+DLL assembly, you ship the PLGX.</p>
+
+<p>For users, nothing changes. Instead of putting the plugin DLL assembly into
+the KeePass application directory, the PLGX file needs to be put there.</p>
+
+<center><table width="75%" border="1px" cellspacing="1px" bgcolor="#808080">
+<tr><td width="100%" bgcolor="#FFFFC8">
+KeePass &ge; 2.14 also loads older plugin DLLs.
+However, an API within KeePass might have changed and .NET detects this
+when the plugin tries to call/access the method/class, not at loading time.
+This means that an incompatibility is detected relatively late and might
+crash KeePass. In contrast, when using the PLGX format, an incompatibility
+is detected immediately at loading time: if there is a problem, the compile
+process will just fail and KeePass can present an informative plugin
+incompatibility message to the user. Therefore, it is recommended that
+plugin developers create/ship PLGX files, not DLLs.
+</td></tr></table></center>
+
+<p><b>Creating PLGX files.</b>
+PLGX files can be created from plugin sources by calling <code>KeePass.exe</code>
+with the <code>--plgx-create</code> command line option. If you additionally
+pass a path to the plugin sources directory (without terminating separator),
+KeePass will use this one; otherwise
+it'll show a folder browser dialog to allow you selecting the directory. If
+you want to pass the directory location using the command line, make sure that
+you're specifying a full, absolute path -- relative paths will not work.</p>
+
+<p>In order to keep the size of the PLGX file small, it is recommended
+that you clean up the plugin sources directory before compiling the PLGX.
+Remove all unnecessary binary files (files in the <code>bin</code>
+and <code>obj</code> directory); especially, delete any plugin assembly DLL
+that you compiled yourself. Temporary files by the IDE
+(like <code>.suo</code> and <code>.user</code> files) 
+can also be deleted.</p>
+
+<p><b>PLGX features:</b></p>
+<ul>
+<li>Extensible, object-oriented file format.</li>
+<li>Compression support (data files are compressed using GZip).</li>
+<li><code>.csproj</code> support. KeePass retrieves all information required
+for compiling the plugin assembly from the <code>.csproj</code> file in the
+plugin sources.</li>
+<li>Embedded resources support.</li>
+<li>Referenced .NET assemblies support. References information is read from
+the <code>.csproj</code> file.</li>
+<li>Referenced custom assemblies support. Third-party assemblies required by the plugin
+(references to DLLs) are supported, provided that the third-party assembly is
+located in the plugin source code directory (or any subdirectory of it).</li>
+<li>ResX support. <code>.resx</code> files are automatically compiled to
+binary <code>.resources</code> files.</li>
+<!-- <li>.NET 3.5 support (if the default compiler, which is the one of .NET 2.0,
+can't compile the code, KeePass tries using the .NET 3.5 compiler).</li> -->
+<li>PLGX cache. PLGX files are compiled once and the generated assembly is stored in a cache.
+For all following KeePass starts, no compiling is required.</li>
+<li>PLGX cache maintenance. The size of the PLGX cache can be seen in the KeePass plugins dialog.
+Here, the cache can also be marked to be cleared (it will be cleared when KeePass
+is started the next time). An option to automatically delete old files from the
+cache is supported and enabled by default.</li>
+</ul>
+
+<p><b>PLGX limitations:</b></p>
+<ul>
+<li>Currently only C# is supported (not Visual Basic or any other .NET language).</li>
+<li>Linked resources (in different assemblies) are unsupported.</li>
+<li>Dependencies on other projects are unsupported (reorganize your project to
+use custom assembly references instead).</li>
+</ul>
+
+<p><b>Defining prerequisites.</b> You can <i>optionally</i> specify a minimum
+KeePass version, a minimum installed .NET Framework, an operating system and
+the minimum size of a pointer (x86 vs. x64) using the
+<code>--plgx-prereq-kp:</code>, <code>--plgx-prereq-net:</code>,
+<code>--plgx-prereq-os:</code> and <code>--plgx-prereq-ptr:</code>
+command line options. If one of the plugin prerequisites isn't met, KeePass shows a detailed
+error message to the end-user (instead of a generic plugin incompatibility
+message). Build example:<br />
+<code>KeePass.exe --plgx-create C:\YourPluginDir --plgx-prereq-kp:2.09
+--plgx-prereq-net:3.5</code></p>
+
+<p>Valid operating system values are <code>Windows</code> and <code>Unix</code>.
+When running on an unknown operating system, KeePass defaults to Windows.
+Pointer sizes (checking for x86 vs. x64) are specified in bytes; for example,
+to only allow running on x64, you specify <code>--plgx-prereq-ptr:8</code>.</p>
+
+<p><b>Build commands.</b> <i>Optionally</i> you can specify pre-build
+and post-build commands using <code>--plgx-build-pre:</code> and
+<code>--plgx-build-post:</code>. These commands are embedded in the PLGX file
+and executed when compiling the plugin on the end-user's system.</p>
+
+<p>In the build commands, the placeholder <code>{PLGX_TEMP_DIR}</code>
+specifies the temporary directory (including a terminating separator),
+to which the files were extracted. In the post-build command, <code>{PLGX_CACHE_DIR}</code>
+is replaced by the cache directory of the plugin (including a terminating
+separator), into which the generated assembly was stored.</p>
+
+<p>These build commands can for example be used to copy additional files into
+the cache directory. Example:<br />
+<code>KeePass.exe --plgx-create C:\YourPluginDir
+--plgx-build-post:&quot;cmd /c COPY &quot;&quot;&quot;{PLGX_TEMP_DIR}MyFile.txt&quot;&quot;&quot;
+&quot;&quot;&quot;{PLGX_CACHE_DIR}MyFile.txt&quot;&quot;&quot;&quot;</code></p>
+
+<p>In order to specify a quote character on the command line, it has
+to be encoded using three quotes (this is Windows standard, see
+<a href="http://msdn.microsoft.com/en-us/library/bb759784.aspx"
+target="_blank">MSDN: <code>SHELLEXECUTEINFO</code></a>). So, the command
+line above will actually embed the post-build command
+<code>cmd /c COPY &quot;{PLGX_TEMP_DIR}MyFile.txt&quot;
+&quot;{PLGX_CACHE_DIR}MyFile.txt&quot;</code>
+into the PLGX, which is correct.
+It is highly recommended to surround paths including PLGX placeholders
+using quotes, otherwise the command will not run correctly if the
+path contains a space character (which happens very often).</p>
+
+<p>If you need to run multiple commands, write them into a batch file and
+execute it (with <code>cmd</code>). If you need to perform more complex
+build tasks, write an own building executable and run it using the build
+commands (typically it is useful to pass the directory locations as arguments
+to your building executable), for example:<br />
+<code>KeePass.exe --plgx-create C:\YourPluginDir
+--plgx-build-post:&quot;{PLGX_TEMP_DIR}MyBuild.exe {PLGX_TEMP_DIR} {PLGX_CACHE_DIR}&quot;</code></p>
+
+<p><b>PLGX debugging.</b>
+When the command line option <code>--debug</code> is
+passed and a PLGX plugin fails to compile, the output of all
+tried compilers is saved to a temporary file.</p>
+
+</body></html>
+

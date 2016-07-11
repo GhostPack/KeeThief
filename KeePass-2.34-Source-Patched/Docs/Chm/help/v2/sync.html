@@ -1,0 +1,165 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta name="author" content="Dominik Reichl" />
+
+	<meta name="description" content="KeePass is an open source password manager. Passwords can be stored in highly-encrypted databases, which can be unlocked with one master password or key file." />
+	<meta name="keywords" content="KeePass, Password, Safe, Security, Database, Encryption, Secure, Manager, Open, Source, Free, Code, Key, Master, Disk, Dominik, Reichl" />
+
+	<meta name="robots" content="index" />
+
+	<meta name="DC.Title" content="KeePass - The Open Source Password Manager" />
+	<meta name="DC.Creator" content="Dominik Reichl" />
+	<meta name="DC.Subject" content="Open-Source Password Safe" />
+	<meta name="DC.Description" content="KeePass is an open source password manager. Passwords can be stored in highly-encrypted databases, which can be unlocked with one master password or key file." />
+	<meta name="DC.Publisher" content="Dominik Reichl" />
+	<meta name="DC.Contributor" content="Dominik Reichl" />
+	<meta name="DC.Type" content="text" />
+	<meta name="DC.Format" content="text/html" />
+	<meta name="DC.Identifier" content="http://keepass.info/" />
+	<meta name="DC.Language" content="en" />
+	<meta name="DC.Rights" content="Copyright (c) 2003-2016 Dominik Reichl" />
+
+	<title>Synchronization - KeePass</title>
+	<base target="_self" />
+	<link rel="stylesheet" type="text/css" href="../../default.css" />
+	
+</head>
+<body>
+
+
+
+
+<table class="sectionsummary"><tr><td width="68px">
+<img src="../images/b64x64_dataexchange.png" width="64px" height="64px"
+class="singleimg" align="left" alt="Synchronization" />
+</td><td valign="middle"><h1>Synchronization</h1><br />
+Merge changes made in multiple copies of a database.
+</td></tr></table>
+
+<ul>
+<li><a href="#intro">Introduction and Requirements</a></li>
+<li><a href="#invoke">Invoking a Synchronization</a></li>
+<li><a href="#tech">Technical Details</a></li>
+</ul>
+
+<br />
+
+<a name="intro"></a>
+<h2 class="sectiontitle">
+<img src="../images/b16x16_help.png" class="singleimg" alt="Help" />&nbsp;&nbsp;Introduction
+and Requirements</h2>
+
+<p>KeePass 2.x features a powerful, built-in synchronization mechanism.
+Changes made in multiple copies of a database file can be merged safely.</p>
+
+<p>After synchronizing two files A and B, both A and B are up-to-date
+(i.e. KeePass saves the merged data to both locations when performing
+a synchronization).</p>
+
+<p><b>Requirements.</b></p>
+<ul>
+<li>If the files to be synchronized are accessible via a protocol that
+KeePass supports by default (e.g. files on a local hard disk or a network
+share, FTP, HTTP/WebDAV, ..., see the page
+<a href="ioconnect.html">Loading/Saving From/To URL</a> for details),
+then no plugins/extensions are required.</li>
+<li>If one of the files to be synchronized should be accessed via
+SCP, SFTP or FTPS, you need the
+<a href="http://keepass.info/plugins.html#ioprotocolext"
+target="_blank">IOProtocolExt</a>
+plugin, which adds support for these protocols to KeePass.</li>
+<li>If one of the files to be synchronized is stored in an online
+storage (like e.g. Amazon's S3, DigitalBucket, ...), you need
+an online storage provider
+<a href="http://keepass.info/plugins.html" target="_blank">plugin</a>
+(e.g.
+<a href="http://keepass.info/plugins.html#keeanywhere"
+target="_blank">KeeAnywhere</a>,
+<a href="http://keepass.info/plugins.html#keecloud"
+target="_blank">KeeCloud</a> or
+<a href="http://keepass.info/plugins.html#keepasssync"
+target="_blank">KeePassSync</a>).
+Note that you do <i>not</i> need a plugin
+in the other cases above (files on a local hard disk or network share,
+FTP, HTTP/WebDAV, SCP, SFTP, FTPS, ...).</li>
+</ul>
+
+<br />
+
+<a name="invoke"></a>
+<h2 class="sectiontitle">
+<img src="../images/b16x16_dataexchange.png" class="singleimg" alt="Synchronization" />&nbsp;&nbsp;Invoking
+a Synchronization</h2>
+
+<p>There are multiple ways how a synchronization can be invoked:</p>
+
+<ul>
+<li><b>Manually.</b>
+A synchronization can be started manually by navigating to
+<i>'File'</i> -&gt; <i>'Synchronize'</i> and clicking <i>'Synchronize with File'</i>
+or <i>'Synchronize with URL'</i> (depending on whether the file to be synchronized
+with is stored on a local drive / network share or on a server accessible via an URL).
+If you've previously opened or synchronized with the target file, you can
+also simply point on <i>'Recent Files'</i> (in the <i>'Synchronize'</i> menu)
+and select the file.
+Manual synchronization is only possible when the currently opened database
+is a local file
+(files on a network share are here considered to be local files);
+when you've opened a file from a server using an URL,
+the <i>'Synchronize'</i> menu is disabled.</li>
+
+<li><b>Command 'Save'.</b>
+When invoking the 'Save' command, KeePass checks whether the file on disk/server
+has been modified while you were editing it. If it has been modified,
+KeePass prompts whether you want to overwrite or synchronize with the file.
+Note this applies only to the 'Save' command, not the 'Save As' command.
+See the page
+<a href="../base/multiuser.html">Multi-User</a> for details
+(section 'KeePass 2.x: Synchronize or Overwrite').</li>
+
+<li><b>Triggers.</b>
+In more complex situations you can use the synchronization trigger action.
+See the page
+<a href="triggers.html">Triggers</a> for details.</li>
+
+<li><b>Scripting.</b>
+In order to perform a synchronization without opening KeePass,
+the synchronization command of KPScript can be used. See the KPScript
+help page
+<a href="../v2_dev/scr_sc_index.html">Single Command Operations</a>
+for details.</li>
+</ul>
+
+<br />
+
+<a name="tech"></a>
+<h2 class="sectiontitle">
+<img src="../images/b16x16_dataexchange.png" class="singleimg" alt="Synchronization" />&nbsp;&nbsp;Technical
+Details</h2>
+
+<p>The synchronization algorithm is rather complex and it would take
+many pages to describe in detail how it's working.
+Developers interested in this can have a look into the KeePass source code.
+Here are the most important properties of the synchronization algorithm:</p>
+
+<ul>
+<li>In order to decide which copy of an object is the latest one,
+KeePass mainly uses the last modification time of the object
+(which KeePass updates automatically each time the object is changed).</li>
+<li>The synchronization is performed on entry level. This e.g. means that
+a combination of user name / password is always consistent
+(synchronization on field level will not be implemented, because
+combinations could become inconsistent with this).</li>
+<li>In case of parallel updates and collisions, KeePass tries to store
+all information in an appropriate place. For example, when you have an
+entry E in a database A, make a copy B of A, change E in B, change E in A,
+and synchronize A and B, then E in A is treated as current and the changes
+made to E in B are stored as a history version of E (see tab 'History' in
+the entry dialog), i.e. the changes made in B aren't lost.</li>
+</ul>
+
+</body></html>
+

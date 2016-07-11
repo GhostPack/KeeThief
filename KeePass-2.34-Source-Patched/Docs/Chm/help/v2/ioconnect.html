@@ -1,0 +1,86 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta name="author" content="Dominik Reichl" />
+
+	<meta name="description" content="KeePass is an open source password manager. Passwords can be stored in highly-encrypted databases, which can be unlocked with one master password or key file." />
+	<meta name="keywords" content="KeePass, Password, Safe, Security, Database, Encryption, Secure, Manager, Open, Source, Free, Code, Key, Master, Disk, Dominik, Reichl" />
+
+	<meta name="robots" content="index" />
+
+	<meta name="DC.Title" content="KeePass - The Open Source Password Manager" />
+	<meta name="DC.Creator" content="Dominik Reichl" />
+	<meta name="DC.Subject" content="Open-Source Password Safe" />
+	<meta name="DC.Description" content="KeePass is an open source password manager. Passwords can be stored in highly-encrypted databases, which can be unlocked with one master password or key file." />
+	<meta name="DC.Publisher" content="Dominik Reichl" />
+	<meta name="DC.Contributor" content="Dominik Reichl" />
+	<meta name="DC.Type" content="text" />
+	<meta name="DC.Format" content="text/html" />
+	<meta name="DC.Identifier" content="http://keepass.info/" />
+	<meta name="DC.Language" content="en" />
+	<meta name="DC.Rights" content="Copyright (c) 2003-2016 Dominik Reichl" />
+
+	<title>Loading/Saving From/To URL - KeePass</title>
+	<base target="_self" />
+	<link rel="stylesheet" type="text/css" href="../../default.css" />
+	
+</head>
+<body>
+
+
+
+
+<table class="sectionsummary"><tr><td width="68px">
+<img src="../images/b64x64_enhanced_browsing.png" class="singleimg" align="left" alt="Browsing" />
+</td><td valign="middle"><h1>Loading/Saving From/To URL</h1><br />
+KeePass can load/save databases from/to URLs.
+</td></tr></table>
+
+<p>In this dialog you can specify an URL, from/to which data is read/written.</p>
+
+<p>By default, KeePass supports <b>FTP</b>, <b>HTTP</b> and <b>WebDAV</b>,
+but additional protocols might
+be available on your system (if specific providers are installed).</p>
+
+<p>The <a href="http://keepass.info/plugins.html#ioprotocolext"
+target="_blank">IOProtocolExt</a> plugin adds support for
+<b>SCP</b>, <b>SFTP</b> and <b>FTPS</b>.</p>
+
+<p>For an online storage (like e.g. Amazon's S3, DigitalBucket, ...), you need
+an online storage provider
+<a href="http://keepass.info/plugins.html" target="_blank">plugin</a>
+(e.g.
+<a href="http://keepass.info/plugins.html#keeanywhere"
+target="_blank">KeeAnywhere</a>,
+<a href="http://keepass.info/plugins.html#keecloud"
+target="_blank">KeeCloud</a> or
+<a href="http://keepass.info/plugins.html#keepasssync"
+target="_blank">KeePassSync</a>).</p>
+
+<br />
+
+<a name="ftp"></a>
+<h2 class="sectiontitle">
+<img src="../images/b16x16_server.png" class="singleimg" alt="Server" />&nbsp;&nbsp;Example:
+Using FTP Server</h2>
+
+<p>In order to load/save your database from/to an FTP server, you first need to
+upload the database file to the server manually. This only needs to be done once.</p>
+
+<p>Then start KeePass and go <i>'File'</i> -&gt; <i>'Open'</i> -&gt; <i>'Open URL...'</i>.
+Enter the full database path on the server and don't forget the <code>ftp://</code> prefix!
+This prefix is required, otherwise KeePass doesn't know which protocol to use.
+Enter the FTP credentials and click [OK]. KeePass will download the file and open it.</p>
+
+<p>KeePass can remember the FTP credentials, if you wish. You can choose between remembering
+everything (user name and password), partially (user name only) and not remembering
+the credentials at all.</p>
+
+<p>When you press the 'Save' button, KeePass will automatically upload the new
+database file to the server (same location as before, i.e. overwriting the previous
+one).</p>
+
+</body></html>
+

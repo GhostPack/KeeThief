@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "KeePassMsi", "KeePassMsi.vdproj", "{C4135368-4A84-4924-B5CE-82B18FAADFD4}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Default = Debug|Default
+		Release|Default = Release|Default
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C4135368-4A84-4924-B5CE-82B18FAADFD4}.Debug|Default.ActiveCfg = Debug
+		{C4135368-4A84-4924-B5CE-82B18FAADFD4}.Debug|Default.Build.0 = Debug
+		{C4135368-4A84-4924-B5CE-82B18FAADFD4}.Release|Default.ActiveCfg = Release
+		{C4135368-4A84-4924-B5CE-82B18FAADFD4}.Release|Default.Build.0 = Release
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

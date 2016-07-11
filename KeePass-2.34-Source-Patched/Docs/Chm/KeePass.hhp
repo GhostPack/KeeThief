@@ -1,0 +1,64 @@
+[OPTIONS]
+Compatibility=1.1 or later
+Compiled file=KeePass.chm
+Contents file=KeePassContents.hhc
+Default topic=help\base\index.html
+Display compile progress=No
+Full-text search=Yes
+Language=0x409 Englisch (USA)
+Title=KeePass Password Safe Help
+
+
+[FILES]
+help\base\autotype.html
+help\base\autourl.html
+help\base\cmdline.html
+help\base\configuration.html
+help\base\credits.html
+help\base\disclaimer.html
+help\base\faq.html
+help\base\faq_tech.html
+help\base\fieldrefs.html
+help\base\firststeps.html
+help\base\importexport.html
+help\base\index.html
+help\base\integration.html
+help\base\keys.html
+help\base\license_lgpl.html
+help\base\multiuser.html
+help\base\placeholders.html
+help\base\pwgenerator.html
+help\base\repair.html
+help\base\secedits.html
+help\base\security.html
+help\base\tans.html
+help\base\usingpws.html
+help\v2\autotype_obfuscation.html
+help\v2\dbsettings.html
+help\v2\entry.html
+help\v2\guioptions.html
+help\v2\index.html
+help\v2\ioconnect.html
+help\v2\license.html
+help\v2\plugins.html
+help\v2\policy.html
+help\v2\setup.html
+help\v2\sync.html
+help\v2\translation.html
+help\v2\triggers.html
+help\v2\version.html
+help\v2\xml_replace.html
+help\v2_dev\customize.html
+help\v2_dev\plg_index.html
+help\v2_dev\scr_index.html
+help\v2_dev\scr_kps_index.html
+help\v2_dev\scr_sc_index.html
+images\grad_v_gw.gif
+images\back.gif
+images\grad_h_gw.gif
+images\grad_h_gw_186.gif
+images\grad_v_dlb.gif
+images\grad_v_dlb_tall_light.png
+
+[INFOTYPES]
+

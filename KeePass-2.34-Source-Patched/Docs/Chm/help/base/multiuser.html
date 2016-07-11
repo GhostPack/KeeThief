@@ -1,0 +1,147 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta name="author" content="Dominik Reichl" />
+
+	<meta name="description" content="KeePass is an open source password manager. Passwords can be stored in highly-encrypted databases, which can be unlocked with one master password or key file." />
+	<meta name="keywords" content="KeePass, Password, Safe, Security, Database, Encryption, Secure, Manager, Open, Source, Free, Code, Key, Master, Disk, Dominik, Reichl" />
+
+	<meta name="robots" content="index" />
+
+	<meta name="DC.Title" content="KeePass - The Open Source Password Manager" />
+	<meta name="DC.Creator" content="Dominik Reichl" />
+	<meta name="DC.Subject" content="Open-Source Password Safe" />
+	<meta name="DC.Description" content="KeePass is an open source password manager. Passwords can be stored in highly-encrypted databases, which can be unlocked with one master password or key file." />
+	<meta name="DC.Publisher" content="Dominik Reichl" />
+	<meta name="DC.Contributor" content="Dominik Reichl" />
+	<meta name="DC.Type" content="text" />
+	<meta name="DC.Format" content="text/html" />
+	<meta name="DC.Identifier" content="http://keepass.info/" />
+	<meta name="DC.Language" content="en" />
+	<meta name="DC.Rights" content="Copyright (c) 2003-2016 Dominik Reichl" />
+
+	<title>Multi-User - KeePass</title>
+	<base target="_self" />
+	<link rel="stylesheet" type="text/css" href="../../default.css" />
+	
+</head>
+<body>
+
+
+
+
+<table class="sectionsummary"><tr><td width="68px">
+<img src="../images/b64x64_kdmconfig.png" width="64px" height="64px"
+class="singleimg" align="left" alt="Help" />
+</td><td valign="middle"><h1>Multi-User</h1><br />
+Details about multi-user features of KeePass.
+</td></tr></table>
+
+<ul>
+<li><b>Shared Database Editing:</b>
+<ul>
+<li><a href="#shareddb">General Information about Shared Databases</a></li>
+<li><a href="#locking1x">KeePass 1.x: Office-Style Locking</a></li>
+<li><a href="#syncorsave2x">KeePass 2.x: Synchronize or Overwrite</a></li>
+</ul>
+</li>
+</ul>
+
+<br />
+
+<a name="shareddb"></a>
+<h2 class="sectiontitle">
+<img src="../images/b16x16_kdmconfig.png" class="singleimg" alt="People" />&nbsp;&nbsp;General
+Information about Shared Databases</h2>
+
+<p>Both KeePass 1.x and 2.x allow multiple users working with one database,
+which is typically stored on a shared network drive or a file server.</p>
+
+<p>All users use the same master password and/or key file to open the
+database. There are no per-group or per-entry access control lists (ACLs).</p>
+
+<p>In order to restrict write access to the database file (i.e. only a select
+set of users may change the stored data), use file system access rights.</p>
+
+<br />
+
+<a name="locking1x"></a>
+<h2 class="sectiontitle">
+<img src="../images/b16x16_kdmconfig.png" class="singleimg" alt="People" />&nbsp;&nbsp;KeePass
+1.x: Office-Style Locking</h2>
+
+<br />
+
+<table border="0px" width="100%" cellpadding="0px" cellspacing="0px">
+<tr><td align="left" valign="top">
+With KeePass 1.x, a database can be stored on a shared network drive and used by multiple
+users. When a user tries to open a database that is already opened by
+someone else, a prompt asks whether to open the database in read-only
+or normal mode (see image on the right).<br />
+<br />
+By opening a database in normal mode, the current user takes ownership
+of the file (i.e. subsequent opening attempts will show the current user
+as owner).<br />
+<br />
+KeePass 1.x does not provide synchronization, i.e. by saving the database you
+are saving your current data to disk. If another user has changed an entry
+in the meanwhile (i.e. since you loaded the database), these changes are overwritten.
+</td>
+<td width="306px" align="right" valign="top">
+<a href="http://keepass.info/screenshots/windows_vista/readonlymode_big.png"
+target="_blank"><img src="../../screenshots/windows_vista/readonlymode.png"
+align="right" alt="KeePass 1.x Read-Only Prompt" /></a>
+</td></tr></table>
+
+<p>If you want to use KeePass 1.x with a database on a shared network drive, it
+is recommended to let an administrator write to the database and let
+users only read it (ensure this using file system access rights).
+By using the <a href="cmdline.html">-readonly</a> command line switch,
+KeePass will automatically open
+a given database in read-only mode (i.e. not show the mode prompt). Users
+would open the database using a shortcut that contains this command line
+switch.</p>
+
+<p>If there is no central administrator managing the database, users need to
+be careful to not overwrite each others changes.</p>
+
+<br />
+
+<a name="syncorsave2x"></a>
+<h2 class="sectiontitle">
+<img src="../images/b16x16_kdmconfig.png" class="singleimg" alt="People" />&nbsp;&nbsp;KeePass
+2.x: Synchronize or Overwrite</h2>
+
+<br />
+
+<table border="0px" width="100%" cellpadding="0px" cellspacing="0px">
+<tr><td align="left" valign="top">
+With KeePass 2.x, a database can be stored on a shared network drive and used by multiple
+users. When attempting to save, KeePass first checks whether the file on disk has been
+modified since it was loaded. If yes, KeePass asks whether to synchronize or
+overwrite the file (see image on the right).<br />
+<br />
+By synchronizing, changes made by other users (file on disk)
+and changes made by the current user are merged.
+After the synchronization process has finished,
+the current user also sees the changes made by others (i.e. the data in the
+current KeePass instance is up-to-date).<br />
+<br />
+If there is a conflict (multiple users edited the same
+entry), KeePass uses the latest version of the entry based on the last
+modification time.
+</td>
+<td width="306px" align="right" valign="top">
+<a href="http://keepass.info/screenshots/windows_vista/syncorsave_big.png"
+target="_blank"><img src="../../screenshots/windows_vista/syncorsave.png"
+align="right" alt="KeePass 2.x Synchronize Prompt" /></a>
+</td></tr></table>
+
+<p>Note: the synchronize prompt is only triggered by the 'Save' command,
+<i>not</i> by the 'Save As' command. When executing the 'Save As' command and
+manually selecting a file, this file will always be overwritten.</p>
+
+</body></html>
+

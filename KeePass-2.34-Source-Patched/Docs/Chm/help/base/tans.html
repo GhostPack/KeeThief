@@ -1,0 +1,95 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta name="author" content="Dominik Reichl" />
+
+	<meta name="description" content="KeePass is an open source password manager. Passwords can be stored in highly-encrypted databases, which can be unlocked with one master password or key file." />
+	<meta name="keywords" content="KeePass, Password, Safe, Security, Database, Encryption, Secure, Manager, Open, Source, Free, Code, Key, Master, Disk, Dominik, Reichl" />
+
+	<meta name="robots" content="index" />
+
+	<meta name="DC.Title" content="KeePass - The Open Source Password Manager" />
+	<meta name="DC.Creator" content="Dominik Reichl" />
+	<meta name="DC.Subject" content="Open-Source Password Safe" />
+	<meta name="DC.Description" content="KeePass is an open source password manager. Passwords can be stored in highly-encrypted databases, which can be unlocked with one master password or key file." />
+	<meta name="DC.Publisher" content="Dominik Reichl" />
+	<meta name="DC.Contributor" content="Dominik Reichl" />
+	<meta name="DC.Type" content="text" />
+	<meta name="DC.Format" content="text/html" />
+	<meta name="DC.Identifier" content="http://keepass.info/" />
+	<meta name="DC.Language" content="en" />
+	<meta name="DC.Rights" content="Copyright (c) 2003-2016 Dominik Reichl" />
+
+	<title>TAN Support - KeePass</title>
+	<base target="_self" />
+	<link rel="stylesheet" type="text/css" href="../../default.css" />
+	
+</head>
+<body>
+
+
+
+
+<table class="sectionsummary"><tr><td width="68px">
+<img src="../images/b64x64_vcard.png" width="64px" height="64px"
+class="singleimg" align="left" alt="Help" />
+</td><td valign="middle"><h1>TAN Support</h1><br />
+KeePass supports Transaction Authentication Numbers (TANs).
+</td></tr></table>
+
+<ul>
+<li><a href="#wizard">Using the <i>TAN Wizard</i> to add TANs</a></li>
+<li><a href="#usage">Using TANs</a></li>
+</ul>
+
+<p>KeePass supports TANs, i.e. passwords that can be used only
+once.
+These special passwords are used by some banks: you need to confirm
+transactions using such TANs. This provides additional security, as
+a spy cannot perform transactions, even if he knows the password of
+your banking account.</p>
+
+<br />
+
+<a name="wizard"></a>
+<h2 class="sectiontitle">
+<img src="../images/b16x16_vcard.png" class="singleimg" alt="Text" />&nbsp;&nbsp;Using the <i>TAN
+Wizard</i> to add TANs</h2>
+
+<p>You can use the KeePass <b>TAN Wizard</b> to add several TANs at once to your
+database. Just open the TAN wizard dialog (menu <i>Tools</i> - <i>TAN Wizard</i>) and enter
+all your TANs. The formatting doesn't really
+matter, KeePass just uses all alphanumerical strings, i.e. characters like line breaks,
+tabs, spaces, dots, etc. are interpreted as separators.</p>
+
+<p>The wizard will then generate several TAN entries from the data you entered into the dialog. Each
+TAN is a standard KeePass entry. The title of a TAN entry always is set to &quot;<code>&lt;TAN&gt;</code>&quot;.
+This tells KeePass that the entry is a TAN entry. You cannot change the title, user
+name and URL of a TAN. But you can freely add notes to a TAN entry, if you wish.</p>
+
+<br />
+
+<a name="usage"></a>
+<h2 class="sectiontitle">
+<img src="../images/b16x16_vcard.png" class="singleimg" alt="Text" />&nbsp;&nbsp;Using
+TANs</h2>
+
+<p>When you use the TAN (e.g. execute the &quot;Copy Password&quot; command on
+it), its expiration date will be set
+to the current time, which expires the entry. It will get a red <font color="#ff0000"><b>X</b></font>
+as icon. If you later
+want to know when you used a specific
+TAN, you can just have a look at its expiration date.</p>
+
+<p>When copying a TAN to the clipboard, the database is marked as modified. You must save
+the file in order to remember the usage of a TAN.</p>
+
+<p>If you accidently used a TAN without needing it, you can reset it (i.e. remove the red
+<font color="#ff0000"><b>X</b></font> and show it as valid TAN again). To do this, open the
+TAN entry (right-click it and choose <i>'Edit/View Entry...'</i>). Here, uncheck the
+<i>'Expires'</i> checkbox. Click [OK] to close the dialog.</p>
+
+</body></html>
+

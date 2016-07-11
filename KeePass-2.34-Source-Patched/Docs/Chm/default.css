@@ -1,0 +1,414 @@
+/*
+	Design Copyright (c) 2003-2016 Dominik Reichl
+*/
+
+body, p, div, h1, h2, h3, h4, h5, h6, ol, ul, li, td, th, dd, dt, a, kbd kbd {
+	font-family: Verdana, Arial, sans-serif;
+	font-size: 9.75pt;
+	font-weight: normal;
+	color: #000000;
+}
+
+/* --------------------------------------------------------------------- */
+
+body {
+	background-color: #FFFFFF;
+	background-image: url(./images/back.gif);
+	background-repeat: repeat;
+	background-attachment: fixed;
+}
+
+p {
+	margin-left: 0px;
+}
+
+ul {
+	/* margin-left: 20px;
+	list-style: disc; */
+}
+
+h1 {
+	font-size: 15.00pt;
+	font-weight: bold;
+}
+
+h2 {
+	font-size: 13.50pt;
+	font-weight: bold;
+}
+
+h3 {
+	font-size: 11.25pt;
+	font-weight: bold;
+}
+
+h4 {
+	font-size: 9.75pt;
+	font-weight: bold;
+}
+
+h5 {
+	font-size: 9.00pt;
+	font-weight: bold;
+}
+
+h6 {
+	font-size: 7.50pt;
+	font-weight: normal;
+}
+
+hr {
+	height: 1px;
+	display: block;
+	color: #000080;
+	margin: 0px 0px 0px 0px;
+	padding: 0px 0px 0px 0px;
+}
+
+pre {
+	font-family: monospace;
+	background-color: #E6E6E6;
+	font-size: 8.25pt;
+	overflow: auto;
+	display: block;
+}
+
+kbd kbd {
+	padding: 0px 4px 1px 4px;
+	border: 1px solid #808080;
+	border-collapse: collapse;
+	-moz-border-radius: 2px;
+	border-radius: 2px;
+	box-shadow: 0.1em 0.15em 0.2em #C5C5C5;
+	color: #000000;
+	background-color: #EEEEEE;
+	background-image: -webkit-linear-gradient(top, #EEEEEE, #FAFAFA, #EEEEEE);
+	background-image: -moz-linear-gradient(top, #EEEEEE, #FAFAFA, #EEEEEE);
+	background-image: -ms-linear-gradient(top, #EEEEEE, #FAFAFA, #EEEEEE);
+	background-image: linear-gradient(to bottom, #EEEEEE, #FAFAFA, #EEEEEE);
+}
+
+/* --------------------------------------------------------------------- */
+
+a:visited {
+	text-decoration: none;
+	color: #0000DD;
+}
+
+a:active {
+	text-decoration: none;
+	color: #6699FF;
+}
+
+a:link {
+	text-decoration: none;
+	color: #0000DD;
+}
+
+a:hover {
+	text-decoration: underline;
+	color: #6699FF;
+}
+
+/* --------------------------------------------------------------------- */
+
+div.menubox {
+	border: 1px solid #C5C5C5;
+	display: block;
+	margin: 0px 1px 0px 0px;
+	padding: 0px 0px 0px 0px;
+	background-color: #FFFFFF;
+}
+
+div.menubox div.menutitle {
+	background-color: #C5C5C5;
+	background: url(./images/grad_h_gw.gif) repeat-y;
+	display: block;
+	font-weight: bold;
+	font-size: 7.50pt;
+	padding: 1px 1px 1px 6px;
+	vertical-align: middle;
+	color: #005101;
+	white-space: nowrap;
+}
+
+div.menubox div.menutitlewide {
+	background-color: #C5C5C5;
+	background: url(./images/grad_h_gw_186.gif) repeat-y;
+	display: block;
+	font-weight: bold;
+	font-size: 7.50pt;
+	padding: 1px 1px 1px 6px;
+	vertical-align: middle;
+	color: #005101;
+	white-space: nowrap;
+}
+
+div.menubox a {
+	display: block;
+	padding: 1px 1px 1px 1px;
+	border-collapse: collapse;
+	text-decoration: none;
+	font-size: 8.25pt;
+	color: #000000;
+	vertical-align: middle;
+}
+
+div.menubox a:visited, div.menubox a:active, div.menubox a:link {
+	border: 1px solid #FFFFFF;
+}
+
+div.menubox a:hover {
+	border: 1px solid #0A246A;
+	-moz-border-radius: 2px;
+	border-radius: 2px;
+	background-color: #B6BDD2;
+	background-image: -webkit-linear-gradient(top, #D9E5F9, #B8BED8);
+	background-image: -moz-linear-gradient(top, #D9E5F9, #B8BED8);
+	background-image: -ms-linear-gradient(top, #D9E5F9, #B8BED8);
+	background-image: linear-gradient(to bottom, #D9E5F9, #B8BED8);
+}
+
+/* --------------------------------------------------------------------- */
+
+table.tablebox, table.tablebox75 {
+	background-color: #EEEEEE;
+	margin: 0px 0px 0px 0px;
+	padding: 0px 0px 0px 0px;
+	border-left: 1px solid #AFB5CF;
+	border-right: 0px none;
+	border-top-width: 0px;
+	border-bottom-width: 0px;
+	border-collapse: collapse;
+}
+
+table.tablebox {
+	width: 100%;
+}
+
+table.tablebox75 {
+	width: 75%;
+	margin-left: 12.5%;
+	margin-right: 12.5%;
+}
+
+table.tablebox tr th, table.tablebox75 tr th {
+	background-color: #EEEEEE;
+	background: url(./images/grad_v_gw.gif) repeat-x top;
+	font-weight: bold;
+	border-bottom: 1px solid #AFB5CF;
+	border-left: 0px none;
+	border-right: 1px solid #AFB5CF;
+	border-top: 1px solid #AFB5CF;
+	padding: 2px 2px 2px 5px;
+	empty-cells: show;
+	white-space: nowrap;
+	text-align: left;
+	vertical-align: top;
+}
+
+table.tablebox tr td, table.tablebox75 tr td {
+	background-color: #F0F0F0;
+	font-weight: normal;
+	border-bottom: 1px solid #AFB5CF;
+	border-left: 0px none;
+	border-right: 1px solid #AFB5CF;
+	border-top: 0px none;
+	padding: 5px 5px 5px 5px;
+	empty-cells: show;
+	text-align: left;
+	vertical-align: top;
+}
+
+/* --------------------------------------------------------------------- */
+
+img {
+	border: 0px none;
+}
+
+img.singleimg {
+	border: 0px none;
+	vertical-align: middle;
+}
+
+/* --------------------------------------------------------------------- */
+
+input.sansedit, textarea.fixededit {
+	border: 1px solid #C5C5C5;
+	padding-top: 1px;
+}
+
+input.sansedit:hover, input.sansedit:focus, textarea.fixededit:hover, textarea.fixededit:focus {
+	border: 1px solid #000000;
+}
+
+input.sansedit {
+	font-family: Verdana, Arial, sans-serif;
+	font-size: 9.75pt;
+}
+
+textarea.fixededit {
+	font-family: monospace;
+	display: block;
+}
+
+/* --------------------------------------------------------------------- */
+
+div.tooltipex {
+	position: absolute;
+	display: none;
+	background-color: #FFFFE0;
+	padding: 1px 1px 1px 1px;
+	-moz-opacity: 0.9;
+	opacity: 0.9;
+	border: 1px solid #000000;
+}
+
+/* --------------------------------------------------------------------- */
+
+div.specificbox {
+	border: 1px solid #808080;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	display: block;
+	background-color: #EEF0FF;
+	padding-top: 1px;
+	padding-left: 2px;
+	padding-right: 2px;
+	padding-bottom: 2px;
+}
+
+div.specificbox div.specifictitle {
+	font-size: 7.50pt;
+	font-weight: bold;
+	border-left: 0px none;
+	border-right: 0px none;
+	border-bottom: thin dotted #808080;
+	border-top: 0px none;
+	text-align: left;
+	margin-bottom: 3px;
+}
+
+/* --------------------------------------------------------------------- */
+
+table.sectionsummary {
+	width: 100%;
+	border: thin solid #808080;
+	-moz-box-shadow: 1px 1px 5px #808080;
+	-webkit-box-shadow: 1px 1px 5px #808080;
+	box-shadow: 1px 1px 5px #808080;
+	background-color: #F0F8FF;
+	margin: 0px 0px 0px 0px;
+	padding: 0px 0px 0px 0px;
+}
+
+table.sectionsummary tr td {
+	border: 0px;
+	vertical-align: middle;
+	font-size: 7.50pt;
+	font-weight: normal;
+	margin: 0px 0px 0px 0px;
+	padding: 0px 0px 0px 0px;
+	border-collapse: collapse;
+}
+
+table.sectionsummary tr td h1 {
+	display: inline;
+	font-size: 15.00pt;
+	font-weight: normal;
+}
+
+/* --------------------------------------------------------------------- */
+
+h2.sectiontitle {
+	display: block;
+	font-size: 9.75pt;
+	font-weight: bold;
+	color: #000000;
+	background: url(./images/grad_v_dlb_tall_light.png) repeat-x top;
+	border: 1px solid #AFB5CF;
+	color: #005101;
+	min-height: 14.25pt;
+	vertical-align: middle;
+	margin: 0px 0px 0px 0px;
+	padding: 2px 0px 0px 6px;
+}
+
+/* --------------------------------------------------------------------- */
+
+td.helptopheader {
+	background-image: url(./help/images/b32x68_headerbg.png);
+	background-repeat: repeat-x;
+}
+
+/* --------------------------------------------------------------------- */
+
+p.pagebreak {
+	page-break-after: always;
+}
+
+/* --------------------------------------------------------------------- */
+
+div.tipdiv {
+	background-color: #FFFFE0;
+	padding: 1px 1px 1px 1px;
+	border: 1px solid #000000;
+}
+
+.box100 {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	width: 100%;
+}
+
+/* --------------------------------------------------------------------- */
+
+.il-m {
+	background: transparent url('./images/il_main_v02.png') no-repeat;
+	margin: 0px 0px 0px 0px;
+	padding: 0px 0px 0px 0px;
+	border: 0px none;
+	overflow: hidden;
+	display: inline-block;
+	vertical-align: middle;
+}
+
+.spr-m-kp-h       { background-position:   -1px   -1px; width: 75px; height: 75px; }
+.spr-m-home-mh    { background-position:  -78px   -1px; width: 31px; height: 21px; }
+.spr-m-contact-mh { background-position:  -78px  -24px; width: 31px; height: 21px; }
+.spr-m-news-mh    { background-position:  -78px  -47px; width: 31px; height: 21px; }
+.spr-m-scrsh-mh   { background-position: -111px   -1px; width: 31px; height: 21px; }
+.spr-m-dl-mh      { background-position: -111px  -24px; width: 31px; height: 21px; }
+.spr-m-lang-mh    { background-position: -111px  -47px; width: 31px; height: 21px; }
+.spr-m-ext-mh     { background-position: -144px   -1px; width: 31px; height: 21px; }
+.spr-m-write-mh   { background-position: -144px  -24px; width: 31px; height: 21px; }
+.spr-m-help-ml    { background-position: -177px   -1px; width: 31px; height: 18px; }
+.spr-m-info-ml    { background-position: -177px  -21px; width: 31px; height: 18px; }
+.spr-m-sec-ml     { background-position: -177px  -41px; width: 31px; height: 18px; }
+.spr-m-donate-ml  { background-position: -177px  -61px; width: 31px; height: 18px; }
+.spr-m-award-ml   { background-position: -210px   -1px; width: 31px; height: 18px; }
+.spr-m-links-ml   { background-position: -210px  -21px; width: 31px; height: 18px; }
+.spr-m-xmag-ml    { background-position: -210px  -41px; width: 31px; height: 18px; }
+.spr-m-osi-h      { background-position:   -1px  -96px; width: 72px; height: 60px; }
+.spr-m-award-s    { background-position:   -1px -158px; width: 16px; height: 16px; }
+.spr-m-feed-s     { background-position:  -19px -158px; width: 16px; height: 16px; }
+.spr-m-w3valid-b  { background-position:   -1px -176px; width: 80px; height: 15px; }
+.spr-m-kp-b       { background-position:  -83px -176px; width: 80px; height: 15px; }
+
+/* --------------------------------------------------------------------- */
+
+.cc_message, .cc_more_info, .cc_btn {
+	font-family: Verdana, Arial, sans-serif !important;
+	font-size: 13px !important;
+}
+
+.cc_message {
+	color: #FFFFFF !important;
+}
+
+.cc_container {
+	background-color: rgba(0, 0, 0, 0.92) !important;
+	padding: 5px 5px 5px 10px !important;
+}

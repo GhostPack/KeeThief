@@ -1,0 +1,155 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta name="author" content="Dominik Reichl" />
+
+	<meta name="description" content="KeePass is an open source password manager. Passwords can be stored in highly-encrypted databases, which can be unlocked with one master password or key file." />
+	<meta name="keywords" content="KeePass, Password, Safe, Security, Database, Encryption, Secure, Manager, Open, Source, Free, Code, Key, Master, Disk, Dominik, Reichl" />
+
+	<meta name="robots" content="index" />
+
+	<meta name="DC.Title" content="KeePass - The Open Source Password Manager" />
+	<meta name="DC.Creator" content="Dominik Reichl" />
+	<meta name="DC.Subject" content="Open-Source Password Safe" />
+	<meta name="DC.Description" content="KeePass is an open source password manager. Passwords can be stored in highly-encrypted databases, which can be unlocked with one master password or key file." />
+	<meta name="DC.Publisher" content="Dominik Reichl" />
+	<meta name="DC.Contributor" content="Dominik Reichl" />
+	<meta name="DC.Type" content="text" />
+	<meta name="DC.Format" content="text/html" />
+	<meta name="DC.Identifier" content="http://keepass.info/" />
+	<meta name="DC.Language" content="en" />
+	<meta name="DC.Rights" content="Copyright (c) 2003-2016 Dominik Reichl" />
+
+	<title>Customization (2.x) - KeePass</title>
+	<base target="_self" />
+	<link rel="stylesheet" type="text/css" href="../../default.css" />
+	
+</head>
+<body>
+
+
+
+
+<table class="sectionsummary"><tr><td width="68px">
+<img src="../images/b64x64_package_system.png" class="singleimg" align="left" alt="Help" />
+</td><td valign="middle"><h1>Customization (2.x)</h1><br />
+KeePass 2.x features various options for network administrators to
+customize the program's appearance and behavior.
+</td></tr></table>
+
+<ul>
+<li><a href="#start">Preliminaries</a></li>
+<li><a href="#masterpwreq">Minimum Master Password Requirements</a></li>
+<li><a href="#uiflags">Specifying UI Element States</a></li>
+<li><a href="#opt">More Options</a></li>
+</ul>
+
+<br />
+
+<a name="start"></a>
+<h2 class="sectiontitle">
+<img src="../images/b16x16_package_system.png" class="singleimg" alt="System" />&nbsp;&nbsp;Preliminaries</h2>
+
+<p>Most options below are configured by directly editing the
+<code>KeePass.config.xml</code> configuration file. If you're planning to
+deploy a customized KeePass version, you should fully understand the
+KeePass <a href="../base/configuration.html">configuration system</a>,
+especially how to enforce some settings and leave others up to users.</p>
+
+<p>Note that KeePass features a rich plugin framework. If there's no
+item in the XML file to configure what you're thinking about, you might
+want to write a plugin.</p>
+
+<br />
+
+<a name="masterpwreq"></a>
+<h2 class="sectiontitle">
+<img src="../images/b16x16_kgpg.png" class="singleimg" alt="Key" />&nbsp;&nbsp;Minimum
+Master Password Requirements</h2>
+
+<p>You can specify several properties that master passwords must have
+in order to be accepted (length, estimated quality, ...).
+See <a href="../base/keys.html#pwmin">Specifying Minimum Master Password
+Properties</a>.</p>
+
+<br />
+
+<a name="uiflags"></a>
+<h2 class="sectiontitle">
+<img src="../images/b16x16_file_locked.png" class="singleimg" alt="Locked" />&nbsp;&nbsp;Specifying
+UI Element States</h2>
+
+<p>The state (enabled, disabled, visible, hidden) of several user interface
+(UI) elements can be specified using the <code>UIFlags</code> value
+of the <code>UI</code> node in the configuration file.
+This can be a bitwise combination of one or more of
+the following flags:</p>
+
+<table class="tablebox75">
+<tr><th style="text-align: right">Flag (Hex)</th><th style="text-align: right">Flag (Dec)</th>
+<th>Description</th></tr>
+<tr><td style="text-align: right">0x0</td><td style="text-align: right">0</td>
+<td>Don't force any states (default).</td></tr>
+<tr><td style="text-align: right">0x1</td><td style="text-align: right">1</td>
+<td>Disable 'Tools' -&gt; 'Options' menu item.</td></tr>
+<tr><td style="text-align: right">0x2</td><td style="text-align: right">2</td>
+<td>Disable 'Tools' -&gt; 'Plugins' menu item.</td></tr>
+<tr><td style="text-align: right">0x4</td><td style="text-align: right">4</td>
+<td>Disable 'Tools' -&gt; 'Triggers' menu item.</td></tr>
+<tr><td style="text-align: right">0x8</td><td style="text-align: right">8</td>
+<td>Disable controls to specify after how many
+days the master key should/must be changed.</td></tr>
+<tr><td style="text-align: right">0x10</td><td style="text-align: right">16</td>
+<td>Hide password quality progress bars and information labels.</td></tr>
+<tr><td style="text-align: right">0x10000</td><td style="text-align: right">65536</td>
+<td>Hide built-in profiles in the
+password generator context menu of the entry editing dialog.</td></tr>
+<tr><td style="text-align: right">0x20000</td><td style="text-align: right">131072</td>
+<td>Show UI elements related to last access times.<br />
+<em>Note:</em> Databases are not marked as modified when a last access time
+changes. Thus, when only last access times are changed and the user closes the
+database (without saving manually first and without a save forced e.g. by a trigger or plugin),
+the changes to the last access times are lost.</td></tr>
+</table>
+
+<p>The value of <code>UIFlags</code> must be specified in decimal notation.</p>
+
+<p>For example, if you want to disable the 'Options' and 'Plugins' items in
+the 'Tools' menu, you'd specify 3 as value for the <code>UIFlags</code> node
+(0x1 + 0x2 = 0x3 = 3).</p>
+
+<br />
+
+<a name="opt"></a>
+<h2 class="sectiontitle">
+<img src="../images/b16x16_kcmsystem.png" class="singleimg" alt="Key" />&nbsp;&nbsp;More
+Options</h2>
+
+<ul>
+<li><b>Configuration/Defaults/WinFavsBaseFolderName</b>:<br />
+For the 'Windows Favorites' export:
+name of the root folder; the default value is 'KeePass'.</li>
+
+<li><b>Configuration/Defaults/WinFavsFileNamePrefix</b>:<br />
+For the 'Windows Favorites' export:
+prefix for the title of every favorite; the default value is an empty string.</li>
+
+<li><b>Configuration/Defaults/WinFavsFileNameSuffix</b>:<br />
+For the 'Windows Favorites' export:
+suffix for the title of every favorite; the default value is an empty string.</li>
+
+<li><b>Configuration/Integration/AutoTypeInterKeyDelay</b>:<br />
+Specifies the default delay (in ms) between two keypresses sent by auto-type.
+The minimum is 1 ms.
+Note that very small delays may result in target applications not being able
+to process the keypresses correctly.</li>
+
+<li><b>Configuration/Security/MasterKeyTries</b>:<br />
+Specifies how often the master key dialog appears when entering incorrect
+master keys. The default value is 3.</li>
+</ul>
+
+</body></html>
+
