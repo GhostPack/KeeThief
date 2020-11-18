@@ -40,6 +40,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Management" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ClrMDHelper.cs" />
@@ -66,8 +67,11 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>mkdir "$(SolutionDir)bin\"
-"$(SolutionDir)packages\ILMerge.2.14.1208\tools\ilmerge.exe" /targetplatform:v2,C:\Windows\Microsoft.NET\Framework\v2.0.50727 /target:exe /out:"$(SolutionDir)bin\$(Configuration)$(TargetFileName)" "$(TargetPath)" "$(SolutionDir)ClrMD\src\Microsoft.Diagnostics.Runtime\bin\$(Configuration)\Microsoft.Diagnostics.Runtime.dll"</PostBuildEvent>
+    <PostBuildEvent>mkdir "$(SolutionDir)..\bin\"
+"$(SolutionDir)packages\ILMerge.2.14.1208\tools\ilmerge.exe" /targetplatform:v2,C:\Windows\Microsoft.NET\Framework\v2.0.50727 /target:exe /out:"$(SolutionDir)..\bin\$(TargetFileName)" "$(TargetPath)" "$(SolutionDir)ClrMD\src\Microsoft.Diagnostics.Runtime\bin\$(Configuration)\Microsoft.Diagnostics.Runtime.dll"
+
+powershell.exe -exec bypass -File "$(SolutionDir)..\PowerShell\Out-CompressedDll.ps1" "$(SolutionDir)..\bin\$(TargetFileName)" "$(SolutionDir)..\bin\KeeThief.ps1"
+</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
